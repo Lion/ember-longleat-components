@@ -22,6 +22,8 @@
     "ember-cli-htmlbars": "^1.1.1"
   },
   "devDependencies": {
+    "ember-cli-sass": "^6.2.0",
+    "ember-cli-neat": "tubbo/ember-cli-neat#ditch-bower-and-neat-2.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "2.13.1",
