@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.0.0",
-    "ember-cli-htmlbars": "^1.1.1"
+    "ember-cli-htmlbars": "^1.1.1",
+    "ember-cli-sass": "^6.2.0",
+    "ember-component-css": "^0.3.4"
   },
   "devDependencies": {
-    "ember-cli-sass": "^6.2.0",
-    "ember-cli-neat": "tubbo/ember-cli-neat#ditch-bower-and-neat-2.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "2.13.1",
@@ -31,6 +31,7 @@
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^0.4.0",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-neat": "tubbo/ember-cli-neat#ditch-bower-and-neat-2.0",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",

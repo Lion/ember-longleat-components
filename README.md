@@ -7,6 +7,7 @@ This README outlines the details of collaborating on this Ember addon.
 * `git clone <repository-url>` this repository
 * `cd ember-longleat-components`
 * `npm install`
+* `rm -fr node_modules/ember-component-css` for known issue with ember-component-css stomping on app component styles
 
 ## Running
 
