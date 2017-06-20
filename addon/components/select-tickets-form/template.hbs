@@ -1,0 +1,191 @@
+<div class="select-tickets-form">
+  <div class="select-tickets-form-inner">
+    <div class="ticket-title">
+      <span class="top">{{title}}</span>
+    </div>
+
+    {{#if isShowingForm}}
+
+      <div class="instructions">
+        Select your ticket options
+      </div>
+
+      {{#if errors}}
+        <div class="error-message">
+          {{#each errors as |error|}}
+            <div class="error">
+              {{#if (eq error.detail 'BELOW_MINIMUM_REQUIRED')}}
+                You must purchase at least {{product.minQuantity}}.
+              {{/if}}
+              {{#if (eq error.detail 'ABOVE_MAXIMUM_REQUIRED')}}
+                You can only purchase a maximum of {{product.maxQuantity}} (you may already have some in your basket).
+              {{/if}}
+              {{#if (eq error.detail 'SESSION_DATES_DONT_MATCH')}}
+                There is a problem with the dates you selected. Please refresh the page and try again.
+              {{/if}}
+              {{#if (eq error.detail 'DATE_NOT_AVAILABLE')}}
+                Sorry, the date you selected is no longer available. Please try a different date.
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      <form>
+
+        {{#if product.isGiftable}}
+          <div class="is-gift-toggle">
+            {{#ui-form-checkbox
+              fieldId="is-gift"
+              fieldName="is-gift"
+              isChecked=isGift
+              setValue=didChangeIsGift
+            }}
+              Buy as a gift?
+            {{/ui-form-checkbox}}
+          </div>
+        {{/if}}
+
+        {{#if isGift}}
+          {{!-- ui-form-textarea
+            label="Gift message"
+            inputId="gift-message-field"
+            value=(mut giftMessage)
+          --}}
+        {{/if}}
+
+        {{#if requiresDate}}
+          {{#jumbo-select
+            class="select-date"
+            label="Your visiting date..."
+            value=dateLabel
+            isDisabled=isDateSelectionDisabled
+            icon="calendar"
+            isShowingPopup=isShowingCalendar
+          }}
+            {{!--calendar-controls
+              displayDate=displayDate
+              maxDate=maxDate
+              minDate=minDate
+              changeDisplayDate=(action "changeDisplayDate")
+              hidePrevLabel=true
+              hideNextLabel=true
+            }}
+            {{calendar-month
+              displayDate=displayDate
+              selectedDate=date
+              days=days
+              selectDate=(action "selectDate")
+            }}
+            {{#if hasCustomDateKey}}
+              {{calendar-key-simple
+                key=customDateKey.key
+              }}
+            {{/if--}}
+          {{/jumbo-select}}
+        {{/if}}
+
+        {{#jumbo-select
+          class="select-visitors"
+          label=whosVisitingLabel
+          value=selectVisitorsLabel
+          isDisabled=isSelectVisitorsDisabled
+          icon="people"
+          isShowingPopup=isShowingVisitors
+        }}
+          <div class="skus-wrapper">
+            {{#if chooseSessions}}
+              {{!--sessions-quantity-select
+                product=product
+                date=date
+                skus=skus
+                sessions=sessions
+                hasSessionLoadingError=hasSessionLoadingError
+                sessionLabel=product.sessionLabel
+                titleTemplate=product.titleTemplate
+                isLoading=isLoadingSessions
+                soldOutDates=soldOutDates
+                basketItems=basketItems
+                canIncrement=canIncrementForProduct
+                createBasketItem=createBasketItem
+                deleteBasketItem=deleteBasketItem
+              --}}
+            {{else}}
+              {{#each skus as |sku|}}
+                {{sku-quantity-minus-plus
+                  sku=sku
+                  date=date
+                  basketItems=basketItems
+                  skuTitleTemplate=productFieldsHash.skuTitleTemplate
+                  isGift=isGift
+                  giftMessage=giftMessage
+                  canIncrementForProduct=canIncrementForProduct
+                  createBasketItem=createBasketItem
+                  deleteBasketItem=deleteBasketItem
+                }}
+              {{/each}}
+            {{/if}}
+          </div>
+
+          {{!--ui-button-raised
+            label="Continue"
+            class="continue-btn"
+            size="large"
+            onclick=(action "selectVisitors")
+          --}}
+        {{/jumbo-select}}
+
+        {{#if hasCondition}}
+          {{!--#ui-form-checkbox
+            fieldId="condition-checkbox"
+            isChecked=hasAcceptedCondition
+          }}
+            <strong>{{conditionMessage}}</strong>
+          {{/ui-form-checkbox--}}
+        {{/if}}
+
+        {{!-- #ui-button-raised
+          class="add-to-basket-btn"
+          size="large"
+          isDisabled=cannotSubmit
+          onclick=addToBasket
+          isLoading=isSubmitting
+        }}
+          <span class="label">
+            Add to basket
+            {{#if canSubmit}}
+              <span class="summary">
+                {{totalVisitors}} Tickets - £{{totalPrice}}
+              </span>
+            {{/if}}
+          </span>
+        {{/ui-button-raised--}}
+
+        {{#if hasSmallPrint}}
+          <div class="small-print">
+            {{#if hasMinQuantity}}
+              <div class="min-quantity">
+                You must choose a minimum number of {{product.minQuantity}} paid visitors.
+              </div>
+            {{/if}}
+            {{#if hasMaxQuantity}}
+              <div class="max-quantity">
+                You can choose a maximum number of {{product.maxQuantity}} paid visitors.
+              </div>
+            {{/if}}
+
+            {{#if isGift}}
+              <div class="gift-instructions">
+                Note: the date and time for this experience is not bookable online. Contact Longleat with your booking reference number to reserve your experience.
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+
+      </form>
+    {{/if}}
+
+    {{yield}}
+
+  </div>
+</div>

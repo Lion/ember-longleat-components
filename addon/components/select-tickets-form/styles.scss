@@ -1,0 +1,281 @@
+
+  $box-bg-colour: $colour-flat-white;
+  $box-bottom-colour: $colour-zebra;
+
+  $colour-footfall-quiet: $colour-mamba;
+  $colour-footfall-moderate: #d65f26;
+  $colour-footfall-busy: #8a172e;
+  $colour-footfall-sold-out: #d0d0d0; 
+& {
+  // @include clearfix();
+  background: $box-bg-colour;
+  border-bottom: 3px solid $box-bottom-colour;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+// .select-tickets-form {
+  // @include make-row();
+// }
+
+// .select-tickets-form-inner {
+  // @include make-xs-column(12);
+  // @include make-md-column(10);
+  // @include make-md-column-offset(1);
+// }
+
+.ticket-title {
+  text-align: center;
+
+  .top {
+    // @include h1;
+    display: block;
+    font-size: 50px;
+    margin: 0;
+  }
+
+  .bottom {
+    // @include h5;
+    display: block;
+    font-size: 32px;
+    line-height: 1em;
+    margin: 0;
+  }
+}
+
+.instructions {
+  color: $colour-tiger-light;
+  font-size: 24px;
+  padding: 10px 0 20px;
+  text-align: center;
+}
+
+.component-calendar-controls {
+  border-top: 0;
+  margin-top: 0;
+
+  .calendar-controls {
+    position: relative;
+  }
+
+  .btn-next,
+  .btn-previous {
+    position: absolute;
+    min-height: 16px;
+    top: 5px;
+    width: 30px;
+
+    &:active {
+      top: 6px;
+    }
+  }
+
+  .btn-next {
+    right: 0;
+  }
+
+  .btn-previous {
+    left: 0;
+  }
+
+}
+
+.component-calendar-month-day {
+
+  &:not(.is-previous-month):not(.is-next-month):not(.is-disabled) {
+    &.is-selectable {
+      .day {
+        background-color: $colour-finch-darker;
+        border-color: $colour-finch-darker;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.full-price,
+    &.concession-full-price {
+      .day {
+        background-color: $colour-agama-light;
+        border-color: $colour-agama-light;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.save-10,
+    &.save-15,
+    &.concession-save-10,
+    &.concession-save-15 {
+      .day {
+        background-color: $colour-finch-darker;
+        border-color: $colour-finch-darker;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.quiet {
+      .day {
+        background-color: $colour-footfall-quiet;
+        border-color: $colour-footfall-quiet;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.moderate {
+      .day {
+        background-color: $colour-footfall-moderate;
+        border-color: $colour-footfall-moderate;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.busy {
+      .day {
+        background-color: $colour-footfall-busy;
+        border-color: $colour-footfall-busy;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.sold-out {
+      .day {
+        background-color: $colour-footfall-sold-out;
+        border-color: $colour-footfall-sold-out;
+        color: $colour-flat-white;
+      }
+    }
+  }
+
+  &:not(.is-previous-month):not(.is-next-month) {
+    &.sold-out {
+      .day {
+        background-color: $colour-footfall-sold-out;
+        border-color: $colour-footfall-sold-out;
+        color: $colour-flat-white;
+      }
+    }
+  }
+}
+
+.skus-wrapper {
+  margin: -15px;
+  max-height: 400px;
+  overflow: scroll;
+  padding: 15px;
+}
+
+.select-visitors {
+  margin-top: 20px;
+}
+
+.add-to-basket-btn,
+.continue-btn {
+
+  .component-ui-button,
+  button {
+    display: block;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+.add-to-basket-btn {
+  padding-top: 20px;
+
+  &.component-ui-button-raised .component-ui-button button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .summary {
+    border-left: 1px solid $colour-tiger-dark;
+    display: none;
+    padding-left: 10px;
+    margin-left: 5px;
+
+    // @media (min-width: $screen-sm-min) {
+    //   display: inline;
+    // }
+  }
+}
+
+.continue-btn {
+  background: $colour-flat-white;
+  border-top: 5px solid $colour-zebra-off-white;
+  margin: -10px;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.component-whole-session-quantity-minus-plus,
+.sku-quantity-minus-plus {
+  margin: 0 -10px;
+
+  &:first-child {
+    margin-top: -10px;
+  }
+
+  .increment,
+  .decrement {
+    position: relative;
+
+    &:disabled {
+      color: $colour-zebra;
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      top: 1px;
+    }
+  }
+}
+
+.small-print {
+  color: $colour-koala-lighter-than-light;
+  text-align: center;
+}
+
+.error-message {
+  border: 1px solid $colour-fox;
+  color: $colour-fox;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.component-ui-form-checkbox {
+  margin-top: 20px;
+
+  .checkbox-label {
+    font-size: 16px;
+  }
+}
+
+.is-loading-sessions {
+  color: $colour-blue-grey;
+  margin: 100px auto;
+  text-align: center;
+
+  .component-ui-spinner {
+    display: block;
+    border-color: $colour-tiger-lighter !important;
+    margin: 0 auto 30px;
+  }
+}
+.has-loading-error {
+  margin: 100px auto;
+  
+  .component-ui-message {
+    text-align: center;
+  }
+}
+
+.component-ui-form-checkbox {
+  padding-left: 15px;
+  padding-bottom: 20px;
+}
+
