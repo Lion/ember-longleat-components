@@ -1,0 +1,13 @@
+<button class="jumbo-button" {{action "togglePopup"}} disabled={{isDisabled}}>
+  {{#if icon}}
+    <div class="icon-{{icon}}"></div>
+  {{/if}}
+  <div class="label">{{label}}</div>
+  <div class="value">{{value}}</div>
+  <div class="caret"></div>
+</button>
+{{#if isShowingPopup}}
+  <div class="popup">
+    {{yield}}
+  </div>
+{{/if}}
