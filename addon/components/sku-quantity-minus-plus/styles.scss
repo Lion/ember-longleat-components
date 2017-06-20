@@ -5,7 +5,7 @@ $value-width-sm: 40px;
 
 & {
 
-  // @include clearfix();
+  @include clearfix();
   border-bottom: 1px solid $colour-zebra;
   padding: 15px;
 

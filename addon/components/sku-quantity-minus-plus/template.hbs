@@ -15,7 +15,10 @@
     {{#if hasTitleTemplate}}
       {{renderedTitle}}
     {{else}}
-      {{title}} {{#if hasAge}}({{age}}){{/if}}
+      {{fieldsHash.name}}
+      {{#if hasAge}}
+        ({{fieldsHash.age}})
+      {{/if}}
     {{/if}}
   </div>
   <div class="price">x{{skuBasketItemQuantity}} &pound;{{lineTotal}}</div>
