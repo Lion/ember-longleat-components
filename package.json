@@ -18,6 +18,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "bourbon": "^4.3.4",
+    "bourbon-neat": "^2.0.0",
     "ember-cli-babel": "^6.0.0",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-sass": "^6.2.0",
@@ -31,7 +33,6 @@
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^0.4.0",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-neat": "tubbo/ember-cli-neat#ditch-bower-and-neat-2.0",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
