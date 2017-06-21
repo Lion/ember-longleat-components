@@ -1,0 +1,53 @@
+$wrapper-width: (100% / 7);
+$size-xs: 35px;
+$size-sm: 50px;
+$transition-time: 200ms;
+
+& {
+  float: left;
+  text-align: center;
+  width: $wrapper-width;
+}
+&.is-previous-month,
+&.is-next-month,
+&.is-disabled {
+  .day {
+    border-color: $colour-quartz;
+    color: $colour-quartz;
+  }
+}
+
+&.is-selectable {
+  .day {
+    transition: box-shadow $transition-time;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 0 3px lighten($colour-amber-light, 15%);
+    }
+  }
+}
+
+&.is-selected {
+  .day {
+    box-shadow: 0 0 0 3px $colour-amber-light;
+  }
+}
+
+.day {
+  border: 1px solid $colour-amethyst-light;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  height: $size-xs;
+  line-height: $size-xs;
+  margin: 5px auto;
+  width: $size-xs;
+
+  @include grid-media ($grid-sm) {
+    font-size: 18px;
+    height: $size-sm;
+    line-height: $size-sm;
+    width: $size-sm;
+  }
+}
