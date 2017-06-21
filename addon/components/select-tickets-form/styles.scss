@@ -50,13 +50,11 @@
   text-align: center;
 }
 
-.component-calendar-controls {
+.calendar-controls {
   border-top: 0;
   margin-top: 0;
+  position: relative;
 
-  .calendar-controls {
-    position: relative;
-  }
 
   .btn-next,
   .btn-previous {
@@ -80,7 +78,7 @@
 
 }
 
-.component-calendar-month-day {
+.calendar-month-day {
 
   &:not(.is-previous-month):not(.is-next-month):not(.is-disabled) {
     &.is-selectable {
@@ -169,12 +167,8 @@
 .add-to-basket-btn,
 .continue-btn {
 
-  .component-ui-button,
-  button {
+  .ui-button {
     display: block;
-  }
-
-  button {
     width: 100%;
   }
 }
@@ -182,7 +176,7 @@
 .add-to-basket-btn {
   padding-top: 20px;
 
-  &.component-ui-button-raised .component-ui-button button {
+  &.ui-button button {
     padding-left: 0;
     padding-right: 0;
   }
@@ -208,33 +202,6 @@
   z-index: 1;
 }
 
-.component-whole-session-quantity-minus-plus,
-.sku-quantity-minus-plus {
-  margin: 0 -10px;
-
-  &:first-child {
-    margin-top: -10px;
-  }
-
-  .increment,
-  .decrement {
-    position: relative;
-
-    &:disabled {
-      color: $colour-zebra;
-    }
-
-    &:active,
-    &:focus {
-      outline: none;
-    }
-
-    &:active {
-      top: 1px;
-    }
-  }
-}
-
 .small-print {
   color: $colour-koala-lighter-than-light;
   text-align: center;
@@ -247,7 +214,7 @@
   padding: 15px;
 }
 
-.component-ui-form-checkbox {
+.ui-form-checkbox {
   margin-top: 20px;
 
   .checkbox-label {
@@ -255,26 +222,20 @@
   }
 }
 
-.is-loading-sessions {
-  color: $colour-blue-grey;
-  margin: 100px auto;
-  text-align: center;
 
-  .component-ui-spinner {
-    display: block;
-    border-color: $colour-tiger-lighter !important;
-    margin: 0 auto 30px;
-  }
+.ui-spinner {
+  display: block;;
 }
+
 .has-loading-error {
   margin: 100px auto;
   
-  .component-ui-message {
+  .ui-message {
     text-align: center;
   }
 }
 
-.component-ui-form-checkbox {
+.ui-form-checkbox {
   padding-left: 15px;
   padding-bottom: 20px;
 }

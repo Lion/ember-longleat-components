@@ -1,9 +1,9 @@
 import Ember from 'ember';
-// import moment from 'moment';
-const { Component, computed, get, inject, isEmpty } = Ember;
-const { service } = inject;
-const { alias, mapBy } = computed;
+import moment from 'moment';
 import layout from './template';
+const { Component, computed, get, getWithDefault, inject, isEmpty, isPresent, set, setProperties } = Ember;
+const { service } = inject;
+const { alias, and, empty, filter, filterBy, gt, mapBy, not, notEmpty, or, sum, uniq } = computed;
 
 export default Component.extend({
 
@@ -11,8 +11,56 @@ export default Component.extend({
 
   layout,
 
+  isShowingCalendar: false,
+  isShowingVisitors: false,
+  isHidingForm: false,
+  hasCondition: false,
+  hasAcceptedCondition: false,
+  conditionMessage: 'I accept',
+  emptySelectVisitorsLabel: 'Number of visitors',
+  ticketHolderLabel: 'Visitor',
+  whosVisitingLabel: 'Who\'s visiting...',
+
+  date: moment.utc().startOf('day').add(1, 'day'),
+  minDate: moment.utc().startOf('month'),
+  maxDate: moment.utc("2018-01-07"),
+  displayDate: moment.utc().startOf('month'),
+
   productFields: alias('product.productFields'),
   quantities: mapBy('basketItems', 'quantity'),
+  firstSku: alias('product.skus.firstObject'),
+  firstSkuDateFields: filterBy('firstSku.skuFields', 'slug', 'bookable-date'),
+  requiresDate: notEmpty('firstSkuDateFields'),
+  isShowingForm: not('isHidingForm'),
+  chooseSessions: and('product.hasSessions', 'isNotGift'),
+  isBasketItemsEmpty: empty('basketItems'),
+  totalVisitors: sum('quantities'),
+  hasBasketItems: gt('totalVisitors', 0),
+  pricedQuantities: mapBy('pricedBasketItems', 'quantity'),
+  totalPricedQuantity: sum('pricedQuantities'),
+  quantityIsValid: and('minQuantityIsValid', 'maxQuantityIsValid'),
+  canSubmit: and('hasBasketItems', 'quantityIsValid', 'conditionIsPassed'),
+  cannotSubmit: not('canSubmit'),
+  hasMinQuantity: gt('product.minQuantity', 0),
+  hasMaxQuantity: gt('product.maxQuantity', 0),
+  hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
+  skuFieldArrays: mapBy('skus', 'skuFields'),
+  skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
+  skuDateValueArrays: mapBy('skuDateFields', 'values'),
+  dates: uniq('skuValueDates'),
+
+  conditionIsPassed: computed(
+    'hasCondition',
+    'hasAcceptedCondition',
+    function() {
+      const hasCondition = get(this,'hasCondition');
+      const hasAcceptedCondition = get(this,'hasAcceptedCondition');
+      if (hasCondition) {
+        return hasAcceptedCondition;
+      }
+      return true;
+    }
+  ),
 
   productFieldsHash: computed(
     'productFields.[]',
@@ -23,187 +71,138 @@ export default Component.extend({
     }
   ),
 
-
-
-  // date: moment.utc().startOf('day').add(1, 'day'),
-  // minDate: moment.utc().startOf('month'),
-  // maxDate: moment.utc("2018-01-07"),
-  // requiresDate: Ember.computed.and('product.requiresDate', 'isNotGift'),
-  // displayDate: moment.utc().startOf('month'),
-
-  isShowingCalendar: false,
-  isShowingVisitors: false,
-  isHidingForm: false,
-  isShowingForm: Ember.computed.not('isHidingForm'),
-
-  isGift: false,
-  isNotGift: Ember.computed.not('isGift'),
-  giftMessage: '',
-
-  chooseSessions: Ember.computed.and('product.hasSessions', 'isNotGift'),
-
-  hasCondition: false,
-  hasAcceptedCondition: false,
-  conditionMessage: 'I accept',
-  conditionIsPassed: Ember.computed(
-    'hasCondition',
-    'hasAcceptedCondition',
-    function() {
-      if (this.get('hasCondition')) {
-        return this.get('hasAcceptedCondition');
-      }
-      return true;
-    }
-  ),
-
-  isBasketItemsEmpty: Ember.computed.empty('basketItems'),
-
-  
-
-
-  totalVisitors: Ember.computed.sum('quantities'),
-
-  hasBasketItems: Ember.computed.gt('totalVisitors', 0),
-
-  pricedBasketItems: Ember.computed.filter(
+  pricedBasketItems: filter(
     'basketItems',
     function(basketItem) {
-      return basketItem.get('price') > 0;
+      return get(basketItem, 'price') > 0;
     }
   ),
-  pricedQuantities: Ember.computed.mapBy('pricedBasketItems', 'quantity'),
-  totalPricedQuantity: Ember.computed.sum('pricedQuantities'),
 
-  minQuantityIsValid: Ember.computed(
+  minQuantityIsValid: computed(
     'totalPricedQuantity',
     'product.minQuantity',
     function() {
-      return this.get('totalPricedQuantity') >= this.get('product.minQuantity');
+      return get(this, 'totalPricedQuantity') >= getWithDefault(this, 'product.minQuantity', 0);
     }
   ),
 
-  maxQuantityIsValid: Ember.computed(
+  maxQuantityIsValid: computed(
     'totalPricedQuantity',
     'product.maxQuantity',
     function() {
-      if (this.get('product.maxQuantity') === 0) {
+      const maxQuantity = getWithDefault(this, 'product.maxQuantity', 0);
+      const totalPricedQuantity = get(this, 'totalPricedQuantity');
+      if (maxQuantity === 0) {
         return true;
       }
-      return this.get('totalPricedQuantity') <= this.get('product.maxQuantity');
+      return totalPricedQuantity <= maxQuantity;
     }
   ),
 
-  quantityIsValid: Ember.computed.and('minQuantityIsValid', 'maxQuantityIsValid'),
-
-  canIncrementForProduct: Ember.computed(
+  canIncrementForProduct: computed(
     'product.maxQuantity',
     'totalPricedQuantity',
     function() {
       const maxQuantity = get(this, 'product.maxQuantity');
+      const totalPricedQuantity = get(this, 'totalPricedQuantity')
       if (isEmpty(maxQuantity) || maxQuantity === 0) {
         return true;
       }
-      return get(this, 'totalPricedQuantity') < get(this, 'product.maxQuantity');
+      return totalPricedQuantity < maxQuantity;
     }
   ),
 
-  canSubmit: Ember.computed.and('hasBasketItems', 'quantityIsValid', 'conditionIsPassed'),
-  cannotSubmit: Ember.computed.not('canSubmit'),
 
-  totalPrice: Ember.computed(
-    'basketItems.@each.price',
-    'basketItems.@each.quantity',
+  totalPrice: computed(
+    'basketItems.@each.{price,quantity}',
     function() {
-      return this.get('basketItems').reduce((total, basketItem) => {
-        return total + (basketItem.get('price') * basketItem.get('quantity'));
-      }, 0)
+      const basketItems = get(this, 'basketItems');
+      return basketItems.reduce((total, basketItem) => 
+        total + (get(basketItem, 'price') * get(basketItem, 'quantity'))
+      , 0)
       .toFixed(2);
     }
   ),
 
-  hasMinQuantity: Ember.computed.gt('product.minQuantity', 0),
-  hasMaxQuantity: Ember.computed.gt('product.maxQuantity', 0),
-  hasSmallPrint: Ember.computed.or('hasMinQuantity', 'hasMaxQuantity', 'isGift'),
+  dateLabel: computed(
+    'date',
+    function() {
+      const date = get(this, 'date');
+      if (isEmpty(date)) {
+        return "Choose date";
+      }
+      return moment.utc(date).format('DD/MM/YYYY');
+    }
+  ),
 
-  // dateLabel: Ember.computed(
-  //   'date',
-  //   function() {
-  //     if (Ember.isEmpty(this.get('date'))) {
-  //       return "Choose date";
-  //     }
-  //     return moment.utc(this.get('date')).format('DD/MM/YYYY');
-  //   }
-  // ),
-
-  emptySelectVisitorsLabel: 'Number of visitors',
-  ticketHolderLabel: 'Visitor',
-  whosVisitingLabel: 'Who\'s visiting...',
-  selectVisitorsLabel: Ember.computed(
+  selectVisitorsLabel: computed(
     'isBasketItemsEmpty',
     'totalVisitors',
     'basketItems.[]',
     'emptySelectVisitorsLabel',
     'ticketHolderLabel',
     function() {
-      if (this.get('isBasketItemsEmpty')) {
-        return this.get('emptySelectVisitorsLabel');
+      const totalVisitors = get(this, 'totalVisitors');
+      const isBasketItemsEmpty = get(this, 'isBasketItemsEmpty');
+      const emptyLabel = get(this, 'emptySelectVisitorsLabel');
+      const ticketHolderLabel = get(this, 'ticketHolderLabel');
+      if (isBasketItemsEmpty) {
+        return emptyLabel;
       }
-      if (this.get('totalVisitors') === 1) {
-        return this.get('totalVisitors') + ' ' + this.get('ticketHolderLabel');
+      if (totalVisitors === 1) {
+        return totalVisitors + ' ' + ticketHolderLabel;
       }
-      return this.get('totalVisitors') + ' ' + this.get('ticketHolderLabel') +'s';
+      return totalVisitors + ' ' + ticketHolderLabel +'s';
     }
   ),
 
-  isSelectVisitorsDisabled: Ember.computed(
+  isSelectVisitorsDisabled: computed(
     'requiresDate',
     'date',
     function() {
-      if (this.get('requiresDate')) {
-        return Ember.isEmpty(this.get('date'));
+      const requiresDate = get(this, 'requiresDate');
+      const date = get(this, 'date');
+      if (requiresDate) {
+        return isEmpty(date);
       }
       return false;
     }
   ),
 
-  customDateKey: null,
-  hasCustomDateKey: Ember.computed.notEmpty('customDateKey'),
-
-  days: Ember.computed(
-    'displayDate',
-    'bookableDates',
-    'requiresDate',
+  skuFields: computed(
+    'skuFieldArrays.[]',
     function() {
+      let skuFieldArrays = get(this, 'skuFieldArrays')
+      return skuFieldArrays.reduce((skuFields, skuFieldArray) =>  skuFields.pushObjects(skuFieldArray.toArray()), []);
+    }
+  ),
 
-      if (this.get('requiresDate') === false) {
-        return [];
-      }
-
-      let startDay = this.get('displayDate').clone().startOf('month').weekday(0);
-      let finishDay = this.get('displayDate').clone().endOf('month').weekday(6);
+  skuValueDates: computed(
+    'skuDateValueArrays.[]',
+    function() {
+      let skuDateValueArrays = get(this, 'skuDateValueArrays');
+      return skuDateValueArrays.reduce((dates, skuDateValueArray) => dates.pushObjects(skuDateValueArray), []);
+    }
+  ),
+  
+  days: computed(
+    'displayDate',
+    'dates.[]',
+    function() {
+      let dates = get(this, 'dates');
+      let startDay = get(this, 'displayDate').clone().startOf('month').weekday(0);
+      let finishDay = get(this, 'displayDate').clone().endOf('month').weekday(6);
       let days = [];
       while (startDay.isBefore(finishDay)) {
-        let bookableDate = this.get('bookableDates').findBy('date', startDay.format('YYYY-MM-DD'));
         let key = "";
         let isSelectable = false;
-
-        if (this.get('hasCustomDateKey')) {
-          let customDateKey = this.get('customDateKey.dates').findBy('date', startDay.format('YYYY-MM-DD'));
-          if (Ember.isPresent(customDateKey)) {
-            key += customDateKey['key'];
-          }
-        }
-
-        if (Ember.isPresent(bookableDate) &&
-            Ember.isPresent(bookableDate.get('skus'))
-        ) {
+        
+        if (dates.includes(startDay.format())) {
           isSelectable = true;
-          if (this.get('hasCustomDateKey') === false) {
-            key += bookableDate.get('skus').mapBy('type').uniq().join(' ');
-          }
         }
 
         days.pushObject({
+          day: startDay.clone(),
           name: startDay.format('YYYY-MM-DD'),
           isSelectable: isSelectable,
           isDisabled: !isSelectable,
@@ -215,63 +214,44 @@ export default Component.extend({
     }
   ),
 
-  bookableDate: Ember.computed(
-    'bookableDates.@each.date',
+  filteredSkus: computed(
+    'skus.[]',
     'date',
     function() {
-      return [];
-      // return this.get('bookableDates')
-      // .findBy('date', this.get('date').format('YYYY-MM-DD'));
+      const skus = get(this, 'skus');
+      const date = get(this, 'date').format();
+      return skus.filter(sku => 
+        get(sku, 'skuFields')
+        .filterBy('slug', 'bookable-date')
+        .findBy('values.firstObject', date)
+      );
     }
   ),
 
-  // skus: Ember.computed(
-  //   'bookableDate.skus.[]',
-  //   'bookableDate.skus.@each.type',
-  //   'skuTypes',
-  //   function() {
-
-  //     if (this.get('requiresDate') === false) {
-  //       return this.get('allSkus');
-  //     }
-
-  //     let skus = this.get('bookableDate.skus');
-  //     if (Ember.isEmpty(this.get('skuTypes'))) {
-  //       return skus;
-  //     }
-  //     let skuType = this.get('skuTypes').find(skuType => {
-  //       if (skus.any(sku =>  (sku.get('type') === skuType))) {
-  //         return skuType;
-  //       }
-  //     });
-  //     return skus.filterBy('type', skuType);
-  //   }
-  // ),
-
   actions: {
     changeDisplayDate(displayDate) {
-      this.set('displayDate', displayDate);
+      set(this, 'displayDate', displayDate);
     },
 
     selectDate(date) {
-
-      if (!date.isSame(this.get('date'))) {
-        this.get('basketItems').invoke('destroyRecord');
-        this.get('basketItems').clear();
+      let basketItems = get(this, 'basketItems');
+      if (!date.isSame(get(this, 'date'))) {
+        basketItems.invoke('destroyRecord');
+        basketItems.clear();
       }
 
-      this.setProperties({
+      setProperties(this, {
         date: date,
         isShowingCalendar: false
       });
 
-      if (Ember.isPresent(this.attrs.didChangeDate)) {
+      if (isPresent(this.attrs.didChangeDate)) {
         this.attrs.didChangeDate(date);
       }
     },
 
     selectVisitors() {
-      this.set('isShowingVisitors', false);
+      set(this, 'isShowingVisitors', false);
     }
   },
 

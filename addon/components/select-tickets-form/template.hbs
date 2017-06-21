@@ -33,27 +33,6 @@
 
       <form>
 
-        {{#if product.isGiftable}}
-          <div class="is-gift-toggle">
-            {{#ui-form-checkbox
-              fieldId="is-gift"
-              fieldName="is-gift"
-              isChecked=isGift
-              setValue=didChangeIsGift
-            }}
-              Buy as a gift?
-            {{/ui-form-checkbox}}
-          </div>
-        {{/if}}
-
-        {{#if isGift}}
-          {{!-- ui-form-textarea
-            label="Gift message"
-            inputId="gift-message-field"
-            value=(mut giftMessage)
-          --}}
-        {{/if}}
-
         {{#if requiresDate}}
           {{#jumbo-select
             class="select-date"
@@ -63,7 +42,7 @@
             icon="calendar"
             isShowingPopup=isShowingCalendar
           }}
-            {{!--calendar-controls
+            {{calendar-controls
               displayDate=displayDate
               maxDate=maxDate
               minDate=minDate
@@ -77,11 +56,6 @@
               days=days
               selectDate=(action "selectDate")
             }}
-            {{#if hasCustomDateKey}}
-              {{calendar-key-simple
-                key=customDateKey.key
-              }}
-            {{/if--}}
           {{/jumbo-select}}
         {{/if}}
 
@@ -111,14 +85,12 @@
                 deleteBasketItem=deleteBasketItem
               --}}
             {{else}}
-              {{#each skus as |sku|}}
+              {{#each filteredSkus as |sku|}}
                 {{sku-quantity-minus-plus
                   sku=sku
                   date=date
                   basketItems=basketItems
                   skuTitleTemplate=productFieldsHash.skuTitleTemplate
-                  isGift=isGift
-                  giftMessage=giftMessage
                   canIncrementForProduct=canIncrementForProduct
                   createBasketItem=createBasketItem
                   deleteBasketItem=deleteBasketItem
@@ -144,11 +116,11 @@
           {{/ui-form-checkbox--}}
         {{/if}}
 
-        {{!-- #ui-button-raised
+        {{#ui-button
           class="add-to-basket-btn"
           size="large"
           isDisabled=cannotSubmit
-          onclick=addToBasket
+          onclick=(action addToBasket basketItems)
           isLoading=isSubmitting
         }}
           <span class="label">
@@ -159,7 +131,7 @@
               </span>
             {{/if}}
           </span>
-        {{/ui-button-raised--}}
+        {{/ui-button}}
 
         {{#if hasSmallPrint}}
           <div class="small-print">
@@ -174,11 +146,6 @@
               </div>
             {{/if}}
 
-            {{#if isGift}}
-              <div class="gift-instructions">
-                Note: the date and time for this experience is not bookable online. Contact Longleat with your booking reference number to reserve your experience.
-              </div>
-            {{/if}}
           </div>
         {{/if}}
 
