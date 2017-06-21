@@ -60,7 +60,7 @@ export default Component.extend({
     'skuBasketItemQuantity',
     'sku.price',
     function() {
-      return (get(this, 'skuBasketItemQuantity') * get(this, 'sku.price')).toFixed(2);
+      return (get(this, 'skuBasketItemQuantity') * (get(this, 'sku.price')));
     }
   ),
   
