@@ -1,0 +1,1 @@
+export { default } from 'ember-longleat-components/components/calendar-month/component';

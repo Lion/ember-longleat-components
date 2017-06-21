@@ -1,0 +1,19 @@
+<div class="calendar">
+  <div class="days-of-week">
+    {{#each daysOfWeek as |dayOfWeek|}}
+      <div class="day-of-week">
+        {{moment-format dayOfWeek 'ddd'}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="days">
+    {{#each attrs.days as |day|}}
+      {{calendar-month-day
+        day=day
+        displayDate=displayDate
+        selectedDate=selectedDate
+        selectDate=selectDate
+      }}
+    {{/each}}
+  </div>
+</div>
