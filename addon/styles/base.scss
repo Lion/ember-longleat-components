@@ -1,0 +1,39 @@
+
+$grid-xs: (  
+  columns: 12,
+  gutter: 15px,
+  media: 0px
+);
+
+$container-sm: 576px;
+
+$grid-sm: (
+  columns: 12,
+  gutter: 15px,
+  media: $container-sm
+);
+
+$container-md: 768px;
+
+$grid-md: (
+  columns: 12,
+  gutter: 15px,
+  media: $container-md
+);
+
+
+$container-lg: 992px;
+
+$grid-lg: (
+  columns: 12,
+  gutter: 15px,
+  media: $container-lg
+);
+
+$container-xl: 1200px;
+
+$grid-xl: (
+  columns: 12,
+  gutter: 30px,
+  media: $container-xl
+);
