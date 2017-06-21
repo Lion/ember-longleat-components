@@ -1,0 +1,75 @@
+$btn-width-xs: 60px;
+$btn-width-sm: 90px;
+$date-width-xs: 160px;
+$date-width-sm: 220px;
+$line-height: 24px;
+
+& {
+  border-top: 1px solid $colour-quartz;
+  border-bottom: 1px solid $colour-quartz;
+  line-height: $line-height;
+  margin-top: 15px;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.calendar-controls {
+  padding: 0;
+
+  @include grid-media($grid-sm) {
+    padding: 0 15px;
+  }
+}
+
+.btn-next,
+.btn-previous {
+  @include debuttonify();
+  font-size: 10px;
+  min-height: 15px;
+  position: relative;
+  text-align: left;
+  width: $btn-width-xs;
+  vertical-align: middle;
+
+  @include grid-media($grid-sm) {
+    font-size: 14px;
+    width: $btn-width-sm;
+  }
+
+  &:disabled {
+    opacity: .4;
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+.btn-next {
+  // background: url("#{$url--icons}/chevron-right-dark.png") no-repeat left center;
+  background-size: 10px 14px;
+  padding-left: 18px;
+
+  @include grid-media($grid-sm) {
+    padding-left: 30px;
+  }
+}
+
+.btn-previous {
+  // background: url("#{$url--icons}/chevron-left-dark.png") no-repeat right center;
+  background-size: 10px 14px;
+}
+
+.date {
+  display: inline-block;
+  font-size: 16px;
+  position: relative;
+  text-align: center;
+  top: 2px;
+  width: $date-width-xs;
+
+  @include grid-media($grid-sm) {
+    font-size: 24px;
+    width: $date-width-sm;
+  }
+}

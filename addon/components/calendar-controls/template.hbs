@@ -1,0 +1,11 @@
+<div class="calendar-controls">
+  <button {{action "previousMonth"}} class="btn-previous" disabled="{{canDecrementMonth}}">
+    {{#unless hidePrevLabel}}Previous{{/unless}}
+  </button>
+  <span class="date">
+    {{moment-format displayDate "MMMM YYYY"}}
+  </span>
+  <button {{action "nextMonth"}} class="btn-next" disabled="{{canIncrementMonth}}">
+    {{#unless hideNextLabel}}Next{{/unless}}
+  </button>
+</div>
