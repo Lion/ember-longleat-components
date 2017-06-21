@@ -1,0 +1,102 @@
+$button-bg-colour: $colour-tiger-lighter;
+$button-hover-bg-colour: $colour-tiger-light;
+$button-border-colour: $colour-tiger-dark;
+$button-hover-border-colour: darken($colour-tiger-dark, 5%);
+$button-colour: $colour-flat-white;
+
+$button-disabled-colour: $colour-flat-white;
+$button-disabled-bg-colour: $colour-blue-grey-lighter;
+$button-disabled-border-colour: $colour-blue-grey;
+
+$button-subtle-colour: $colour-bat;
+$button-subtle-bg-colour: $colour-zebra;
+$button-subtle-border-colour: $colour-blue-grey-lighter;
+
+$transition-time: 300ms;
+$transition-label-out-time: 150ms;
+$transition-spinner-in-time: 150ms;
+
+
+& {
+  @include debuttonify();
+  background: $colour-amber;
+  border: 0;
+  border-bottom: 3px solid $colour-amber-dark;
+  color: $colour-flat-white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 14px 35px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+&:hover {
+  background: $colour-amber-dark;
+}
+
+&:active {
+  border-bottom: none;
+  margin-top: 3px;
+}
+
+.ui-spinner {
+  opacity: 0;
+  border: solid $button-colour !important;
+  border-width: 2px 0 0 0 !important;
+  height: 24px !important;
+  left: 50%;
+  margin-left: -12px;
+  position: absolute;
+  top: 15px;
+  width: 24px !important;
+}
+
+
+&.is-loading {
+
+  .ui-spinner {
+    @include transition(opacity $transition-spinner-in-time $transition-label-out-time);
+    opacity: 1;
+  }
+
+  .label {
+    @include transition(opacity $transition-label-out-time);
+    opacity: 0;
+  }
+
+}
+
+&:disabled {
+
+  background-color: $button-disabled-bg-colour;
+  border-color: $button-disabled-border-colour;
+  color: $button-disabled-colour;
+
+  .ui-spinner {
+    border-top: solid $button-disabled-colour !important;
+    border-top-width: 2px !important;
+  }
+
+  &:hover {
+    background-color: $button-disabled-bg-colour;
+    border-color: $button-disabled-border-colour;
+    color: $button-disabled-colour;
+
+    .ui-spinner {
+      border-top: solid $button-disabled-colour !important;
+      border-top-width: 2px !important;
+    }
+  }
+}
+
+&.large {
+  font-size: 18px;
+  padding: 17px 50px 15px;
+}
+
+&.small {
+  font-size: 14px;
+  padding: 10px 15px 8px;
+}
+
