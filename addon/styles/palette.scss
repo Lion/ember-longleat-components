@@ -44,3 +44,19 @@ $colour-blue-grey-lighter: #d3d4d6;
 $colour-blue-grey-light: #bcbdc0;
 $colour-blue-grey: #acb3b9;
 $colour-flat-grey: #777777;
+
+$colour-quartz: #d9d2d0;
+$colour-quartz-light: lighten($colour-quartz, 10%);
+$colour-quartz-dark: darken($colour-quartz, 10%);
+$colour-quartz-transparent: rgba(194,183,180, 0.3);
+
+$colour-amber: #ce6023;
+$colour-amber-dark: darken($colour-amber, 10%);
+$colour-amber-light: lighten($colour-amber, 10%);
+
+$colour-amethyst: #69525b;
+$colour-amethyst-light: lighten($colour-amethyst, 10%);
+
+$colour-slate: #393a40;
+$colour-slate-light: lighten($colour-slate, 10%);
+$colour-slate-dark: darken($colour-slate, 10%);
