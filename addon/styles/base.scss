@@ -1,3 +1,6 @@
+button {
+  cursor: pointer;
+}
 
 $grid-xs: (  
   columns: 12,
@@ -37,3 +40,55 @@ $grid-xl: (
   gutter: 30px,
   media: $container-xl
 );
+
+$grid-single-no-gutter: (
+  columns: 1,
+  gutter: 0,
+  media: $container-lg
+);
+
+$picture-grid: (
+  columns: 2,
+  gutter: 0px,
+  media: 0
+);
+
+$grid-instagram-xs: (
+  columns: 3,
+  gutter: 0px,
+  media: 0
+);
+
+$grid-instagram-sm: (
+  columns: 6,
+  gutter: 0px,
+  media: $container-sm
+);
+
+$url--assets: "";
+$url--images: "#{$url--assets}/images";
+$url--brand: "#{$url--images}/brand";
+$url--icons: "#{$url--images}/icons";
+$url--backgrounds: "#{$url--images}/backgrounds";
+$url--misc: "#{$url--images}/misc";
+$url--payment-cards: "#{$url--images}/payment-cards";
+$url--affiliations: "#{$url--images}/affiliations";
+$url--awards: "#{$url--images}/awards";
+
+$transition-function--smooth: cubic-bezier(0.230, 0.835, 0.490, 0.885);
+
+
+@mixin fixed-container-xl {
+  margin: 0 auto;
+  max-width: $container-xl;
+}
+
+@mixin fixed-container-lg {
+  margin: 0 auto;
+  max-width: $container-lg;
+}
+
+@mixin fixed-container-md {
+  margin: 0 auto;
+  max-width: $container-md;
+}
