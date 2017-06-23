@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { Component, computed, isEmpty } = Ember;
+const { Component, computed, get, isEmpty, set } = Ember;
 
 export default Component.extend({
   layout,
@@ -17,7 +17,7 @@ export default Component.extend({
     'images.[]',
     function() {
       let previous = null, item = null;
-      return this.get('images').map(function(image) {
+      return get(this, 'images').map(function(image) {
         item = {
           image: image,
           isActive: false,
@@ -43,17 +43,17 @@ export default Component.extend({
     },
 
     previous() {
-      if (isEmpty(this.get('activeItem.previous'))) {
-        return this.setActiveItem(this.get('lastItem'));
+      if (isEmpty(get(this, 'activeItem.previous'))) {
+        return this.setActiveItem(get(this, 'lastItem'));
       }
-      this.setActiveItem(this.get('activeItem.previous'));
+      this.setActiveItem(get(this, 'activeItem.previous'));
     },
 
     next() {
-      if (isEmpty(this.get('activeItem.next'))) {
-        return this.setActiveItem(this.get('firstItem'));
+      if (isEmpty(get(this, 'activeItem.next'))) {
+        return this.setActiveItem(get(this, 'firstItem'));
       }
-      this.setActiveItem(this.get('activeItem.next'));
+      this.setActiveItem(get(this, 'activeItem.next'));
     }
   },
 
@@ -61,10 +61,10 @@ export default Component.extend({
     if (isEmpty(item)) {
       return false;
     }
-    if (!isEmpty(this.get('activeItem'))) {
-      this.set('activeItem.isActive', false);
+    if (!isEmpty(get(this, 'activeItem'))) {
+      set(this, 'activeItem.isActive', false);
     }
-    this.set('activeItem', item);
-    this.set('activeItem.isActive', true);
+    set(this, 'activeItem', item);
+    set(this, 'activeItem.isActive', true);
   }
 });
