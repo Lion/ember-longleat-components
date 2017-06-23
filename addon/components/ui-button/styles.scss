@@ -1,16 +1,16 @@
-$button-bg-colour: $colour-tiger-lighter;
-$button-hover-bg-colour: $colour-tiger-light;
-$button-border-colour: $colour-tiger-dark;
-$button-hover-border-colour: darken($colour-tiger-dark, 5%);
+$button-bg-colour: $colour-amber-light;
+$button-hover-bg-colour: $colour-amber-light;
+$button-border-colour: $colour-sulphur-dark;
+$button-hover-border-colour: darken($colour-sulphur-dark, 5%);
 $button-colour: $colour-flat-white;
 
 $button-disabled-colour: $colour-flat-white;
-$button-disabled-bg-colour: $colour-blue-grey-lighter;
-$button-disabled-border-colour: $colour-blue-grey;
+$button-disabled-bg-colour: $colour-quartz-light;
+$button-disabled-border-colour: $colour-quartz;
 
-$button-subtle-colour: $colour-bat;
-$button-subtle-bg-colour: $colour-zebra;
-$button-subtle-border-colour: $colour-blue-grey-lighter;
+$button-subtle-colour: $colour-slate;
+$button-subtle-bg-colour: $colour-quartz;
+$button-subtle-border-colour: $colour-quartz-light;
 
 $transition-time: 300ms;
 $transition-label-out-time: 150ms;

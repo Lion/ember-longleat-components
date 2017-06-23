@@ -1,8 +1,8 @@
 
   $box-bg-colour: $colour-flat-white;
-  $box-bottom-colour: $colour-zebra;
+  $box-bottom-colour: $colour-quartz;
 
-  $colour-footfall-quiet: $colour-mamba;
+  $colour-footfall-quiet: $colour-azurite;
   $colour-footfall-moderate: #d65f26;
   $colour-footfall-busy: #8a172e;
   $colour-footfall-sold-out: #d0d0d0; 
@@ -44,7 +44,7 @@
 }
 
 .instructions {
-  color: $colour-tiger-light;
+  color: $colour-amber-light;
   font-size: 24px;
   padding: 10px 0 20px;
   text-align: center;
@@ -83,8 +83,8 @@
   &:not(.is-previous-month):not(.is-next-month):not(.is-disabled) {
     &.is-selectable {
       .day {
-        background-color: $colour-finch-darker;
-        border-color: $colour-finch-darker;
+        background-color: $colour-sulphur-dark;
+        border-color: $colour-sulphur-dark;
         color: $colour-flat-white;
       }
     }
@@ -92,8 +92,8 @@
     &.full-price,
     &.concession-full-price {
       .day {
-        background-color: $colour-agama-light;
-        border-color: $colour-agama-light;
+        background-color: $colour-cinnabar;
+        border-color: $colour-cinnabar;
         color: $colour-flat-white;
       }
     }
@@ -103,8 +103,8 @@
     &.concession-save-10,
     &.concession-save-15 {
       .day {
-        background-color: $colour-finch-darker;
-        border-color: $colour-finch-darker;
+        background-color: $colour-sulphur-dark;
+        border-color: $colour-sulphur-dark;
         color: $colour-flat-white;
       }
     }
@@ -182,7 +182,7 @@
   }
 
   .summary {
-    border-left: 1px solid $colour-tiger-dark;
+    border-left: 1px solid $colour-sulphur-dark;
     display: none;
     padding-left: 10px;
     margin-left: 5px;
@@ -195,7 +195,7 @@
 
 .continue-btn {
   background: $colour-flat-white;
-  border-top: 5px solid $colour-zebra-off-white;
+  border-top: 5px solid $colour-quartz-light;
   margin: -10px;
   padding: 10px;
   position: relative;
@@ -203,13 +203,13 @@
 }
 
 .small-print {
-  color: $colour-koala-lighter-than-light;
+  color: $colour-quartz-light;
   text-align: center;
 }
 
 .error-message {
-  border: 1px solid $colour-fox;
-  color: $colour-fox;
+  border: 1px solid $colour-amber;
+  color: $colour-amber;
   margin-bottom: 20px;
   padding: 15px;
 }

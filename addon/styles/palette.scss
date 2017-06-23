@@ -1,61 +1,23 @@
-$colour-finch-light: #ffde00;
-$colour-finch: #fbd224;
-$colour-finch-dark: #f8c42a;
-$colour-finch-darker: #fdb813;
-$colour-tiger-lighter: #f37021;
-$colour-tiger-light: #e06926;
-$colour-tiger: #d65f27;
-$colour-tiger-dark: #d75028;
-$colour-bat-lighter: #1e1815;
-$colour-bat-light: #060707;
-$colour-bat: #000000;
-$colour-koala-even-lighterer: #a8aaad;
-$colour-koala-even-lighter: #9a9a9a;
-$colour-koala-lighter: #878e97;
-$colour-koala-lighter-than-light: #686868;
-$colour-koala-light: #67645f;
-$colour-koala: #58595b;
-$colour-koala-dark: #3b3b37;
-$colour-seal: #282828;
-$colour-seal-slightly-darker: #221f1f;
-$colour-seal-dark: #231f20;
-$colour-mamba: #80b692;
-$colour-praying-mantis: #50bb6e;
-$colour-grass: #6dae4d;
-$colour-sting-ray: #0a1434;
-$colour-sting-ray-subtle: rgba(10, 20, 52, 0.65);
-$colour-whale-light: #496170;
-$colour-whale: #49606f;
-$colour-agama-light: #9e1c20;
-$colour-agama: #8a182e;
-$colour-flat-white: #ffffff;
-$colour-impala-subtle: rgba(219, 208, 186, 0.65);
-$colour-impala: #ddd1bb;
-$colour-fox: #f4422e;
-$colour-fox-light: #ff6347;
-$colour-zebra: #e6e5e4;
-$colour-zebra-white: #f5f6f7;
-$colour-zebra-off-white: #f4f4f2;
-$colour-super-light-grain: #f8f8f6;
-$colour-capybara-dark: #f3f3f0;
-$colour-capybara: #e2ddd2;
-$colour-capybara-light: #f8f8f6;
-$colour-blue-grey-lighter: #d3d4d6;
-$colour-blue-grey-light: #bcbdc0;
-$colour-blue-grey: #acb3b9;
-$colour-flat-grey: #777777;
+$colour-flat-white: #fff;
+$colour-flat-white-dark: darken($colour-flat-white, 10%);
 
+$colour-ochre: #ad4415;
+$colour-ochre-light: lighten($colour-ochre, 10%);
+$colour-amber: #ce6023;
+$colour-amber-dark: darken($colour-amber, 10%);
+$colour-amber-light: lighten($colour-amber, 10%);
+$colour-sulphur: #f8c42a;
+$colour-sulphur-light: lighten($colour-sulphur, 10%);
+$colour-sulphur-dark: darken($colour-sulphur, 10%);
+$colour-azurite: #577991;
+$colour-azurite-light: lighten($colour-azurite, 10%);
+$colour-azurite-dark: darken($colour-azurite, 10%);
+$colour-amethyst: #69525b;
+$colour-amethyst-light: lighten($colour-amethyst, 10%);
 $colour-quartz: #d9d2d0;
 $colour-quartz-light: lighten($colour-quartz, 10%);
 $colour-quartz-dark: darken($colour-quartz, 10%);
 $colour-quartz-transparent: rgba(194,183,180, 0.3);
-
-$colour-amber: #ce6023;
-$colour-amber-dark: darken($colour-amber, 10%);
-$colour-amber-light: lighten($colour-amber, 10%);
-
-$colour-amethyst: #69525b;
-$colour-amethyst-light: lighten($colour-amethyst, 10%);
 
 $colour-coal: #2b323a;
 $colour-coal-dark: darken($colour-coal, 10%);
@@ -63,3 +25,17 @@ $colour-coal-dark: darken($colour-coal, 10%);
 $colour-slate: #393a40;
 $colour-slate-light: lighten($colour-slate, 10%);
 $colour-slate-dark: darken($colour-slate, 10%);
+
+$colour-jade: #888917;
+$colour-jade-dark: darken($colour-jade, 10%);
+$colour-jade-light: lighten($colour-jade, 10%);
+
+$colour-oliven: #616a32;
+
+$colour-cinnabar: #f4422e;
+
+
+$colour-coal: #2b323a;
+$colour-coal-dark: darken($colour-coal, 10%);
+
+$colour-loadstone: rgba(0, 0, 0, 0.7);
