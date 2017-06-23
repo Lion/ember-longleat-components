@@ -12,14 +12,7 @@
 
 <div class="sku-details">
   <div class="name">
-    {{#if hasTitleTemplate}}
-      {{renderedTitle}}
-    {{else}}
-      {{fieldsHash.name}}
-      {{#if hasAge}}
-        ({{fieldsHash.age}})
-      {{/if}}
-    {{/if}}
+    {{sku-title sku skuTitleTemplate}}
   </div>
   <div class="price">x{{skuBasketItemQuantity}} {{format-money (pence-to-pounds lineTotal) symbol="£"}}</div>
 </div>

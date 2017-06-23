@@ -14,7 +14,6 @@ export default Component.extend({
   incrementAmount: 1,
   canIncrementForProduct: true,
 
-  hasTitleTemplate: notEmpty('skuTitleTemplate'),
   hasAge: notEmpty('fieldsHash.age'),
   hasQuantity: gt('quantity', 0),
   fields: alias('sku.skuFields'),
@@ -37,22 +36,6 @@ export default Component.extend({
       const skuService = get(this, 'skuService');
       const fields = get(this, 'fields');
       return skuService.fieldsToHash(fields);
-    }
-  ),
-
-  renderedTitle: computed(
-    'skuTitleTemplate',
-    'fieldsHash.[]',
-    function() {
-      let fieldsHash = get(this, 'fieldsHash');
-      let skuTitleTemplate = get(this, 'skuTitleTemplate');
-      return Object.keys(fieldsHash).reduce(
-        (title, key) => {
-          let regex = new RegExp(`{{${key}}}`, 'gi');
-          return title.replace(regex, fieldsHash[key])
-        }, 
-        skuTitleTemplate
-      );
     }
   ),
 
