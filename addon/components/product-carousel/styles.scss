@@ -68,7 +68,9 @@
     }
 
     .previous,
-    .next {
+    .previous:hover,
+    .next,
+    .next:hover {
       background-size: 10px 14px;
     }
 
