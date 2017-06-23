@@ -1,0 +1,56 @@
+&{
+
+  padding-top: 30px;
+  padding-bottom: 50px;
+
+  @include fixed-container-lg;
+
+  .product-header,
+  .product-body {
+    @include grid-container();
+  }
+
+  .product-carousel,
+  .product-form {
+    @include grid-column(12);
+    @include grid-media($grid-sm) {
+      @include grid-column(6);
+    }
+  }
+
+  .product-details {
+    @include grid-column(12);
+    margin-top: 40px;
+  }
+
+  .product-benefits,
+  .product-need-to-know,
+  .product-terms {
+    margin-bottom: 30px;
+  }
+
+  h5 {
+    border-bottom: 1px solid $colour-blue-grey;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 0 0 10px;
+    padding-bottom: 10px;
+  }
+
+  .small-print {
+    color: $colour-bat-lighter;
+    font-size: 12px;
+    line-height: 1.5em;
+    padding: 15px;
+  }
+
+  ul li {
+    margin-bottom: 15px;
+  }
+
+  .component-ui-breadcrumbs {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+}
