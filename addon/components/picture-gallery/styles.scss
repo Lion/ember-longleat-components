@@ -1,0 +1,86 @@
+&{
+
+  $nav-item-width-sm: 150px;
+  position: relative;
+
+  img {
+    border: 5px solid $colour-flat-white;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .gallery-image,
+  .gallery-video {
+    background-size: cover;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+
+  .gallery-video {
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .gallery-navigation {
+    position: relative;
+    text-align: center;
+    padding: 0 30px;
+  }
+
+  .nav-item {
+    @include debuttonify();
+    display: inline-block;
+    width: $nav-item-width-sm;
+
+    &.is-active {
+      .thumb {
+        border-color: $colour-tiger-lighter;
+      }
+    }
+  }
+
+  .thumb {
+    background-size: cover;
+    margin: 0;
+  }
+
+  .previous,
+  .next {
+    @include debuttonify();
+    @include hide-text();
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    width: 20px;
+  }
+
+  .previous {
+    background: url("#{$url--icons}/chevron-left-dark.png") no-repeat center center;
+    left: 0;
+
+    &:hover {
+      background: url("#{$url--icons}/chevron-left-amber.png") no-repeat center center;
+    }
+
+    &:active {
+      top: 1px;
+    }
+  }
+
+  .next {
+    background: url("#{$url--icons}/chevron-right-dark.png") no-repeat center center;
+    right: 0;
+
+    &:hover {
+      background: url("#{$url--icons}/chevron-right-amber.png") no-repeat center center;
+    }
+
+    &:active {
+      top: 1px;
+    }
+  }
+
+}
