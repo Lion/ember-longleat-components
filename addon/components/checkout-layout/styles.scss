@@ -1,0 +1,45 @@
+& {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.checkout {
+  @include grid-container;
+  @include fixed-container-lg;
+  padding: 0 15px;
+}
+
+.major-content {
+  margin-bottom: 30px;
+  @include grid-column(12);
+
+  @include grid-media($grid-sm) {
+    @include grid-column(8);
+  }
+}
+
+.minor-content {
+  @include grid-column(12);
+  @include grid-media($grid-sm) {
+    @include grid-column(4);
+  }
+}
+
+h1 {
+  line-height: 1.2em;
+  margin: 0 0 -10px;
+}
+
+.x-payment-cards--icons {
+  margin-top: -25px;
+}
+
+.checkout-btn-xs.component-ui-link-button-raised.is-full-width {
+  display: block;
+  margin-bottom: 30px;
+  margin-top: -10px;
+
+  // @media (min-width: $screen-sm-min) {
+  //   display: none;
+  // }
+}
