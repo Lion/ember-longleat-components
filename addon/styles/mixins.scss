@@ -33,3 +33,8 @@
     }
   }
 }
+
+@mixin filter-custom($var: none) {
+  -webkit-filter: $var;
+  filter: $var;
+}
