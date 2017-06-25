@@ -1,0 +1,16 @@
+& {
+  // @include make-row();
+  border-bottom: 2px solid $colour-tiger-lighter;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.heading-group-strong {
+  // @include make-xs-column(12);
+  text-align: center;
+}
+
+h1 {
+  line-height: 1em;
+  margin: 0;
+}
