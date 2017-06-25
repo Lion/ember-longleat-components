@@ -1,0 +1,59 @@
+
+.basket-item-summary {
+  @include grid-container;
+  margin-bottom: 15px;
+}
+
+.footer-actions-inner {
+  @include grid-container;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+
+  @include grid-media($grid-sm) {
+    text-align: right;
+  }
+
+  .voucher-code-btn,
+  .annual-passholder-btn,
+  .need-to-know-btn {
+    font-size: 14px;
+    line-height: 1em;
+    text-align: center;
+
+    @include grid-media($grid-sm) {
+      float: right;
+    }
+
+    .component-ui-button button,
+    .component-ui-link-button a {
+      border-bottom: 1px solid $colour-koala-even-lighter;
+      color: $colour-koala-even-lighter;
+      display: inline-block;
+      font-size: 14px;
+      width: auto;
+
+      &:hover {
+        border-bottom: 1px solid $colour-tiger-lighter;
+        color: $colour-tiger-lighter;
+      }
+    }
+  }
+
+  .need-to-know-btn {
+    @include grid-media($grid-sm) {
+      .component-ui-link-button a {
+        margin-left: 9px;
+      }
+    }
+  }
+
+  .voucher-code-btn {
+    @include grid-media($grid-sm) {
+      border-right: 1px solid $colour-bat;
+      margin-right: 6px;
+      padding-right: 6px;
+    }
+  }
+
+}

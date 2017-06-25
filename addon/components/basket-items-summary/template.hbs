@@ -1,0 +1,49 @@
+{{#box-raised}}
+
+  {{#each basketItems as |basketItem|}}
+    {{basket-item-summary
+      basketItem=basketItem
+      basketItems=basketItems
+      removeBasketItem=removeBasketItem
+      saveBasketItem=saveBasketItem
+    }}
+  {{/each}}
+
+  {{#if hasBasketItems}}
+    <div class="footer-actions">
+      <div class="footer-actions-inner">
+
+        {{#if isShowingRemoveVouchercode}}
+          {{remove-vouchercode-form
+            code=vouchercode.code
+            description=vouchercode.description
+            removeVouchercode=removeVouchercode
+          }}
+        {{/if}}
+
+        {{#if isShowingApplyVouchercode}}
+          {{apply-vouchercode-form
+            code=code
+            applyVouchercode=applyVouchercode
+            errorCode=vouchercodeErrorCode
+          }}
+        {{/if}}
+
+        {{button-text
+          label="Need to know"
+          class="need-to-know-btn"
+          onclick=(action showNeedToKnow)
+        }}
+
+        {{#unless isShowingVouchercodeField}}
+          {{button-text
+            label="Do you have a voucher code?"
+            class="voucher-code-btn"
+            onclick=(action "showVouchercodeField")
+          }}
+        {{/unless}}
+
+      </div>
+    </div>
+  {{/if}}
+{{/box-raised}}
