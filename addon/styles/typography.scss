@@ -1,0 +1,93 @@
+$font-family-base: 'Source Sans Pro', 'arial';
+$font-family-heading: 'TradeGothicW01-BoldCn20_675334', 'Helvetica', 'arial';
+
+body {
+  font-family: $font-family-base;
+  color: $colour-slate-light;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+@mixin h1 {
+  color: $colour-slate;
+  font-family: $font-family-heading;
+  font-size: 46px;
+  line-height: 1.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+h1 {
+  @include h1;
+}
+
+@mixin h2 {
+  color: $colour-slate;
+  font-family: $font-family-heading;
+  font-size: 32px;
+  line-height: 1.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  @include grid-media($grid-lg) {
+    font-size: 38px;
+  }
+}
+h2 {
+  @include h2;
+}
+
+@mixin h3 {
+  color: $colour-slate;
+  font-family: $font-family-heading;
+  font-size: 26px;
+  line-height: 1.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  @include grid-media($grid-lg) {
+    font-size: 30px;
+  }
+}
+h3 {
+  @include h3;
+}
+
+@mixin h4 {
+  font-family: $font-family-heading;
+  font-size: 26px;
+  line-height: 1.1em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+h4 {
+  @include h4;
+}
+
+@mixin h5 {
+  color: $colour-slate;
+  font-family: $font-family-base;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.3em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+h5 {
+  @include h5;
+}
+
+@mixin h6 {
+  color: $colour-slate;
+  font-family: $font-family-base;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3em;
+  margin: 20px 0;
+}
+h6 {
+  @include h6;
+}
+
+a {
+  color: $colour-slate;
+  text-decoration: none;
+}
