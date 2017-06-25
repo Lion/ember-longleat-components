@@ -1,0 +1,21 @@
+<div class="quantity">
+  <button class="decrement" {{action "decrement"}} disabled={{cannotDecrement}}>
+      <span class="minus">-</span>
+  </button>
+
+  {{#if isDirectlyEditable}}
+    {{input
+      value=(mut quantity)
+      key-up="setQuantity"
+      class="quantity-input"
+    }}
+  {{else}}
+    <div class="quantity-value">
+      {{quantity}}
+    </div>
+  {{/if}}
+
+  <button class="increment" {{action "increment"}} disabled={{cannotIncrement}}>
+      <span class="plus">+</span>
+  </button>
+</div>

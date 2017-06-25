@@ -1,0 +1,50 @@
+$btn-size: 36px;
+$value-width: 40px;
+$colour: $colour-amber;
+$border-colour: $colour-amber;
+
+$disabled-colour: $colour-blue-grey-light;
+$disabled-border-colour: $colour-blue-grey-light;
+
+.increment,
+.decrement {
+  background: transparent;
+  border: 1px solid $border-colour;
+  border-radius: 100px;
+  box-shadow: none;
+  color: $colour;
+  float: left;
+  font-size: 24px;
+  line-height: 25px;
+  padding: 0;
+  position: relative;
+  font-weight: 500;
+  height: $btn-size;
+  width: $btn-size;
+
+  &:disabled {
+    border: 1px solid $disabled-border-colour;
+    color: $disabled-colour;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+.quantity-value,
+.quantity-input {
+  border: 1px solid $border-colour;
+  float: left;
+  height: $btn-size;
+  line-height: $btn-size;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  width: $value-width;
+}
