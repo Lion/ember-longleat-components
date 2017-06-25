@@ -1,0 +1,51 @@
+ {{#box-raised}}
+  <div class="heading">
+    Order summary
+  </div>
+
+  {{#if showPromotionalSaving}}
+    <div class="saving">
+      <h4>You've saved!</h4>
+      <div class="amount">
+        The promotion <strong>{{vouchercode.code}}</strong> has saved you <strong>£{{totalDiscount}}</strong>.
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if showAdvanceSaving}}
+    <div class="saving">
+      <h4>You've saved!</h4>
+      <div class="amount">
+        You've saved £{{advanceSavingAmount}} compared to buying on the day.
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="total-item-count">
+    <div class="label">
+      Items in Basket:
+    </div>
+    <div class="value">
+      {{totalQuantity}}
+    </div>
+  </div>
+
+  <div class="total-price">
+    <div class="label">
+      Total:
+    </div>
+    <div class="value">
+      {{format-money (pence-to-pounds totalPrice) symbol="£"}}
+    </div>
+  </div>
+
+  <div class="footer-actions">
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+      {{#link-to "basket" class="back-to-basket-btn"}}
+        Back to basket
+      {{/link-to}}
+    {{/if}}
+  </div>
+{{/box-raised}}
