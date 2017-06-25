@@ -1,0 +1,85 @@
+$bg-colour: $colour-super-light-grain;
+$height: 43px;
+
+& {
+  @include grid-container();
+  background: $bg-colour;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+
+  label {
+    @include grid-column(12);
+    line-height: $height;
+    text-align: center;
+
+    @include grid-media($grid-sm) {
+      text-align: left;
+    }
+
+    @include grid-media($grid-md) {
+      @include grid-column(4);
+      text-align: right;
+    }
+    
+  }
+
+  .input {
+    @include grid-column(12);
+    margin-bottom: 15px;
+
+    @include grid-media($grid-sm) {
+      @include grid-column(6);
+    }
+
+    @include grid-media($grid-md) {
+      @include grid-column(4);
+      margin-bottom: 0;
+    }
+  }
+
+  .action {
+    @include grid-column(12);
+    
+    @include grid-media($grid-sm) {
+      @include grid-column(6);
+    }
+
+    @include grid-media($grid-md) {
+      @include grid-column(4);
+    }
+  }
+
+  .ui-button {
+    display: block;
+    width: 100%;
+  }
+
+  .vouchercode-input {
+    float: left;
+    height: $height;
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  .error {
+    @include grid-container(12);
+    margin: 0 15px;
+
+    .message {
+      background: lighten($colour-agama-light, 58%);
+      color: $colour-agama;
+      margin-bottom: 15px;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .title {
+      font-weight: 500;
+    }
+
+    .suggestion {
+      font-size: 16px;
+    }
+  }
+}

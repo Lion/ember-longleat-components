@@ -1,0 +1,52 @@
+<form class="apply-vouchercode-form">
+
+  {{#if hasError}}
+    <div class="error">
+      <div class="message">
+        {{#if (eq errorCode 'NOT_FOUND')}}
+          <div class="title">
+            That doesn't appear to be a valid vouchercode
+          </div>
+          <div class="suggestion">
+            Please check that you entered it in correctly.
+          </div>
+        {{/if}}
+
+        {{#if (eq errorCode 'IS_EMPTY')}}
+          <div class="title">
+            Vouchercode is required
+          </div>
+          <div class="suggestion">
+            Please enter the vouchercode you would like to apply
+          </div>
+        {{/if}}
+
+        {{#if (eq errorCode 'HAS_NOT_STARTED')}}
+          <div class="title">
+            This promotion has not yet begun.
+          </div>
+          <div class="suggestion">
+            You may have to wait a bit longer before you can use this vouchercode. Please check the terms and conditions to find out more.
+          </div>
+        {{/if}}
+
+        {{#if (eq errorCode 'HAS_ENDED')}}
+          <div class="title">
+            Sorry, this promotion has now ended.
+          </div>
+          <div class="suggestion">
+            Please check the terms and conditions to find out more.
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+
+  <label>Enter vouchercode:</label>
+  <div class="input">
+    {{input value=(mut code) class="vouchercode-input"}}
+  </div>
+  <div class="action">
+    {{ui-button label="Apply" onclick=(action "submit")}}
+  </div>
+</form>
