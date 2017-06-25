@@ -1,0 +1,7 @@
+& {
+  @include debuttonify();
+}
+
+&:hover {
+  color: $colour-amber;
+}
