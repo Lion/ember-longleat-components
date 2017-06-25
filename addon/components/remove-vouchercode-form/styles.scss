@@ -1,0 +1,47 @@
+$bg-colour: $colour-super-light-grain;
+$code-bg-colour: rgba(130, 185, 68, 0.37);
+
+& {
+
+  @include grid-container();
+  background: $bg-colour;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.title {
+  @include grid-column(12);
+  margin-bottom: 15px;
+}
+
+.code {
+  background: $code-bg-colour;
+  border-radius: 100px;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1em;
+  padding: 10px 15px;
+}
+
+.description {
+  @include grid-column(12);
+}
+
+.component-ui-button-text {
+  float: right;
+
+  .label {
+    border-bottom: 1px solid $colour-koala-even-lighter;
+    color: $colour-koala-even-lighter;
+    font-size: 14px;
+  }
+
+  &:hover {
+    .label {
+      border-bottom: 1px solid $colour-tiger-lighter;
+      color: $colour-tiger-lighter;
+    }
+  }
+}

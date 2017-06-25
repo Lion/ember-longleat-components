@@ -1,0 +1,12 @@
+<form class="remove-vouchercode-form">
+  <div class="title">
+    <span class="code">{{code}}</span>
+    {{button-text
+      label="Remove"
+      theme="subtle"
+      size="small"
+      onclick=(action "submit")
+    }}
+  </div>
+  <div class="description">{{{description}}}</div>
+</form>
