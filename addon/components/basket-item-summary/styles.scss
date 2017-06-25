@@ -1,0 +1,132 @@
+$bg-colour: $colour-super-light-grain;
+$transition-time: 750ms;
+
+& {
+  @include grid-container();
+  @include transition(all $transition-time);
+  background: $bg-colour;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+&.has-zero-quantity {
+  background: desaturate($colour-super-light-grain, 100%);
+
+  .product-title,
+  .line-price,
+  .basket-item-properties .label,
+  .basket-item-properties .value {
+    color: lighten($colour-bat, 40%);
+  }
+
+  .sku-image {
+    img {
+      @include filter-custom(grayscale(100%));
+    }
+  }
+}
+
+.sku-image {
+  @include grid-column(3);
+  img {
+    @include transition(all $transition-time);
+    width: 100%;
+  }
+}
+
+.sku-details {
+  @include grid-column(6);
+}
+
+.sku-pricing {
+  @include grid-column(3);
+  text-align: right;
+}
+
+.product-title,
+.line-price {
+  @include transition(all $transition-time);
+  font-family: $font-family-heading;
+  font-size: 30px;
+  line-height: 1.2em;
+  text-transform: uppercase;
+}
+
+.product-title {
+  color: $colour-amber;
+  margin-bottom: 15px;
+}
+
+.basket-item-properties {
+  font-size: 16px;
+  line-height: 1.3em;
+
+  .label,
+  .value {
+    @include transition(all $transition-time);
+    font-weight: 600;
+  }
+}
+
+.online-price-affirmation {
+  color: $colour-koala-even-lighter;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.actions {
+  .separator {
+    border-right: 1px solid $colour-coal;
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px 0 0;
+    padding-left: 5px;
+  }
+}
+
+.edit-btn,
+.remove-btn {
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid $colour-koala-even-lighter;
+  color: $colour-koala-even-lighter;
+  display: inline-block;
+  font-size: 14px;
+
+  &:hover {
+    border-color: $colour-amber;
+    color: $colour-amber;
+  }
+}
+
+.save-btn,
+.cancel-btn {
+  display: block;
+  float: right;
+}
+
+.cancel-btn {
+  margin-right: 10px;
+}
+
+.edit-basket-item {
+  @include grid-container();
+}
+
+.edit-basket-item-inner {
+  @include grid-column(12);
+  // @include clearfix();
+  margin-bottom: -15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: right;
+}
+
+.error-messages {
+  border: 1px solid $colour-fox;
+  color: $colour-fox;
+  margin-bottom: 20px;
+  padding: 15px;
+}

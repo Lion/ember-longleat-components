@@ -1,0 +1,99 @@
+<div class="sku-image">
+  <img src={{basketItem.sku.product.productImages.firstObject.thumbLargeUrl}}>
+</div>
+<div class="sku-details">
+
+  <div class="product-title">{{basketItem.sku.product.name}}</div>
+
+  <div class="basket-item-properties">
+    {{#ui-label-value "Type" labelWidth="110px"}}
+      {{sku-title basketItem.sku skuTitleTemplate}}
+    {{/ui-label-value}}
+
+    {{#if hasDate}}
+      {{#ui-label-value "Date" labelWidth="110px"}}
+        {{moment-format date "Do MMMM YYYY"}}
+      {{/ui-label-value}}
+    {{/if}}
+
+    {{#ui-label-value "Quantity" labelWidth="110px"}}
+      {{#if isEditing}}
+        {{ui-form-minus-plus-field
+          quantity=basketItem.quantity
+          minQuantity=0
+          maxQuantity=maxQuantity
+          isDirectlyEditable=true
+          setQuantity=(action "setQuantity")
+        }}
+      {{else}}
+        {{basketItem.quantity}}
+      {{/if}}
+    {{/ui-label-value}}
+
+    {{#unless basketItem.errors.isEmpty}}
+      <div class="error-messages">
+        {{#each basketItem.errors.quantity as |error|}}
+          <div class="error-message">
+            {{#if (eq error.message 'BELOW_MINIMUM_REQUIRED')}}
+              You must purchase at least {{basketItem.sku.product.minQuantity}}.
+            {{/if}}
+            {{#if (eq error.message 'ABOVE_MAXIMUM_REQUIRED')}}
+              You can only purchase a maximum of {{basketItem.sku.product.maxQuantity}}
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    {{/unless}}
+  </div>
+
+</div>
+
+<div class="sku-pricing">
+  <div class="line-price">
+    {{format-money (pence-to-pounds linePrice) symbol="£"}}
+  </div>
+  <div class="online-price-affirmation">
+    Online price
+  </div>
+
+  {{#unless isEditing}}
+    <div class="actions">
+      {{#if canEdit}}
+        {{button-text
+          label="Edit"
+          class="edit-btn"
+          onclick=(action "toggleEditing")
+        }}
+      {{/if}}
+      <span class="separator"></span>
+      {{button-text
+        label="Remove"
+        class="remove-btn"
+        onclick=(action removeBasketItem basketItems basketItem)
+      }}
+    </div>
+  {{/unless}}
+</div>
+
+{{#if isEditing}}
+  <div class="edit-basket-item">
+    <div class="edit-basket-item-inner">
+
+      {{ui-button
+        label=editSubmitLabel
+        class="save-btn"
+        onclick=(action "saveBasketItem" basketItem)
+        size="small"
+      }}
+
+      {{ui-button
+        label="Cancel"
+        class="cancel-btn"
+        onclick=(action "cancel" basketItem)
+        size="small"
+        theme="subtle"
+      }}
+
+    </div>
+  </div>
+{{/if}}
