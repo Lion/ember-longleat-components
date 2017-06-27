@@ -1,0 +1,33 @@
+<div class="steps">
+  <div class="steps-inner">
+    <div class="extras step 
+      {{if isExtrasDone 'is-done'}}
+      {{if isExtrasActive 'is-active'}}
+    ">
+      <span class="count">1</span>
+      <span class="label">Extras</span>
+    </div>
+    <div class="details step
+      {{if isDetailsDone 'is-done'}}
+      {{if isDetailsActive 'is-active'}}
+    ">
+      <span class="count">2</span>
+      <span class="label">Details</span>
+    </div>
+    <div class="payment step
+      {{if isPaymentDone 'is-done'}}
+      {{if isPaymentActive 'is-active'}}
+    ">
+      <span class="count">3</span>
+      <span class="label">Payment</span>
+    </div>
+    <div class="finish step
+      {{if isFinishDone 'is-done'}}
+      {{if isFinishActive 'is-active'}}
+    ">
+      <span class="count">4</span>
+      <span class="label">Finish</span>
+    </div>
+  </div>
+</div>
+
