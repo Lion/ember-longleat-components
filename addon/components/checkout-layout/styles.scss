@@ -5,7 +5,7 @@
 
 .checkout {
   @include grid-container;
-  @include fixed-container-lg;
+  @include fixed-container-xl;
   padding: 0 15px;
 }
 
