@@ -38,6 +38,40 @@
       {{format-money (pence-to-pounds totalPrice) symbol="£"}}
     </div>
   </div>
+  
+  {{#if hasPayments}}
+    <div class="payments">
+      {{#each payments as |payment|}}
+        <div class="payment">
+          <div class="label">
+            Payment - 
+            {{#if (eq payment.paymentMethod.name 'Tesco Clubcard')}}
+              Tesco
+            {{else}}
+              Card
+            {{/if}}
+
+          </div>
+          <div class="value">
+            -{{format-money (pence-to-pounds payment.amount) symbol="£"}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div class="unpaid-balance">
+    <div class="label">
+      To pay:
+    </div>
+    <div class="value">
+      {{#if hasOrder}}
+        {{format-money (pence-to-pounds order.balance) symbol="£"}}
+      {{else}}
+        {{format-money (pence-to-pounds totalPrice) symbol="£"}}
+      {{/if}}
+    </div>
+  </div>
 
   <div class="footer-actions">
     {{#if hasBlock}}

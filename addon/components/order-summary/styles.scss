@@ -7,7 +7,9 @@
 }
 
 .total-item-count,
-.total-price {
+.total-price,
+.payment,
+.unpaid-balance {
 
   @include grid-container;
   margin-bottom: 5px;
@@ -26,9 +28,17 @@
   font-weight: 500;
 }
 
-.total-price {
+.payments {
+  border-top: 1px solid $colour-zebra;
+  margin-top: 20px;
+  padding-top: 15px;
+}
+.unpaid-balance {
+  border-top: 1px solid $colour-zebra;
   font-size: 24px;
   font-weight: 500;
+  margin-top: 20px;
+  padding-top: 15px;
 }
 
 .footer-actions {
