@@ -1,0 +1,17 @@
+{{input
+  id=fieldId
+  type="checkbox"
+  name=fieldName
+  checked=(mut isChecked)
+  change=(action "toggleValue")
+  class="checkbox-input"
+}}
+<label class="checkbox-label" for={{fieldId}}>
+  {{yield}}
+</label>
+{{#if showMessage}}
+  <div class="error">
+    {{validations.message}}
+  </div>
+{{/if}}
+
