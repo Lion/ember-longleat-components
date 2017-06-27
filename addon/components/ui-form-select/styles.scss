@@ -1,0 +1,29 @@
+$field-border-color: $colour-blue-grey-light;
+$field-inset-border-color: $colour-zebra-white;
+
+& {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.ember-power-select-trigger,
+.ember-power-select-dropdown {
+  box-shadow: inset 0 0 0 3px $field-inset-border-color;
+  border: 1px solid $field-border-color;
+  border-radius: 0;
+}
+
+.ember-power-select-trigger {
+  line-height: 2.5em;
+  min-height: 2.5em;
+
+  &:active,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px transparentize($colour-tiger-lighter, 0.5);
+  }
+}
+
+.ember-power-select-dropdown {
+  border-top: 0;
+}
