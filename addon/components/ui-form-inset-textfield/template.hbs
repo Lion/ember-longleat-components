@@ -1,0 +1,21 @@
+<label class="textfield-label" for={{inputId}}>
+  {{label}}
+  {{#if hasQualifier}}
+    <span class="{{if qualifierIcon 'qualifier-icon'}}"></span>
+  {{/if}}
+</label>
+{{input type=type id=inputId class="textfield-input" value=(mut value)}}
+<button class="clear-btn" {{action "clear"}} tabindex="-1">x</button>
+{{#if hasQualifier}}
+  <div class="qualifier {{if qualifierIcon 'qualifier-icon'}}">
+    {{qualifierText}}
+  </div>
+{{/if}}
+{{#if showMessage}}
+  <div class="error">
+    {{validations.message}}
+  </div>
+{{/if}}
+<label class="textfield-message" for={{fieldId}}>
+  {{yield}}
+</label>
