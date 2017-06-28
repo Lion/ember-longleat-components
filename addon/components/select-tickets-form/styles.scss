@@ -27,24 +27,17 @@
 .ticket-title {
   text-align: center;
 
-  .top {
-    // @include h1;
-    display: block;
-    font-size: 50px;
-    margin: 0;
-  }
+  display: block;
+  font-size: 40px;
+  color: $colour-amber;
+  text-transform: uppercase;
+  font-family: $font-family-heading;
+  line-height: 1em;
+  margin: 0;
 
-  .bottom {
-    // @include h5;
-    display: block;
-    font-size: 32px;
-    line-height: 1em;
-    margin: 0;
-  }
 }
 
 .instructions {
-  color: $colour-amber-light;
   font-size: 24px;
   padding: 10px 0 20px;
   text-align: center;
