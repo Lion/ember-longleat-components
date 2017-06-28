@@ -1,0 +1,50 @@
+{{#picture-card
+  cardImage=cardImage
+  label=label
+}}
+  {{#if icons}}
+    <div class="icons">
+      {{#each sortedIcons as |icon|}}
+        <img src="{{lookup-asset 'icons' (concat icon '.png')}}" alt={{icon}}>  
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if icon}}
+    <div class="icon">
+        <img src="{{icon}}">
+    </div>
+  {{/if}}
+
+  {{yield}}
+
+  {{#if price}}
+    <div class="price">
+      {{price}}
+      {{#if upsell}}
+        <div class="upsell">
+          {{upsell}}
+        </div>
+  {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if ownPage}}
+    {{#if ctaLinkModel}}
+      <div class="cta">
+        {{#link-to ctaLink ctaLinkModel}}
+          {{ctaLinkLabel}}
+        {{/link-to}}
+      </div>
+    {{/if}}
+  {{else}}
+    {{#if ctaUrl}}
+      <div class="cta">
+        {{#if ctaIsExternalLink}}
+          <a href="{{ctaUrl}}" target="_blank">{{ctaLinkLabel}}</a>
+        {{else}}
+          <a href="{{ctaUrl}}">{{ctaLinkLabel}}</a>
+        {{/if}}
+      </div>
+    {{/if}}
+  {{/if}}
+{{/picture-card}}

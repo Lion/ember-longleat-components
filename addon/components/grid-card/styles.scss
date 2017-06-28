@@ -1,0 +1,116 @@
+&{
+  $cta-colour: $colour-amber;
+  $cta-colour-hover: $colour-amber-light;
+  $card-image-height: 280px;
+
+  text-align: center;
+
+  &.is-featured {
+    border: $colour-sulphur-light 4px solid;
+    margin-top: -4px;
+  }
+
+  .picture-card {
+    margin-right: -1px;
+    overflow: hidden;
+    height: 100%;
+
+    .image {
+      transition: all 7s ease;
+      height: $card-image-height;
+    }
+
+    &:hover .image {
+      transform: scale(1.25);
+    }
+  }
+
+  .icons {
+    display: block;
+  }
+  
+  .icon {
+   img {
+      height: 40px;
+      margin-bottom: -25px;
+   }
+  }
+
+  .picture-card .content {
+    height: calc(100% - 280px);
+    line-height: 1.2em;
+  }
+
+  .type {
+    text-transform: uppercase;
+    color: $colour-amber;
+    margin-top: 10px;
+    margin-bottom: -15px;
+  }
+  .title {
+    @include h3;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .caption {
+    color: $colour-slate-light;
+    font-size: 16px;
+    line-height: 1.4em;
+    padding: 6px 15px 30px;
+  }
+  
+  .address,
+  .phone {
+    font-size: 14px;
+  }
+
+  .price {
+    color: $colour-coal;
+    font-size: 20px;
+    height: 50px;
+    overflow: hidden;
+
+    .upsell {
+      color: $colour-slate-light;    
+      font-size: 16px;
+    }
+  }
+
+  a {
+    color: $cta-colour;
+    font-size: 14px;
+    @include grid-container;
+
+
+    &:hover {
+      color: $cta-colour-hover;
+    }
+  }
+
+  .cta {
+    border: none;
+    color: $cta-colour;
+    display: inline-block;
+    font-family: $font-family-heading;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    position: relative;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $cta-colour-hover;
+    }
+
+    &::after {
+      background: $cta-colour;
+      bottom: 0;
+      content: '';
+      position: absolute;
+      left: 30%;
+      right: 30%;
+      height: 1px;
+    }
+  }
+}
