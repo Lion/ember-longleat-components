@@ -1,7 +1,7 @@
 {{#if usesBgImage}}
   <div
     class="gallery-image"
-    style={{safe-background-image activeItem.image.url}}
+    style={{safe-background-image activeItem.image.originalUrl}}
   >
   </div>
 
@@ -11,26 +11,27 @@
       {{{activeItem.image.videoUrl}}}
     </span>
   {{else}}
-    {{log activeItem.image}}
     <img
-      src={{activeItem.image}}
+      src={{activeItem.image.originalUrl}}
       class="gallery-image"
     />
   {{/if}}
 {{/if}}
+
 <nav class="gallery-navigation">
   <button class="previous" {{action "previous"}}>Previous</button>
   {{#each items as |item|}}
+
     <button class="nav-item {{if item.isActive 'is-active'}}">
       {{#if usesBgImage}}
         <span
           class="thumb"
-          style={{safe-background-image item.image}}
+          style={{safe-background-image item.image.orignalUrl}}
           {{action "setActive" item}}
         >
       </span>
       {{else}}
-        <img src={{item.image}} class="thumb" {{action "setActive" item}}/>
+        <img src="{{item.image.originalUrl}}" class="thumb" {{action "setActive" item}}/>
       {{/if}}
     </button>
   {{/each}}
