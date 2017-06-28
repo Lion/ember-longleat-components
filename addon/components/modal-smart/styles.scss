@@ -1,0 +1,40 @@
+
+$colour: $colour-manatee;
+$border-colour: $colour-porcelain;
+
+& {
+  color: $colour;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.modal-dialog {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+h1 {
+  @include h6;
+  border-top: 1px solid $border-colour;
+  border-bottom: 2px solid $border-colour;
+  color: $colour;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+h6 {
+  @include h6;
+  color: $colour;
+  font-size: 14px;
+  font-weight: 100;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.component-ui-message {
+  margin-top: 20px;
+}
