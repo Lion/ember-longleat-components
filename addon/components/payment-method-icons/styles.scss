@@ -1,0 +1,41 @@
+$xs-multipler: 0.5;
+$card-width-xs: round(78px * $xs-multipler);
+$amex-width-xs: round(78px * $xs-multipler);
+$card-height-xs: round(52px * $xs-multipler);
+$master-height-xs: round(332px * $xs-multipler);
+
+$sm-multipler: 0.9;
+$card-width-sm: round(78px * $sm-multipler);
+$amex-width-sm: round(78px * $sm-multipler);
+$card-height-sm: round(52px * $sm-multipler);
+$master-height-sm: round(332px * $sm-multipler);
+
+.mastercard,
+.visa,
+.amex,
+.paypal {
+  display: inline-block;
+  width: $card-width-xs;
+  height: $card-height-xs;
+}
+
+.mastercard {
+  background: url("#{$url--payment-cards}/mastercard-pos.svg") no-repeat center center;
+  background-size: auto $master-height-xs;
+}
+
+.visa {
+  background: url("#{$url--payment-cards}/visa.png") no-repeat center center;
+  background-size: $card-width-xs $card-height-xs;
+}
+
+.amex {
+  background: url("#{$url--payment-cards}/amex.png") no-repeat center center;
+  background-size: $amex-width-xs $card-height-xs;
+  width: $amex-width-xs;
+}
+
+.paypal {
+  background: url("#{$url--payment-cards}/paypal.png") no-repeat center center;
+  background-size: $card-width-xs $card-height-xs;
+}
