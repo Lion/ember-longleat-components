@@ -1,0 +1,14 @@
+.short-details {
+  @include grid-container;
+
+  .ui-form-fieldset {
+    @include grid-column(6);
+    margin-top: 10px;
+    width: calc(50% - 10px);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+

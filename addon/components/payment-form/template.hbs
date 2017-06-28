@@ -1,0 +1,58 @@
+{{#ui-form as |form|}}
+
+
+  {{#form.fieldset class="wide-details"}}
+    {{form.inset-textfield
+      label="Card number*"
+      inputId="card-number-field"
+      value=(mut payment.cardNumber)
+    }}
+
+    {{form.inset-textfield
+      label="Name*"
+      inputId="name-field"
+      value=(mut payment.name)
+    }}
+  {{/form.fieldset}}
+
+  <div class="short-details">
+
+    {{#form.fieldset}}
+      {{form.inset-textfield
+        label="Valid from"
+        inputId="valid-from-field"
+        value=(mut payment.validFrom)
+      }}
+
+      {{form.inset-textfield
+        label="Issue number - Switch/solo only"
+        inputId="issue-number-field"
+        value=(mut payment.issueNumber)
+      }}
+    {{/form.fieldset}}
+
+    {{#form.fieldset}}
+      {{form.inset-textfield
+        label="Expiry date*"
+        inputId="expiry-date-field"
+        value=(mut payment.expiryDate)
+      }}
+
+      {{form.inset-textfield
+        label="Last 3 digits"
+        inputId="cvv-field"
+        value=(mut payment.cvv)
+      }}
+    {{/form.fieldset}}
+  </div>
+
+  {{ui-button
+    class="btn-continue"
+    label="Buy now"
+    onclick=(action createPayment payment)
+    iconLeft="padlock-white"
+    iconRight="chevron-right-white"
+    isLoading=isSaving
+  }}
+
+{{/ui-form}}
