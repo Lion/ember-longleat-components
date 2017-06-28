@@ -1,0 +1,82 @@
+& {
+  background: transparentize($colour-black, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+  right: 0;
+  text-align: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  @include grid-column(12);
+  @include grid-media($grid-md) {
+    @include grid-column(10);
+    @include grid-push(1);
+  }
+  @include grid-media($grid-lg) {
+    @include grid-column(8);
+    @include grid-push(2);
+  }
+  // @include make-xs-column(12, 0px);
+  // @include make-md-column(10, 0px);
+  // @include make-md-column-offset(1);
+  // @include make-lg-column(8, 0px);
+  // @include make-lg-column-offset(2);
+  background: $colour-flat-white;
+  margin: 30px auto;
+  position: relative;
+  text-align: left;
+  top: 10%;
+}
+
+&.is-narrow {
+  > .modal-dialog {
+
+    position: relative;
+    margin: 15px;
+    top: 0;
+    width: auto;
+
+    @include grid-column(12);
+    @include grid-media($grid-sm) {
+      @include grid-column(8);
+      @include grid-push(2);
+    }
+    @include grid-media($grid-md) {
+      @include grid-column(6);
+      @include grid-push(3);
+    }
+    @include grid-media($grid-lg) {
+      @include grid-column(4);
+      @include grid-push(4);
+    }
+
+  }
+}
+
+.close-btn {
+  $size: 40px;
+  background: $colour-black;
+  border: 1px solid $colour-flat-white;
+  border-radius: 100px;
+  color: $colour-flat-white;
+  font-size: 24px;
+  height: $size;
+  line-height: 34px;
+  position: absolute;
+  text-align: center;
+  top: -($size / 3);
+  right: -($size / 3);
+  width: $size;
+
+  &:hover {
+    color: $colour-flat-white;
+  }
+
+  &:active {
+    top: (-($size / 3) + 1px);
+  }
+}

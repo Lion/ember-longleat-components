@@ -1,0 +1,9 @@
+<div class="modal-dialog">
+  {{#if closeLink}}
+    {{#link-to closeLink class="close-btn"}}x{{/link-to}}
+  {{/if}}
+  {{#if closeAction}}
+    <div class="close-btn" {{action closeAction}}>x</div>
+  {{/if}}
+  {{yield}}
+</div>
