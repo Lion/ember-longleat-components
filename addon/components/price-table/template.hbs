@@ -1,0 +1,39 @@
+<table>
+    <thead>
+      <tr>
+        {{#each fields as |field|}}
+        bbb
+          <th class="{{if field.isCentered 'is-centered'}}">{{field.heading}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data as |datum|}}
+        <tr {{action 'selectRow' datum}}>
+          {{#if hasBlock}}
+            {{yield datum}}
+          {{else}}
+            {{#each fields as |field|}}
+              {{#if field.component}}
+                <td>
+                  {{component
+                    field.component
+                    field=field
+                    datum=datum
+                  }}
+                </td>
+              {{else}}
+                <td class="
+                  {{if field.hasStrikeThrough 'has-strikethrough'}}
+                  {{if field.isStrong 'is-strong'}}
+                  {{if field.isCentered 'is-centered'}}
+                ">
+                  {{get datum field.path}}
+                </td>
+              {{/if}}
+            {{/each}}
+          {{/if}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
