@@ -1,6 +1,5 @@
 {{#ui-form as |form|}}
 
-
   {{#form.fieldset class="wide-details"}}
     {{form.inset-textfield
       label="Card number*"
@@ -10,8 +9,8 @@
 
     {{form.inset-textfield
       label="Name*"
-      inputId="name-field"
-      value=(mut payment.name)
+      inputId="cardholder-field"
+      value=(mut payment.cardholder)
     }}
   {{/form.fieldset}}
 
