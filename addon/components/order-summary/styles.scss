@@ -29,12 +29,12 @@
 }
 
 .payments {
-  border-top: 1px solid $colour-zebra;
+  border-top: 1px solid $colour-quartz;
   margin-top: 20px;
   padding-top: 15px;
 }
 .unpaid-balance {
-  border-top: 1px solid $colour-zebra;
+  border-top: 1px solid $colour-quartz;
   font-size: 24px;
   font-weight: 500;
   margin-top: 20px;
@@ -42,14 +42,14 @@
 }
 
 .footer-actions {
-  border-top: 1px solid $colour-zebra;
+  border-top: 1px solid $colour-quartz;
   margin-top: 20px;
   padding-top: 15px;
   text-align: right;
 }
 
 .saving {
-  background: $colour-super-light-grain;
+  background: $colour-quartz;
   margin-bottom: 15px;
   padding: 15px;
 
@@ -58,7 +58,7 @@
   }
 
   .amount {
-    color: $colour-koala-even-lighter;
+    color: $colour-quartz-dark;
   }
 
 }
@@ -69,14 +69,14 @@
 }
 
 .back-to-basket-btn {
-  border-bottom: 1px solid $colour-blue-grey-lighter;
-  color: $colour-blue-grey-light;
+  border-bottom: 1px solid $colour-quartz;
+  color: $colour-quartz;
   display: inline-block;
   font-size: 14px;
   line-height: 1.3em;
 
   &:hover {
-    border-bottom-color: $colour-tiger-lighter;
-    color: $colour-tiger-lighter;
+    border-bottom-color: $colour-amber-light;
+    color: $colour-amber-light;
   }
 }

@@ -1,4 +1,4 @@
-$bg-colour: $colour-super-light-grain;
+$bg-colour: $colour-quartz;
 $height: 43px;
 
 & {
@@ -67,8 +67,8 @@ $height: 43px;
     margin: 0 15px;
 
     .message {
-      background: lighten($colour-agama-light, 58%);
-      color: $colour-agama;
+      background: lighten($colour-cinnabar, 58%);
+      color: $colour-cinnabar;
       margin-bottom: 15px;
       padding: 15px;
       text-align: left;

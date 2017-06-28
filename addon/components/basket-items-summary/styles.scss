@@ -27,15 +27,15 @@
 
     .component-ui-button button,
     .component-ui-link-button a {
-      border-bottom: 1px solid $colour-koala-even-lighter;
-      color: $colour-koala-even-lighter;
+      border-bottom: 1px solid $colour-quartz-dark;
+      color: $colour-quartz-dark;
       display: inline-block;
       font-size: 14px;
       width: auto;
 
       &:hover {
-        border-bottom: 1px solid $colour-tiger-lighter;
-        color: $colour-tiger-lighter;
+        border-bottom: 1px solid $colour-amber-light;
+        color: $colour-amber-light;
       }
     }
   }
@@ -50,7 +50,7 @@
 
   .voucher-code-btn {
     @include grid-media($grid-sm) {
-      border-right: 1px solid $colour-bat;
+      border-right: 1px solid $colour-slate;
       margin-right: 6px;
       padding-right: 6px;
     }

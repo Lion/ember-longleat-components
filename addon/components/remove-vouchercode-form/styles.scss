@@ -1,4 +1,4 @@
-$bg-colour: $colour-super-light-grain;
+$bg-colour: $colour-quartz;
 $code-bg-colour: rgba(130, 185, 68, 0.37);
 
 & {
@@ -33,15 +33,15 @@ $code-bg-colour: rgba(130, 185, 68, 0.37);
   float: right;
 
   .label {
-    border-bottom: 1px solid $colour-koala-even-lighter;
-    color: $colour-koala-even-lighter;
+    border-bottom: 1px solid $colour-quartz-dark;
+    color: $colour-quartz-dark;
     font-size: 14px;
   }
 
   &:hover {
     .label {
-      border-bottom: 1px solid $colour-tiger-lighter;
-      color: $colour-tiger-lighter;
+      border-bottom: 1px solid $colour-amber-light;
+      color: $colour-amber-light;
     }
   }
 }

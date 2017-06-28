@@ -1,5 +1,5 @@
-$field-border-color: $colour-blue-grey-light;
-$field-inset-border-color: $colour-zebra-white;
+$field-border-color: $colour-quartz;
+$field-inset-border-color: $colour-quartz-light;
 
 & {
   margin-bottom: 10px;
@@ -20,7 +20,7 @@ $field-inset-border-color: $colour-zebra-white;
   &:active,
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px transparentize($colour-tiger-lighter, 0.5);
+    box-shadow: 0 0 0 2px transparentize($colour-amber-light, 0.5);
   }
 }
 

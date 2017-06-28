@@ -1,4 +1,4 @@
-$bg-colour: $colour-super-light-grain;
+$bg-colour: $colour-quartz-light;
 $transition-time: 750ms;
 
 & {
@@ -10,13 +10,13 @@ $transition-time: 750ms;
 }
 
 &.has-zero-quantity {
-  background: desaturate($colour-super-light-grain, 100%);
+  background: desaturate($colour-quartz, 100%);
 
   .product-title,
   .line-price,
   .basket-item-properties .label,
   .basket-item-properties .value {
-    color: lighten($colour-bat, 40%);
+    color: lighten($colour-slate, 40%);
   }
 
   .sku-image {
@@ -69,7 +69,7 @@ $transition-time: 750ms;
 }
 
 .online-price-affirmation {
-  color: $colour-koala-even-lighter;
+  color: $colour-quartz-dark;
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 20px;
@@ -90,8 +90,8 @@ $transition-time: 750ms;
 .remove-btn {
   font-size: 14px;
   border: 0;
-  border-bottom: 1px solid $colour-koala-even-lighter;
-  color: $colour-koala-even-lighter;
+  border-bottom: 1px solid $colour-quartz-dark;
+  color: $colour-quartz-dark;
   display: inline-block;
   font-size: 14px;
 
@@ -125,8 +125,8 @@ $transition-time: 750ms;
 }
 
 .error-messages {
-  border: 1px solid $colour-fox;
-  color: $colour-fox;
+  border: 1px solid $colour-amber;
+  color: $colour-amber;
   margin-bottom: 20px;
   padding: 15px;
 }
