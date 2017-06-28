@@ -1,0 +1,16 @@
+& {
+  @include grid-container();
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.empty-basket-message {
+  @include grid-column(8);
+  @include grid-push(2);
+  text-align: center;
+}
+
+.box-raised {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
