@@ -1,0 +1,29 @@
+&{
+  $ribbon-height: 40px;
+  $bg-colour: $colour-amber;
+  $colour: $colour-flat-white;
+
+  @include h4;
+  background: $bg-colour;
+  color: $colour;
+  font-size: 16px;
+  height: $ribbon-height;
+  line-height: $ribbon-height;
+  padding: 0 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  &::after {
+    border-style: solid;
+    border-width: $ribbon-height $ribbon-height 0 0;
+    border-color: $bg-colour transparent transparent transparent;
+    content: '';
+    height: 0;
+    position: absolute;
+    right: -$ribbon-height;
+    top: 0;
+    width: 0;
+  }
+}
