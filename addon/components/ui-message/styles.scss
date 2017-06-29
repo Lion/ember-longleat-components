@@ -1,0 +1,56 @@
+$default-colour: $colour-loadstone;
+$default-bg-color: $colour-flat-white;
+
+$error-colour: $colour-cinnabar;
+
+$good-colour: $colour-cinnabar;
+
+& {
+  background: $default-bg-color;
+  border: 0;
+  color: $default-colour;
+  padding: 15px 15px 30px;
+  text-align: center;
+}
+
+h3 {
+  margin: 15px 0 0;
+}
+
+&.theme-error {
+  background: transparent;
+  border: 1px solid $error-colour;
+  color: $error-colour;
+  padding: 15px;
+  text-align: left;
+
+  a {
+    color: $error-colour;
+    border-bottom: 1px solid $error-colour;
+  }
+
+  h3 {
+    color: $error-colour;
+  }
+}
+
+&.theme-good {
+  background: transparent;
+  border: 1px solid $good-colour;
+  color: $good-colour;
+  padding: 15px;
+  text-align: left;
+
+  a {
+    color: $good-colour;
+    border-bottom: 1px solid $good-colour;
+  }
+}
+
+&.is-centered {
+  text-align: center;
+}
+
+&.has-bottom-margin {
+  margin-bottom: 15px;
+}
