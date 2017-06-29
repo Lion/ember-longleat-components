@@ -1,0 +1,13 @@
+{{#picture-card
+  cardImage=cardImage
+  label=label
+}}
+
+  {{yield}}
+
+  <div class="cta">
+    {{#link-to ctaLink ctaLinkModel class="ui-button"}}
+      {{ctaLinkLabel}}
+    {{/link-to}}
+  </div>
+{{/picture-card}}

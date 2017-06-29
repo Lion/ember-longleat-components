@@ -1,0 +1,41 @@
+&{
+  $cta-colour: $colour-amber;
+  $cta-colour-hover: $colour-amber-light;
+  $card-image-height: 280px;
+
+  text-align: center;
+
+  &.is-featured {
+    border: $colour-sulphur-light 4px solid;
+    margin-top: -4px;
+  }
+
+  .picture-card {
+    margin-right: -1px;
+    overflow: hidden;
+    height: 100%;
+
+    .image {
+      height: $card-image-height;
+    }
+  }
+
+  .picture-card .content {
+    height: calc(100% - 280px);
+    line-height: 1.2em;
+  }
+
+  .title {
+    @include h3;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .caption {
+    color: $colour-slate-light;
+    font-size: 16px;
+    line-height: 1.4em;
+    padding: 6px 15px 30px;
+  }
+
+}
