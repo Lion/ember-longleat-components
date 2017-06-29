@@ -14,7 +14,7 @@ $colour-sulphur-dark: darken($colour-sulphur, 10%);
 $colour-azurite: #577991;
 $colour-azurite-light: lighten($colour-azurite, 10%);
 $colour-azurite-dark: darken($colour-azurite, 10%);
-$colour-amethyst: #69525b;
+$colour-amethyst: #765f68;
 $colour-amethyst-light: lighten($colour-amethyst, 10%);
 $colour-quartz: #d9d2d0;
 $colour-quartz-light: lighten($colour-quartz, 10%);
@@ -35,7 +35,7 @@ $colour-jade-light: lighten($colour-jade, 10%);
 $colour-oliven: #616a32;
 
 $colour-cinnabar: #f4422e;
-
+$colour-cinnabar-dark: darken($colour-cinnabar, 10%);
 
 $colour-coal: #2b323a;
 $colour-coal-dark: darken($colour-coal, 10%);
@@ -45,3 +45,8 @@ $colour-loadstone: rgba(0, 0, 0, 0.7);
 $colour-manatee: #878E97;
 
 $colour-porcelain: #e6e5e4;
+
+$colour-footfall-quiet: $colour-azurite;
+$colour-footfall-moderate: $colour-amber;
+$colour-footfall-busy: $colour-cinnabar-dark;
+$colour-footfall-sold-out: $colour-quartz; 
