@@ -1,0 +1,54 @@
+&{
+  $label-colour: $colour-amber-light;
+
+  .image {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .image-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .content {
+    background: $colour-flat-white;
+    padding: 15px 15px 30px 15px;
+    position: relative;
+    z-index: 2;
+
+    &:before {
+      $caret-width-xs: 9px;
+      $caret-width-sm: 18px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 $caret-width-xs $caret-width-xs $caret-width-xs;
+      border-color: transparent transparent $colour-flat-white transparent;
+      content: '';
+      display: block;
+      position: absolute;
+      top: -$caret-width-xs;
+      left: 50%;
+      margin-left: -$caret-width-xs;
+      z-index: 2;
+
+      @include grid-media($grid-sm) {
+        border-width: 0 $caret-width-sm $caret-width-sm $caret-width-sm;
+        margin-left: -$caret-width-sm;
+        top: -$caret-width-sm;
+      }
+    }
+    
+    .title {
+      @include h2;
+    }
+    
+    .caption {
+      font-size: 14px;
+    }
+    
+  }
+}
