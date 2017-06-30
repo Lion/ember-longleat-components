@@ -6,13 +6,22 @@ const { Component, computed, get, isPresent } = Ember;
 export default Component.extend({
   layout,
 
-  classNames: ['component-product-details'],
+  classNames: ['product-details'],
   description: {isDescription: true},
 
-  priceTableFields: computed(
-    'fullPriceDisplay',
+  hasFullPrice: computed (
+    'skus.[]',
     function() {
-      if (get(this, 'fullPriceDisplay')) {
+      return isPresent(get(this, 'skus.firstObject.skuFields').findBy('data.slug', 'full-price'));
+    }
+  ),
+
+  hasProductTitleTemplate: computed.notEmpty('productTitleTemplate'),
+
+  priceTableFields: computed(
+       function() {
+   
+      if (get(this, 'hasFullPrice')) {
         return [{
             heading: 'Visitor',
             path: 'title',
@@ -22,7 +31,7 @@ export default Component.extend({
             path: 'fullPrice',
             hasStrikeThrough: true,
             isCentered: true,
-            isStrong: true
+            isStrong: false
           }, {
             heading: 'Online Price*',
             path: 'price',
@@ -45,41 +54,40 @@ export default Component.extend({
     }
   ),
 
-  hasProductTitleTemplate: computed.notEmpty('productTitleTemplate'),
-
   priceTableData: computed(
-    'hasTitleTemplate',
     'productTitleTemplate',
-    'fullPriceDisplay',
     'skus.[]',
     function() {
-      let priceQualifier = '';
-      if (get(this, 'fullPriceDisplay')) {
-        priceQualifier = '*';
-      }
 
-      console.log(get(this, 'skus.firstObject.data'));
+    let hasAge = isPresent(get(this, 'skus.firstObject.skuFields').findBy('data.slug', 'age'));
 
-      let hasAge = isPresent(get(this, 'skus.firstObject.data').findBy('metum.name', 'Age'));
-
-      return get(this, 'skus').map((sku) => {
+    return get(this, 'skus').map((sku) => {
         let title = "";
         if (get(this, 'hasProductTitleTemplate')) {
-          title = sku.get('metadata').reduce(
-            (title, metadatum) => title.replace('{{' + metadatum.get('metum.name') + '}}', metadatum.get('value')), get(this, 'productTitleTemplate')
+          title = sku.get('skuFields').reduce(
+            (title, skuField) => title.replace('{{' + skuField.get('data.slug') + '}}', skuField.get('values')), get(this, 'productTitleTemplate')
           );
         } else {
-          title = sku.get('metadata').findBy('metum.name', 'Title').get('value');
+          title = sku.get('skuFields').findBy('data.slug', 'title').get('values');
           if (hasAge) {
-            let age = sku.get('metadata').findBy('metum.name', 'Age').get('value');
-            title += ` (${age})`;
+            let age = sku.get('skuFields').findBy('data.slug', 'age').get('values');
+            title += '(${age})';
           }
         }
 
-        return {
-          title: title,
-          fullPrice: '£' + sku.get('fullPrice'),
-          price: '£' + sku.get('price') + priceQualifier,
+        if (get(this, 'hasFullPrice')) {
+          return {
+            title: title,
+            fullPrice: '£' + sku.get('skuFields').findBy('data.slug', 'full-price').get('values')/100,
+            price: '£' + sku.get('price')/100 + '*',
+          };
+
+        } else {
+        
+          return {
+            title: title,
+            price: '£' + sku.get('price')/100,
+          };
         };
       });
     }

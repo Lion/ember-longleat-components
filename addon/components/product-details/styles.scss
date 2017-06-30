@@ -1,0 +1,42 @@
+&{
+  $bg-colour: $colour-flat-white;
+  $border-bottom-colour: $colour-quartz;
+  
+  background: $bg-colour;
+  border-bottom: 3px solid $border-bottom-colour;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+
+  .product-columns,
+  .title {
+    //@include make-row(0px);
+  }
+
+  h3 {
+    //@include make-xs-column(12);
+  }
+
+  .product-prices {
+    @include grid-column(12);
+    @include grid-media($grid-md) {
+      @include grid-column(6);    
+    }
+  }
+
+  .product-description {
+    @include grid-column(12);
+    @include grid-media($grid-md) {
+      @include grid-column(6);    
+    }
+  }
+
+  .component-price-table {
+    td {
+      width: 25%;
+    }
+    td:first-child {
+      width: 50%;
+    }
+  }
+
+}

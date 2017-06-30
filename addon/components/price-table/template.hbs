@@ -2,13 +2,13 @@
     <thead>
       <tr>
         {{#each fields as |field|}}
-        bbb
           <th class="{{if field.isCentered 'is-centered'}}">{{field.heading}}</th>
         {{/each}}
       </tr>
     </thead>
     <tbody>
       {{#each data as |datum|}}
+      {{log datum}}
         <tr {{action 'selectRow' datum}}>
           {{#if hasBlock}}
             {{yield datum}}
