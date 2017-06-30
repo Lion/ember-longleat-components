@@ -8,7 +8,6 @@
     </thead>
     <tbody>
       {{#each data as |datum|}}
-      {{log datum}}
         <tr {{action 'selectRow' datum}}>
           {{#if hasBlock}}
             {{yield datum}}
