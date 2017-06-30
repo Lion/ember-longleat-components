@@ -7,7 +7,7 @@ export default Component.extend({
   layout,
 
   classNameBindings: [
-    ':component-price-table',
+    ':price-table',
     'rowsAreSelectable'
   ],
 
