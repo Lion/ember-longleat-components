@@ -28,14 +28,12 @@
     </div>
   {{/if}}
 
-  {{#if ownPage}}
-    {{#if ctaLinkModel}}
+  {{#if ctaLinkModel}}
       <div class="cta">
         {{#link-to ctaLink ctaLinkModel}}
           {{ctaLinkLabel}}
         {{/link-to}}
       </div>
-    {{/if}}
   {{else}}
     {{#if ctaUrl}}
       <div class="cta">

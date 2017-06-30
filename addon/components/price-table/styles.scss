@@ -1,6 +1,7 @@
 &{
 
-  $colour-table: $colour-slate-light;
+  $colour-table: $colour-quartz-dark;
+  $colour-table-strong: $colour-slate-light;
   $colour-headings: $colour-slate;
   $colour-bg: $colour-flat-white;
 
@@ -32,11 +33,10 @@
     }
 
     &.is-strong {
-      font-weight: 500;
+      color: $colour-table-strong;
     }
 
     &.has-strikethrough {
-      //color: $colour-blue-grey-light;
       text-decoration: line-through;
     }
   }

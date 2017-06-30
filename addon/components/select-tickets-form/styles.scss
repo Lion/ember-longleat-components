@@ -1,32 +1,15 @@
+$box-bg-colour: $colour-flat-white;
+$box-bottom-colour: $colour-quartz;
 
-  $box-bg-colour: $colour-flat-white;
-  $box-bottom-colour: $colour-quartz;
-
-  $colour-footfall-quiet: $colour-azurite;
-  $colour-footfall-moderate: #d65f26;
-  $colour-footfall-busy: #8a172e;
-  $colour-footfall-sold-out: #d0d0d0; 
 & {
-  // @include clearfix();
   background: $box-bg-colour;
   border-bottom: 3px solid $box-bottom-colour;
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-// .select-tickets-form {
-  // @include make-row();
-// }
-
-// .select-tickets-form-inner {
-  // @include make-xs-column(12);
-  // @include make-md-column(10);
-  // @include make-md-column-offset(1);
-// }
-
 .ticket-title {
   text-align: center;
-
   display: block;
   font-size: 40px;
   color: $colour-amber;
@@ -159,11 +142,13 @@
 
 .add-to-basket-btn,
 .continue-btn {
+  margin-top: 10px;
 
-  .ui-button {
+  &.ui-button {
     display: block;
     width: 100%;
   }
+
 }
 
 .add-to-basket-btn {
@@ -184,15 +169,6 @@
     //   display: inline;
     // }
   }
-}
-
-.continue-btn {
-  background: $colour-flat-white;
-  border-top: 5px solid $colour-quartz-light;
-  margin: -10px;
-  padding: 10px;
-  position: relative;
-  z-index: 1;
 }
 
 .small-print {

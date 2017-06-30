@@ -36,7 +36,7 @@
         {{#if requiresDate}}
           {{#jumbo-select
             class="select-date"
-            label="Your visiting date..."
+            label="Your visit date..."
             value=dateLabel
             isDisabled=isDateSelectionDisabled
             icon="calendar"
@@ -99,12 +99,12 @@
             {{/if}}
           </div>
 
-          {{!--ui-button-raised
+          {{ui-button
             label="Continue"
             class="continue-btn"
             size="large"
             onclick=(action "selectVisitors")
-          --}}
+          }}
         {{/jumbo-select}}
 
         {{#if hasCondition}}

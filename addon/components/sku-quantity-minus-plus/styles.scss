@@ -2,15 +2,17 @@ $btn-size-xs: 40px;
 $btn-size-sm: 50px;
 $value-width-xs: 32px;
 $value-width-sm: 40px;
+$text-colour: $colour-amethyst-light;
+$value-colour: $colour-amber;
+$inner-border-colour: $colour-quartz;
+$price-colour: $colour-amethyst-light;
 
 & {
-
   @include clearfix();
-  border-bottom: 1px solid $colour-quartz;
+  border-bottom: 1px solid $inner-border-colour;
   padding: 15px;
 
   .quantity {
-    // @include clearfix();
     float: left;
   }
 
@@ -19,33 +21,44 @@ $value-width-sm: 40px;
     font-size: 14px;
     margin-left: 10px;
 
-    // @media (min-width: $screen-sm-min) {
-    //   font-size: 18px;
-    //   margin-left: 20px;
-    // }
+    @include grid-media($grid-sm) {
+      font-size: 18px;
+      margin-left: 20px;
+    }
   }
 
   .increment,
   .decrement {
     background: transparent;
-    border: 1px solid $colour-quartz;
+    border: 1px solid $inner-border-colour;
     border-radius: 100px;
     box-shadow: none;
-    color: $colour-amber-light;
+    color: $value-colour;
+    //font-family: Helvetica; // To make button consistent across stores
     float: left;
     font-size: 24px;
-    line-height: 25px;
+    line-height: 24px;
     padding: 0;
     font-weight: 500;
     height: $btn-size-xs;
     text-align: center;
     width: $btn-size-xs;
 
-    // @media (min-width: $screen-sm-min) {
-    //   font-size: 32px;
-    //   height: $btn-size-sm;
-    //   width: $btn-size-sm;
-    // }
+    @include grid-media($grid-sm) {
+       font-size: 32px;
+       line-height: 28px;
+       height: $btn-size-sm;
+       width: $btn-size-sm;
+    }
+
+    .minus,
+    .plus {
+      vertical-align: text-top;
+    }
+
+    &:hover {
+      color: lighten($value-colour, 10%);
+    }
   }
 
   .quantity-value {
@@ -58,11 +71,13 @@ $value-width-sm: 40px;
     margin-right: 10px;
     text-align: center;
     width: $value-width-xs;
-    // @media (min-width: $screen-sm-min) {
-    //   font-size: 18px;
-    //   height: $btn-size-sm;
-    //   width: $value-width-sm;
-    // }
+    
+    @include grid-media($grid-sm) {
+      font-size: 18px;
+      line-height: $btn-size-sm;
+      height: $btn-size-sm;
+      width: $btn-size-sm;
+    }
   }
 
   .name {
@@ -70,7 +85,7 @@ $value-width-sm: 40px;
   }
 
   .price {
-    color: $colour-quartz-light;
+    color: $price-colour;
     font-size: 14px;
     line-height: 1em;
   }

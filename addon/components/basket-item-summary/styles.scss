@@ -3,7 +3,7 @@ $transition-time: 750ms;
 
 & {
   @include grid-container();
-  @include transition(all $transition-time);
+  transition: all $transition-time;
   background: $bg-colour;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -29,7 +29,7 @@ $transition-time: 750ms;
 .sku-image {
   @include grid-column(3);
   img {
-    @include transition(all $transition-time);
+    transition: all $transition-time;
     width: 100%;
   }
 }
@@ -45,7 +45,7 @@ $transition-time: 750ms;
 
 .product-title,
 .line-price {
-  @include transition(all $transition-time);
+  transition: all $transition-time;
   font-family: $font-family-heading;
   font-size: 30px;
   line-height: 1.2em;
@@ -63,7 +63,7 @@ $transition-time: 750ms;
 
   .label,
   .value {
-    @include transition(all $transition-time);
+    transition: all $transition-time;
     font-weight: 600;
   }
 }

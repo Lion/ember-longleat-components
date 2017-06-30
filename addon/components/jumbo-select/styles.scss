@@ -4,7 +4,10 @@ $border-inset-size: 5px;
 $border-inset-colour: $colour-quartz-light;
 $border-size: 1px;
 $border-colour: $colour-amber-light;
-$border-disabled-colour: $colour-quartz-light;
+$border-disabled-colour: $colour-quartz;
+$text-colour: $colour-amethyst-light;
+$value-colour: $colour-amber;
+
 $caret-transition: (
   -webkit-transform 250ms cubic-bezier(0.230, 0.835, 0.490, 0.885),
   -ms-transform 250ms cubic-bezier(0.230, 0.835, 0.490, 0.885),
@@ -40,7 +43,7 @@ $caret-transition: (
   }
 
   .label {
-    color: $colour-quartz-dark;
+    color: $text-colour;
     font-size: 12px;
     line-height: 1.1em;
     padding-left: 55px;
@@ -48,7 +51,7 @@ $caret-transition: (
   }
 
   .value {
-    color: $colour-amber;
+    color: $value-colour;
     font-size: 16px;
     padding-left: 55px;
 
