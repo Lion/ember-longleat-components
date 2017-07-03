@@ -11,6 +11,8 @@ export default Component.extend({
 
   layout,
 
+  classNames: ['select-tickets-form'],
+
   isShowingCalendar: false,
   isShowingVisitors: false,
   isHidingForm: false,

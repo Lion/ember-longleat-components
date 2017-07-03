@@ -4,8 +4,7 @@ $box-bottom-colour: $colour-quartz;
 & {
   background: $box-bg-colour;
   border-bottom: 3px solid $box-bottom-colour;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 40px;
 }
 
 .ticket-title {
