@@ -1,6 +1,6 @@
 $wrapper-width: (100% / 7);
 $size-xs: 35px;
-$size-sm: 50px;
+$size-sm: 48px;
 $transition-time: 200ms;
 
 & {
@@ -44,7 +44,14 @@ $transition-time: 200ms;
   margin: 5px auto;
   width: $size-xs;
 
-  @include grid-media ($grid-sm) {
+  @include grid-media($grid-md) {
+    font-size: 14px;
+    height: $size-xs;
+    line-height: $size-xs;
+    width: $size-xs;
+  }
+
+  @include grid-media ($grid-lg) {
     font-size: 18px;
     height: $size-sm;
     line-height: $size-sm;
