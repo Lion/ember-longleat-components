@@ -1,0 +1,30 @@
+<div class="quicktickets-form-wrapper">
+  <div class="quicktickets-form">
+    <div class="header">
+      <div class="cheddar-logo">Cheddar</div>
+      <button class="close-button" {{action closeQuicktickets}}>Close</button>
+    </div>
+    <div class="body">
+      {{#if isLoading}}
+        <div class="is-loading">
+          {{ui-spinner borderWidth="2px" width="32px" height="32px"}}
+        </div>
+      {{else}}
+        {{select-tickets-form
+          skus=product.skus
+          title=product.name
+          product=product
+          basketItems=basketItems
+          date=date
+          minDate=minDate
+          maxDate=maxDate
+          errors=errors
+          createBasketItem=(action 'createBasketItem')
+          deleteBasketItem=(action 'destroyBasketItem')
+          addToBasket=(action 'addToBasket')
+          isSubmitting=isSubmitting
+        }}
+      {{/if}}
+    </div>
+  </div>
+</div>
