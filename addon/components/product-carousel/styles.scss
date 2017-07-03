@@ -11,16 +11,6 @@
     margin: 0;
   }
 
-  .component-ui-ribbon {
-    left: 0;
-    top: -51px;
-
-    @include grid-media($grid-sm) {
-      left: 15px;
-      top: 0;
-    }
-  }
-
   .component-picture-gallery {
 
     .gallery-image {
