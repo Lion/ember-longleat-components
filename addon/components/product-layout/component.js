@@ -9,6 +9,7 @@ export default Component.extend({
   breadcrumbs: {isBreadcrumbs: true},
   carousel: {isCarousel: true},
   form: {isForm: true},
-  details: {isDetails: true}
+  details: {isDetails: true},
+  needToKnow: {isNeedToKnow: true}
 
 });
