@@ -4,8 +4,6 @@
 
   background: $bg-colour;
   border-bottom: 3px solid $border-bottom-colour;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
 
   .product-prices {
     @include grid-column(12);
