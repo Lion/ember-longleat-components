@@ -5,7 +5,7 @@ const { Component } = Ember;
 
 let component = Component.extend({
   layout,
-  classNames: ['component-ui-ribbon']
+  classNames: ['ui-ribbon']
 });
 
 component.reopenClass({
