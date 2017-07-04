@@ -6,8 +6,9 @@
   {{yield}}
 
   <div class="cta">
-    {{#link-to ctaLink ctaLinkModel class="ui-button"}}
-      {{ctaLinkLabel}}
-    {{/link-to}}
+    {{ui-button
+      label=ctaLinkLabel
+      onclick=(action displayProduct)
+    }}
   </div>
 {{/picture-card}}
