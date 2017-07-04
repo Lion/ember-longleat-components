@@ -137,14 +137,13 @@ $box-bottom-colour: $colour-quartz;
 
 .select-visitors {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .add-to-basket-btn,
 .continue-btn {
-  margin-top: 10px;
 
   &.ui-button {
-    display: block;
     width: 100%;
   }
 
@@ -163,10 +162,6 @@ $box-bottom-colour: $colour-quartz;
     display: none;
     padding-left: 10px;
     margin-left: 5px;
-
-    // @media (min-width: $screen-sm-min) {
-    //   display: inline;
-    // }
   }
 }
 
