@@ -44,10 +44,6 @@ export default Ember.Component.extend({
 
     },
 
-    addToBasket(basketItems) {
-      this.sendAction();    
-    },
-
     createBasketItem(basketItems, sku, quantity) {
       const basketService = get(this, 'basketService');
       return basketService.createBasketItem(basketItems, sku, quantity);

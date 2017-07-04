@@ -17,10 +17,6 @@
     padding-top: 50px;
   }
 
-  .quicktickets-form-wrapper {
- //   @include make-row();
-  }
-
   .quicktickets-form {
     @include grid-column(12);
   
@@ -47,6 +43,7 @@
     padding-bottom: 15px;
     padding-top: 15px;
     text-align: center;
+    position: relative;
   }
 
   .cheddar-logo {
@@ -74,6 +71,7 @@
 
   .close-button {
     @include hide-text();
+    text-indent: 1000%; // Hack to hide text properly
     $height: 24px;
     $width: 24px;
     background: url("#{$url--icons}/cross-grey-on-white.png") no-repeat center center;
