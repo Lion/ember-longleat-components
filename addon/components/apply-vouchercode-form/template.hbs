@@ -5,7 +5,7 @@
       <div class="message">
         {{#if (eq errorCode 'NOT_FOUND')}}
           <div class="title">
-            That doesn't appear to be a valid vouchercode
+            That doesn't appear to be a valid voucher code
           </div>
           <div class="suggestion">
             Please check that you entered it in correctly.
@@ -14,10 +14,19 @@
 
         {{#if (eq errorCode 'IS_EMPTY')}}
           <div class="title">
-            Vouchercode is required
+            Voucher code is required
           </div>
           <div class="suggestion">
-            Please enter the vouchercode you would like to apply
+            Please enter the voucher code you would like to apply
+          </div>
+        {{/if}}
+
+        {{#if (eq errorCode 'IS_TESCO')}}
+          <div class="title">
+            It appears you have used a Tesco voucher code
+          </div>
+          <div class="suggestion">
+            Tesco voucher codes should be entered during payment - please see further details on our <a href="/tickets/tesco">Tesco Clubcard page</a>
           </div>
         {{/if}}
 
@@ -26,7 +35,7 @@
             This promotion has not yet begun.
           </div>
           <div class="suggestion">
-            You may have to wait a bit longer before you can use this vouchercode. Please check the terms and conditions to find out more.
+            You may have to wait a bit longer before you can use this voucher code. Please check the terms and conditions to find out more.
           </div>
         {{/if}}
 
@@ -42,7 +51,7 @@
     </div>
   {{/if}}
 
-  <label>Enter vouchercode:</label>
+  <label>Enter voucher code:</label>
   <div class="input">
     {{input value=(mut code) class="vouchercode-input"}}
   </div>
