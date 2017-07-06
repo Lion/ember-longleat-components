@@ -18,9 +18,7 @@ export default Component.extend({
         return;
       }
 
-      console.log(code.substring(0,2));
-
-      if (code == 'CGCW994HPV') {
+      if (code.substring(0,2) == 'CG') {
         set(this, 'errorCode', 'IS_TESCO');
         return;
       }
