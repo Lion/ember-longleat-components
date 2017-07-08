@@ -10,9 +10,11 @@
   </button>
 </div>
 
-<div class="sku-details">
-  <div class="name">
-    {{sku-title sku skuTitleTemplate}}
+{{#unless noSkuDetails}}
+  <div class="sku-details">
+    <div class="name">
+      {{sku-title sku skuTitleTemplate}}
+    </div>
+    <div class="price">x{{skuBasketItemQuantity}} {{format-money (pence-to-pounds lineTotal) symbol="£"}}</div>
   </div>
-  <div class="price">x{{skuBasketItemQuantity}} {{format-money (pence-to-pounds lineTotal) symbol="£"}}</div>
-</div>
+{{/unless}}
