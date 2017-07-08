@@ -1,0 +1,44 @@
+<div class="product-image">
+  <span class="image-wrapper">
+    {{#if maxDiscount}}
+      {{ui-ribbon ribbonLabel}}
+    {{/if}}
+    <img src="{{product.productImages.firstObject.originalUrl}}">
+  </span>
+</div>
+<div class="title">
+  {{product.name}}
+</div>
+
+{{#each product.skus as |sku|}}
+  <div class="price">
+    {{#if sku.fullPrice}}
+      <span class="full-price">£{{sku.fullPrice}}</span>
+    {{/if}}
+    <span class="online-price">{{format-money (pence-to-pounds sku.price) symbol="£"}}</span>
+  </div>
+  <div class="sku-quantity">
+    {{sku-quantity-minus-plus
+      sku=sku
+      basketItems=basketItems
+      createBasketItem=(action 'createBasketItem')
+      noSkuDetails=true
+    }}
+  </div>
+
+  {{#ui-button
+    class="add-to-basket-btn"
+    isDisabled=cannotSubmit
+    onclick=(action addToBasket basketItems)
+    isLoading=isSubmitting
+  }}
+    <span class="label">
+      Add to basket
+      {{#if canSubmit}}
+        <span class="summary">
+          Add to basket £{{totalPrice}}
+        </span>
+      {{/if}}
+    </span>
+  {{/ui-button}}
+{{/each}}

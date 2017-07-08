@@ -1,0 +1,18 @@
+&{
+  $cta-colour: $colour-amber;
+  $cta-colour-hover: $colour-amber-light;
+
+  text-align: center;
+
+  &.is-featured {
+    border: $colour-sulphur-light 4px solid;
+    margin-top: -4px;
+  }
+
+  .title {
+    @include h3;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+}
