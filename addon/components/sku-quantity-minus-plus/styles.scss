@@ -3,30 +3,32 @@ $btn-size-sm: 50px;
 $value-width-xs: 32px;
 $value-width-sm: 40px;
 $text-colour: $colour-amethyst-light;
+$disabled-colour: $colour-quartz;
 $value-colour: $colour-amber;
 $inner-border-colour: $colour-quartz;
 $price-colour: $colour-amethyst-light;
 
 & {
   @include clearfix();
-  border-bottom: 1px solid $inner-border-colour;
   padding: 15px;
 
   .quantity {
-    float: left;
+    display: inline-block;
   }
 
   .sku-details {
-    float: left;
+    float: right;
     font-size: 14px;
-    margin-left: 10px;
+    margin-right: 0px;
+    margin-top: -2px;
 
-    @include grid-media($grid-sm) {
+    @include grid-media($grid-lg) {
+      margin-top: 2px;
       font-size: 18px;
-      margin-left: 20px;
+      margin-right: 10px;
     }
   }
-
+  
   .increment,
   .decrement {
     background: transparent;
@@ -44,12 +46,20 @@ $price-colour: $colour-amethyst-light;
     text-align: center;
     width: $btn-size-xs;
 
-    @include grid-media($grid-sm) {
+    @include grid-media($grid-md) {
+      font-size: 24px;
+      line-height: 24px; 
+      height: $btn-size-xs;    
+      width: $btn-size-xs;
+    }
+
+    @include grid-media($grid-lg) {
        font-size: 32px;
        line-height: 28px;
        height: $btn-size-sm;
        width: $btn-size-sm;
     }
+
 
     .minus,
     .plus {
@@ -59,6 +69,15 @@ $price-colour: $colour-amethyst-light;
     &:hover {
       color: lighten($value-colour, 10%);
     }
+    
+    &:disabled {
+      color: $disabled-colour;
+    
+      &:hover {
+        color: $disabled-colour;
+      }
+  }
+
   }
 
   .quantity-value {
@@ -71,8 +90,15 @@ $price-colour: $colour-amethyst-light;
     margin-right: 10px;
     text-align: center;
     width: $value-width-xs;
-    
-    @include grid-media($grid-sm) {
+
+    @include grid-media($grid-md) {
+      font-size: 14px;
+      line-height: $btn-size-xs; 
+      height: $btn-size-xs;    
+      width: $btn-size-xs;
+    }
+
+    @include grid-media($grid-lg) {
       font-size: 18px;
       line-height: $btn-size-sm;
       height: $btn-size-sm;
@@ -82,11 +108,13 @@ $price-colour: $colour-amethyst-light;
 
   .name {
     font-weight: 500;
+    text-align: right;
   }
 
   .price {
     color: $price-colour;
     font-size: 14px;
     line-height: 1em;
+    text-align: right;
   }
 }
