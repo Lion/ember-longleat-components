@@ -24,12 +24,24 @@ export default Component.extend({
   cannotIncrement: not('canIncrement'),
   canDecrement: gt('skuBasketItemQuantity', 0),
   cannotDecrement: not('canDecrement'),
-  hasSkuMaxQuantity: gt('sku.maxQuantity', 0),
+  hasProductMaxQuantity: gt('sku.product.maxQuantity', 0),
   
   skuBasketItems: filter('basketItems', function(basketItem) {
     return get(basketItem, 'sku.id') === get(this, 'sku.id');
   }),
 
+  productMaxQuantity: computed(
+    'hasProductMaxQuantity',
+    'sku.product.maxQuantity',
+    'defaultMax',
+    function() {
+      if (get(this, 'hasProductMaxQuantity')) {
+        return  get(this, 'sku.product.maxQuantity');
+      }
+      return get(this, 'defaultMax');
+    }
+  ),
+  
   fieldsHash: computed(
     'fields.[]',
     function() {
@@ -44,14 +56,6 @@ export default Component.extend({
     'sku.price',
     function() {
       return (get(this, 'skuBasketItemQuantity') * (get(this, 'sku.price')));
-    }
-  ),
-  
-  available: computed(
-    'maxQuantity',
-    'skuBasketItemQuantity',
-    function() {
-      return get(this, 'maxQuantity') - get(this, 'skuBasketItemQuantity');
     }
   ),
 
@@ -69,15 +73,21 @@ export default Component.extend({
     }
   ),
 
+  available: computed(
+    'maxQuantity',
+    'skuBasketItemQuantity',
+    function() {
+      return get(this, 'maxQuantity') - get(this, 'skuBasketItemQuantity');
+    }
+  ),
+
   maxQuantity: computed(
     'defaultMax',
-    'hasSkuMaxQuantity',
-    'sku.maxQuantity',
+    'hasProductMaxQuantity',
+    'productMaxQuantity',
+    'sku.stockQuantity',
     function() {
-      if (get(this, 'hasSkuMaxQuantity')) {
-        return get(this, 'sku.maxQuantity');
-      }
-      return get(this, 'defaultMax');
+      return Math.min(get(this, 'productMaxQuantity'), get(this, 'sku.stockQuantity'));
     }
   ),
 
