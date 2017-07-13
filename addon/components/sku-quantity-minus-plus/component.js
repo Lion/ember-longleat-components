@@ -97,6 +97,7 @@ export default Component.extend({
       const basketItems = get(this, 'basketItems');
       let basketItem = get(this, 'skuBasketItems.firstObject');
       let sku = get(this, 'sku');
+      
       if (!get(this, 'canIncrement')) {
           return;
       }

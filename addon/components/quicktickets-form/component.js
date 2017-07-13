@@ -13,8 +13,6 @@ export default Ember.Component.extend({
 
   basketService: inject.service('basket'),
   store: inject.service(),
-  //openingTimes: inject.service('openingTimes'),
-
   basketItems: [],
   isLoading: false,
   isAddingToBasket: true, 
