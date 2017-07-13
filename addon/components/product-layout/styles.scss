@@ -45,8 +45,9 @@
       padding: 15px;
     }
 
-    ul li {
-      margin-bottom: 15px;
+    ul {
+      list-style-position: inside;
+      padding-left: 6px;
     }
 
   }
