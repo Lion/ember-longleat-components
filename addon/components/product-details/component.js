@@ -78,8 +78,8 @@ export default Component.extend({
         if (get(this, 'hasFullPrice')) {
           return {
             title: title,
-            fullPrice: '£' + sku.get('skuFields').findBy('data.slug', 'full-price').get('values')/100,
-            price: '£' + sku.get('price')/100 + '*',
+            fullPrice: '£' + (sku.get('skuFields').findBy('data.slug', 'full-price').get('values')/100).toFixed(2),
+            price: '£' + (sku.get('price')/100).toFixed(2) + '*',
           };
 
         } else {
