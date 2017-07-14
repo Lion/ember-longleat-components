@@ -1,3 +1,4 @@
+{{#unless isHidden}}
 <div class="sku-image">
   <img src={{basketItem.sku.product.productImages.firstObject.thumbLargeUrl}}>
 </div>
@@ -64,8 +65,8 @@
           class="edit-btn"
           onclick=(action "toggleEditing")
         }}
+        <span class="separator"></span>
       {{/if}}
-      <span class="separator"></span>
       {{button-text
         label="Remove"
         class="remove-btn"
@@ -97,3 +98,4 @@
     </div>
   </div>
 {{/if}}
+{{/unless}}

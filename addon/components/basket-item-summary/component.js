@@ -17,7 +17,7 @@ export default Component.extend({
   ],
 
   defaultMaxQuantity: 100,
-  canEdit: true,
+
   isEditing: false,
 
   productFields: alias('basketItem.sku.product.productFields'),
@@ -28,6 +28,34 @@ export default Component.extend({
   dateFields: filterBy('skuFields', 'slug', 'bookable-date'),
   date: alias('dateFields.firstObject.values.firstObject'),
   hasDate: notEmpty('date'),
+
+  isHidden: computed(    
+    'productFieldsHash.[]',
+    function() {
+      const productFieldsHash = get(this, "productFieldsHash");
+
+      if (productFieldsHash['is-hidden']) {
+        return true;
+      } else {
+        return false;
+      }
+
+    }
+  ),
+
+  canEdit: computed(
+    'productFieldsHash.[]',
+    function() {
+      const productFieldsHash = get(this, "productFieldsHash");
+
+      if (productFieldsHash['is-not-editable']) {
+        return false;
+      } else {
+        return true;
+      }
+
+    }
+  ),
 
   productFieldsHash: computed(
     'productFields.[]',
