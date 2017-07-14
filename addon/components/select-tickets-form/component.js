@@ -46,7 +46,12 @@ export default Component.extend({
   hasMinQuantity: gt('product.minQuantity', 0),
   hasMaxQuantity: gt('product.maxQuantity', 0),
   hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
-  skuFieldArrays: mapBy('skus', 'skuFields'),
+  skusWithStock: filter('skus', function(sku) {
+    if (get(sku, 'stockQuantity') > 0) {
+      return sku;
+    } 
+  }),
+  skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
   skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
   skuDateValueArrays: mapBy('skuDateFields', 'values'),
   dates: uniq('skuValueDates'),
