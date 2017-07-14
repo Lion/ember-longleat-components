@@ -6,16 +6,16 @@
   border-bottom: 3px solid $border-bottom-colour;
 
   .product-prices {
-    @include grid-column(12);
-    @include grid-media($grid-md) {
-      @include grid-column(6);    
+    @include grid-column(1, $product-grid-xs);
+    @include grid-media($product-grid-md) {
+      @include grid-column(1, $product-grid-md);
     }
   }
 
   .product-description {
-    @include grid-column(12);
-    @include grid-media($grid-md) {
-      @include grid-column(6);    
+    @include grid-column(1, $product-grid-xs);
+    @include grid-media($product-grid-md) {
+      @include grid-column(1, $product-grid-md);
     }
   }
 

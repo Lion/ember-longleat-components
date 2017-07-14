@@ -4,7 +4,7 @@ $box-bottom-colour: $colour-quartz;
 & {
   background: $box-bg-colour;
   border-bottom: 3px solid $box-bottom-colour;
-  padding: 15px;
+  padding: 25px 15px;
 
   @include grid-media($grid-md) {
     padding: 40px;

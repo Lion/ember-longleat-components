@@ -7,16 +7,26 @@
   .product-carousel,
   .select-tickets-form {
     @include grid-column(1, $product-grid-xs);
-    @include grid-media($product-grid-md) {
-      @include grid-column(1, $product-grid-md);
-    }
-    margin-top: 20px;
-    margin-bottom: 20px;
 
     .ui-ribbon {
-      left: 20px;
       top: 20px;
     }
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    @include grid-media($product-grid-md) {
+      @include grid-column(1, $product-grid-md);
+      left: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .ui-ribbon {
+        left: 20px;
+      }
+    }
+
+
   }
 
   .product-details,
