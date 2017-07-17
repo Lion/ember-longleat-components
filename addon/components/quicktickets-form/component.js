@@ -2,17 +2,17 @@ import Ember from 'ember';
 import layout from './template';
 import moment from 'moment';
 
-const { Component, get, inject, set } = Ember;
+const { Component, get, inject: { service }, set } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout, 
   
   classNameBindings: [
     'isOpen'
   ],
 
-  basketService: inject.service('basket'),
-  store: inject.service(),
+  basketService: service('basket'),
+  store: service(),
   basketItems: [],
   isLoading: false,
   isAddingToBasket: true, 
