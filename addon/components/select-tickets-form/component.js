@@ -3,7 +3,7 @@ import moment from 'moment';
 import layout from './template';
 const { Component, computed, get, getWithDefault, inject, isEmpty, isPresent, set, setProperties } = Ember;
 const { service } = inject;
-const { alias, and, empty, filter, filterBy, gt, mapBy, not, notEmpty, or, sum, uniq } = computed;
+const { alias, and, empty, equal, filter, filterBy, gt, mapBy, not, or, sum, uniq } = computed;
 
 export default Component.extend({
 
@@ -33,8 +33,8 @@ export default Component.extend({
   productFields: alias('product.productFields'),
   quantities: mapBy('basketItems', 'quantity'),
   firstSku: alias('product.skus.firstObject'),
-  firstSkuDateFields: filterBy('firstSku.skuFields', 'slug', 'bookable-date'),
-  requiresDate: notEmpty('firstSkuDateFields'),
+  productHasBookableDateField: filterBy('productFields', 'slug', 'has-bookable-date'),
+  requiresDate: equal('productHasBookableDateField.value', true),
   isShowingForm: not('isHidingForm'),
   chooseSessions: and('product.hasSessions', 'isNotGift'),
   isBasketItemsEmpty: empty('basketItems'),
@@ -63,15 +63,15 @@ export default Component.extend({
   ),
   hasMaxQuantity: gt('productMaxQuantity', 0),
   hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
+  skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
+  skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
+  skuDateValueArrays: mapBy('skuDateFields', 'values'),
+  dates: uniq('skuValueDates'),
   skusWithStock: filter('skus', function(sku) {
     if (get(sku, 'stockQuantity') > 0) {
       return sku;
     } 
   }),
-  skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
-  skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
-  skuDateValueArrays: mapBy('skuDateFields', 'values'),
-  dates: uniq('skuValueDates'),
 
   conditionIsPassed: computed(
     'hasCondition',
@@ -252,8 +252,14 @@ export default Component.extend({
     }
   ),
 
+  didInsertElement() {
+    const displayDate = get(this, "displayDate");
+    this.changeDisplayDate(displayDate);
+  },
+
   actions: {
     changeDisplayDate(displayDate) {
+      this.changeDisplayDate(displayDate);
       set(this, 'displayDate', displayDate);
     },
 

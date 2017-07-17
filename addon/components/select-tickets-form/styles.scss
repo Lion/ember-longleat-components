@@ -130,6 +130,15 @@ $box-bottom-colour: $colour-quartz;
       }
     }
   }
+
+  &.is-disabled, 
+  &.is-next-month, 
+  &.is-previous-month {
+    .day {
+      border-color: $colour-porcelain;
+      color: $colour-porcelain;
+    }
+  }
 }
 
 .skus-wrapper {
@@ -193,7 +202,7 @@ $box-bottom-colour: $colour-quartz;
 
 
 .ui-spinner {
-  display: block;;
+  display: block;
 }
 
 .has-loading-error {
@@ -207,5 +216,27 @@ $box-bottom-colour: $colour-quartz;
 .ui-form-checkbox {
   padding-left: 15px;
   padding-bottom: 20px;
+}
+
+.select-date {
+  position: relative;
+}
+
+.is-loading-skus {
+  background: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .ui-spinner {
+    border: solid $colour-amber-light !important;
+    border-width: 3px 0 0 0 !important;
+    left: calc(50% - 32px);
+    position: absolute;
+    top: calc(50% - 32px);
+    transform: translate(-50%, -50%);
+  }
 }
 

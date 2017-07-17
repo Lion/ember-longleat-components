@@ -12,7 +12,8 @@ export default Component.extend({
     'isPreviousMonth',
     'isNextMonth',
     'isSelectable',
-    'isSelected'
+    'isSelected',
+    'day.isDisabled'
   ],
 
   dayDateKey: computed(

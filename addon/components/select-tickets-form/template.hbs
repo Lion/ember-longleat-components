@@ -31,7 +31,6 @@
       {{/if}}
 
       <form>
-
         {{#if requiresDate}}
           {{#jumbo-select
             class="select-date"
@@ -55,6 +54,11 @@
               days=days
               selectDate=(action "selectDate")
             }}
+            {{#if isLoadingSkus}}
+              <div class="is-loading-skus">
+                {{ui-spinner borderWidth="3px" width="64px" height="64px"}}
+              </div>
+            {{/if}}
           {{/jumbo-select}}
         {{/if}}
 
