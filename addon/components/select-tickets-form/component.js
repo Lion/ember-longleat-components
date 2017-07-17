@@ -22,6 +22,8 @@ export default Component.extend({
   emptySelectVisitorsLabel: 'Number of visitors',
   ticketHolderLabel: 'Visitor',
   whosVisitingLabel: 'Who\'s visiting...',
+  
+  defaultProductMaxQuantity: 32,
 
   date: moment.utc().startOf('day').add(1, 'day'),
   minDate: moment.utc().startOf('month'),
@@ -43,8 +45,23 @@ export default Component.extend({
   quantityIsValid: and('minQuantityIsValid', 'maxQuantityIsValid'),
   canSubmit: and('hasBasketItems', 'quantityIsValid', 'conditionIsPassed'),
   cannotSubmit: not('canSubmit'),
+
+
   hasMinQuantity: gt('product.minQuantity', 0),
-  hasMaxQuantity: gt('product.maxQuantity', 0),
+  productMaxQuantity: computed(
+    'productFieldsHash',
+    'defaultProductMaxQuantity',
+    function() {
+      let productFields = get(this, 'productFieldsHash');
+
+      if (productFields['max-quantity']) {
+        return productFields['max-quantity']
+      } else {
+        return get(this, 'defaultProductMaxQuantity');
+      }
+    }
+  ),
+  hasMaxQuantity: gt('productMaxQuantity', 0),
   hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
   skusWithStock: filter('skus', function(sku) {
     if (get(sku, 'stockQuantity') > 0) {
@@ -95,9 +112,9 @@ export default Component.extend({
 
   maxQuantityIsValid: computed(
     'totalPricedQuantity',
-    'product.maxQuantity',
+    'productMaxQuantity',
     function() {
-      const maxQuantity = getWithDefault(this, 'product.maxQuantity', 0);
+      const maxQuantity = getWithDefault(this, 'productMaxQuantity', 0);
       const totalPricedQuantity = get(this, 'totalPricedQuantity');
       if (maxQuantity === 0) {
         return true;
@@ -107,10 +124,10 @@ export default Component.extend({
   ),
 
   canIncrementForProduct: computed(
-    'product.maxQuantity',
+    'productMaxQuantity',
     'totalPricedQuantity',
     function() {
-      const maxQuantity = get(this, 'product.maxQuantity');
+      const maxQuantity = get(this, 'productMaxQuantity');
       const totalPricedQuantity = get(this, 'totalPricedQuantity')
       if (isEmpty(maxQuantity) || maxQuantity === 0) {
         return true;

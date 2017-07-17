@@ -170,7 +170,9 @@ $box-bottom-colour: $colour-quartz;
 }
 
 .small-print {
-  color: $colour-quartz-light;
+  margin-top: 12px;
+  line-height: 1.2em;
+  color: $colour-quartz-dark;
   text-align: center;
 }
 
