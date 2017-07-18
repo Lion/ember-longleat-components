@@ -8,10 +8,17 @@ export default Component.extend({
 
   classNames: ['product-details'],
   description: {isDescription: true},
+  skus: [],
 
   hasFullPrice: computed (
     'skus.[]',
     function() {
+
+      // Return blank if no sku is specified
+      if (!get(this, 'skus.firstObject.skuFields')) {
+        return;
+      }
+
       return isPresent(get(this, 'skus.firstObject.skuFields').findBy('data.slug', 'full-price'));
     }
   ),
@@ -58,6 +65,11 @@ export default Component.extend({
     'productTitleTemplate',
     'skus.[]',
     function() {
+
+    // Return blank if no sku is specified
+    if (!get(this, 'skus.firstObject.skuFields')) {
+      return;
+    }
 
     let hasAge = isPresent(get(this, 'skus.firstObject.skuFields').findBy('data.slug', 'age'));
 
