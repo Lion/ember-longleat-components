@@ -4,7 +4,11 @@
     <span class="{{if qualifierIcon 'qualifier-icon'}}"></span>
   {{/if}}
 </label>
-{{input type=type id=inputId class="textfield-input" value=(mut value)}}
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{input type=type id=inputId class="textfield-input" value=(mut value)}}
+{{/if}}
 <button class="clear-btn" {{action "clear"}} tabindex="-1">x</button>
 {{#if hasQualifier}}
   <div class="qualifier {{if qualifierIcon 'qualifier-icon'}}">
@@ -20,3 +24,4 @@
   <label class="textfield-message" for={{fieldId}}>
     {{textfieldMessage}}
   </label>
+{{/if}}
