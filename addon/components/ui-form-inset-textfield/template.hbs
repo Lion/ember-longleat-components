@@ -16,6 +16,7 @@
     {{validations.message}}
   </div>
 {{/if}}
-<label class="textfield-message" for={{fieldId}}>
-  {{yield}}
-</label>
+{{#if hasTextfieldMessage}}
+  <label class="textfield-message" for={{fieldId}}>
+    {{textfieldMessage}}
+  </label>

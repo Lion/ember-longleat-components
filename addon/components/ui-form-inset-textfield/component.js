@@ -22,6 +22,7 @@ export default Component.extend({
   showErrorClass: and('notValidating', 'showMessage', 'hasContent', 'validations'),
   hasError: alias('showMessage'),
   canClear: and('isActivated', 'hasContent'),
+  hasTextfieldMessage: notEmpty("textfieldMessage"),
 
   showMessage: computed(
     'validations.isDirty',
