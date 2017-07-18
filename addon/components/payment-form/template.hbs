@@ -26,11 +26,16 @@
   {{/if}}
 
   {{#form.fieldset class="wide-details"}}
-    {{form.inset-textfield
+
+    {{#form.inset-textfield
       label="Card number*"
-      inputId="card-number-field"
-      value=(mut payment.cardNumber)
     }}
+      {{input-credit-card-number
+        class="textfield-input"
+        placeholder=""
+        number=(mut payment.cardNumber)
+      }}
+    {{/form.inset-textfield}}
 
     {{form.inset-textfield
       label="Name*"
@@ -42,11 +47,17 @@
   <div class="short-details">
 
     {{#form.fieldset}}
-      {{form.inset-textfield
+      {{#form.inset-textfield
         label="Valid from"
         inputId="valid-from-field"
         value=(mut payment.validFrom)
       }}
+        {{input-credit-card-expiration
+          class="textfield-input"
+          month=(mut validFromMonth)
+          year=(mut validFromYear)
+        }}
+      {{/form.inset-textfield}}
 
       {{form.inset-textfield
         label="Issue number - Switch/solo only"
@@ -56,17 +67,26 @@
     {{/form.fieldset}}
 
     {{#form.fieldset}}
-      {{form.inset-textfield
+      {{#form.inset-textfield
         label="Expiry date*"
         inputId="expiry-date-field"
-        value=(mut payment.expiryDate)
       }}
+        {{input-credit-card-expiration
+          class="textfield-input"
+          month=(mut expiryMonth)
+          year=(mut expiryYear)
+        }}
+      {{/form.inset-textfield}}
 
-      {{form.inset-textfield
-        label="Last 3 digits"
+      {{#form.inset-textfield
+        label="CVV (Last 3 digits)"
         inputId="cvv-field"
-        value=(mut payment.cvv)
       }}
+        {{input-credit-card-cvc
+          class="textfield-input"
+          cvc=(mut payment.cvv)
+        }}
+      {{/form.inset-textfield}}
     {{/form.fieldset}}
   </div>
 
@@ -76,6 +96,7 @@
     onclick=(action createPayment payment)
     iconLeft="padlock-white"
     iconRight="chevron-right-white"
+    isDisabled=cannotSubmit
     isLoading=isSubmitting
   }}
 

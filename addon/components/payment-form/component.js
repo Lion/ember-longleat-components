@@ -1,6 +1,37 @@
+/* eslint ember/no-observers: 0 */
 import Ember from 'ember';
 import layout from './template';
+const { Component, computed, get, observer, set } = Ember;
+const { and, not, notEmpty } = computed;
 
-export default Ember.Component.extend({
-  layout
+export default Component.extend({
+  layout,
+
+  expiryMonth: null,
+  expiryYear: null,
+  validFromMonth: null,
+  validFromYear: null,
+
+  isCardNumberValid: notEmpty("payment.cardNumber"),
+  isCardholderValid: notEmpty("payment.cardholder"),
+  isExpiryDateValid: notEmpty("payment.expiryDate"),
+  isCVCValid: notEmpty("payment.cvv"),
+  canSubmit: and("isCardNumberValid", "isCardholderValid", "isExpiryDateValid", "isCVCValid"),
+  cannotSubmit: not("canSubmit"),
+  
+  expiryDateChanged: observer(
+    "expiryMonth",
+    "expiryYear",
+    function() {
+      set(this, "payment.expiryDate", get(this, "expiryMonth") + get(this, "expiryYear"));
+    }
+  ),
+
+  validFromChanged: observer(
+    "validFromMonth",
+    "validFromYear",
+    function() {
+      set(this, "payment.validFrom", get(this, "validFromMonth") + get(this, "validFromYear"));
+    }
+  ),
 });
