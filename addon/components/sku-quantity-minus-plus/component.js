@@ -19,12 +19,15 @@ export default Component.extend({
   fields: alias('sku.skuFields'),
   isNotFree: gt('sku.price', 0),
   isFree: not('isNotFree'),
+  firstSkuBasketItem: alias("skuBasketItems.firstObject"),
   skuBasketItemQuantities: mapBy('skuBasketItems', 'quantity'),
   skuBasketItemQuantity: sum('skuBasketItemQuantities'),
   cannotIncrement: not('canIncrement'),
   canDecrement: gt('skuBasketItemQuantity', 0),
   cannotDecrement: not('canDecrement'),
   hasProductMaxQuantity: gt('sku.product.maxQuantity', 0),
+  bundleUUID: alias("firstSkuBasketItem.metadata.bundleUUID"),
+  hasBundleUUID: notEmpty("bundleUUID"),
   
   skuBasketItems: filter('basketItems', function(basketItem) {
     return get(basketItem, 'sku.id') === get(this, 'sku.id');
@@ -91,11 +94,31 @@ export default Component.extend({
     }
   ),
 
+  bundledBasketItems: computed(
+    "basketItems.@each.metadata",
+    "hasBundleUUID",
+    "bundleUUID",
+    "firstSkuBasketItem.id",
+    function() {
+      const hasBundleUUID = get(this, "hasBundleUUID");
+      const bundleUUID = get(this, "bundleUUID");
+      const firstSkuBasketItem = get(this, "firstSkuBasketItem");
+      return get(this, "basketItems").filter(basketItem => {
+        if (basketItem == firstSkuBasketItem) {
+          return false;
+        }
+        if (hasBundleUUID) {
+          return bundleUUID === get(basketItem, "metadata.bundleUUID");
+        }
+      });
+    }
+  ),
+
   actions: {
 
     increment() {
       const basketItems = get(this, 'basketItems');
-      let basketItem = get(this, 'skuBasketItems.firstObject');
+      let basketItem = get(this, 'firstSkuBasketItem');
       let sku = get(this, 'sku');
       
       if (!get(this, 'canIncrement')) {
@@ -105,18 +128,20 @@ export default Component.extend({
       if (isEmpty(basketItem)) {
         return this.createBasketItem(basketItems, sku, 1);
       }
-
+      
       basketItem.incrementProperty('quantity');
+      get(this, "bundledBasketItems").invoke("incrementProperty", "quantity");
     },
 
     decrement() {
-      var basketItem = get(this, 'skuBasketItems.firstObject');
+      var basketItem = get(this, 'firstSkuBasketItem');
 
       if (isEmpty(basketItem)) {
         return;
       }
 
       basketItem.decrementProperty('quantity');
+      get(this, "bundledBasketItems").invoke("decrementProperty", "quantity");
 
       if (get(basketItem, 'quantity') === 0) {
         return this.deleteBasketItem(get(this, 'basketItems'), basketItem);

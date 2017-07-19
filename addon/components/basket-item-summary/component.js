@@ -28,6 +28,28 @@ export default Component.extend({
   dateFields: filterBy('skuFields', 'slug', 'bookable-date'),
   date: alias('dateFields.firstObject.values.firstObject'),
   hasDate: notEmpty('date'),
+  bundleUUID: alias("basketItem.metadata.bundleUUID"),
+  hasBundleUUID: notEmpty("bundleUUID"),
+
+  bundledBasketItems: computed(
+    "basketItems.@each.metadata",
+    "hasBundleUUID",
+    "bundleUUID",
+    "basketItem.id",
+    function() {
+      const hasBundleUUID = get(this, "hasBundleUUID");
+      const bundleUUID = get(this, "bundleUUID");
+      const targetBasketItem = get(this, "targetBasketItem");
+      return get(this, "basketItems").filter(basketItem => {
+        if (basketItem == targetBasketItem) {
+          return false;
+        }
+        if (hasBundleUUID) {
+          return bundleUUID === get(basketItem, "metadata.bundleUUID");
+        }
+      });
+    }
+  ),
 
   isHidden: computed(    
     'productFieldsHash.[]',
@@ -117,12 +139,14 @@ export default Component.extend({
     cancel(basketItem) {
       if (get(basketItem, 'hasDirtyAttributes')) {
         basketItem.rollbackAttributes();
+        get(this, "bundledBasketItems").invoke("rollbackAttributes");
       }
       set(this, 'isEditing', false);
     },
 
     setQuantity(quantity) {
       set(this, 'basketItem.quantity', quantity);
+      get(this, "bundledBasketItems").invoke("set", "quantity", quantity);
     }
   }
 });

@@ -31,7 +31,7 @@ export default Component.extend({
   displayDate: moment.utc().startOf('month'),
 
   productFields: alias('product.productFields'),
-  quantities: mapBy('basketItems', 'quantity'),
+  quantities: mapBy('visibleBasketItems', 'quantity'),
   firstSku: alias('product.skus.firstObject'),
   productHasBookableDateField: filterBy('productFields', 'slug', 'has-bookable-date'),
   requiresDate: equal('productHasBookableDateField.value', true),
@@ -48,6 +48,26 @@ export default Component.extend({
 
 
   hasMinQuantity: gt('product.minQuantity', 0),
+  hasMaxQuantity: gt('productMaxQuantity', 0),
+  hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
+  skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
+  skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
+  skuDateValueArrays: mapBy('skuDateFields', 'values'),
+  dates: uniq('skuValueDates'),
+  skusWithStock: filter('skus', function(sku) {
+    if (get(sku, 'stockQuantity') > 0) {
+      return sku;
+    } 
+  }),
+
+  visibleBasketItems: filter(
+    'basketItems',
+    function(basketItem) {
+      const isHidden = get(basketItem, "metadata.isHidden");
+      return isHidden != true;
+    }
+  ),
+  
   productMaxQuantity: computed(
     'productFieldsHash',
     'defaultProductMaxQuantity',
@@ -61,17 +81,6 @@ export default Component.extend({
       }
     }
   ),
-  hasMaxQuantity: gt('productMaxQuantity', 0),
-  hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
-  skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
-  skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
-  skuDateValueArrays: mapBy('skuDateFields', 'values'),
-  dates: uniq('skuValueDates'),
-  skusWithStock: filter('skus', function(sku) {
-    if (get(sku, 'stockQuantity') > 0) {
-      return sku;
-    } 
-  }),
 
   conditionIsPassed: computed(
     'hasCondition',
