@@ -45,9 +45,8 @@ $colour-active: $colour-amber;
 }
 
 .step {
-  @include grid-column(3);
-  margin-left: 0;
-  padding-left: 20px;
+  width: 25%;
+  float: left;
   position: relative;
   text-align: center;
 
