@@ -62,12 +62,12 @@ $transition-spinner-in-time: 150ms;
 &.is-loading {
 
   .ui-spinner {
-    @include transition(opacity $transition-spinner-in-time $transition-label-out-time);
+    transition: opacity $transition-spinner-in-time $transition-label-out-time;
     opacity: 1;
   }
 
   .label {
-    @include transition(opacity $transition-label-out-time);
+    transition: opacity $transition-label-out-time;
     opacity: 0;
   }
 
