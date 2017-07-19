@@ -2,7 +2,7 @@
 
   position: relative;
 
-  @include fixed-container-lg;
+  @include fixed-container-xl;
 
   .product-carousel,
   .select-tickets-form {
@@ -33,6 +33,11 @@
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 30px;
+    
+    @include grid-media($product-grid-md) {
+      @include grid-column(2, $product-grid-md);
+    }
+
 
     h3 {
       margin-top: 0;
