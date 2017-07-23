@@ -1,0 +1,1 @@
+export { default } from 'ember-longleat-components/components/mobiledoc-image-card/component';
