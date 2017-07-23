@@ -1,0 +1,21 @@
+  table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  td {
+    padding: 10px 15px;
+    text-align: center;
+  }
+  
+  td:first-child {
+    text-align: left;
+  }
+
+  tr {
+    border-bottom: 1px solid $colour-manatee;
+  }
+
+  tr:last-child {
+    border-bottom: 0px;
+  }
