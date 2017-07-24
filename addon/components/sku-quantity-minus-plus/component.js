@@ -57,8 +57,10 @@ export default Component.extend({
   lineTotal: computed(
     'skuBasketItemQuantity',
     'sku.price',
+    "bundledBasketItems.@each.price",
     function() {
-      return (get(this, 'skuBasketItemQuantity') * (get(this, 'sku.price')));
+      let totalPrice = get(this, "bundledBasketItems").reduce((totalPrice, basketItem) => totalPrice + get(basketItem, "sku.price"), 0) + get(this, "sku.price");
+      return (get(this, 'skuBasketItemQuantity') * totalPrice);
     }
   ),
 

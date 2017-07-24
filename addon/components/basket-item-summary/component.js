@@ -136,9 +136,11 @@ export default Component.extend({
   ),
 
   linePrice: computed(
-    'basketItem.{price,quantity}',
+    'basketItem.{quantity,sku.price}',
+    "bundledBasketItems.@each.price",
     function() {
-      return get(this, 'basketItem.price') * get(this, 'basketItem.quantity');
+      let totalPrice = get(this, "bundledBasketItems").reduce((totalPrice, basketItem) => totalPrice + get(basketItem, "sku.price"), 0) + get(this, "basketItem.sku.price");
+      return (get(this, 'basketItem.quantity') * totalPrice);
     }
   ),
 
