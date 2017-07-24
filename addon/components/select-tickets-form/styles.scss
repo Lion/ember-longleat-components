@@ -190,6 +190,15 @@ $box-bottom-colour: $colour-quartz;
   color: $colour-amber;
   margin-bottom: 20px;
   padding: 15px;
+
+  &.replaces-form {
+    margin-top: 30px;
+  }
+
+  a {
+    border-bottom: 1px solid $colour-amber;
+    color: $colour-amber;
+  }
 }
 
 .ui-form-checkbox {

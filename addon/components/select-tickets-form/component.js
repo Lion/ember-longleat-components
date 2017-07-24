@@ -15,7 +15,6 @@ export default Component.extend({
 
   isShowingCalendar: false,
   isShowingVisitors: false,
-  isHidingForm: false,
   hasCondition: false,
   hasAcceptedCondition: false,
   conditionMessage: 'I accept',
@@ -24,6 +23,7 @@ export default Component.extend({
   whosVisitingLabel: 'Who\'s visiting...',
   
   defaultProductMaxQuantity: 32,
+  isSubmitting: false,
 
   date: moment.utc().startOf('day').add(1, 'day'),
   minDate: moment.utc().startOf('month'),
@@ -32,9 +32,12 @@ export default Component.extend({
 
   productFields: alias('product.productFields'),
   quantities: mapBy('visibleBasketItems', 'quantity'),
+  persistedProductQuantities: mapBy("persistedProductBasketItems", "quantity"),
+  persistedProductQuantity: sum("persistedProductQuantities"),
   firstSku: alias('product.skus.firstObject'),
   productHasBookableDateField: filterBy('productFields', 'slug', 'has-bookable-date'),
   requiresDate: equal('productHasBookableDateField.value', true),
+  isHidingForm: and("hasNoProductQuantityAvailable", "isNotSubmitting"),
   isShowingForm: not('isHidingForm'),
   chooseSessions: and('product.hasSessions', 'isNotGift'),
   isBasketItemsEmpty: empty('basketItems'),
@@ -45,7 +48,9 @@ export default Component.extend({
   quantityIsValid: and('minQuantityIsValid', 'maxQuantityIsValid'),
   canSubmit: and('hasBasketItems', 'quantityIsValid', 'conditionIsPassed'),
   cannotSubmit: not('canSubmit'),
-
+  hasProductQuantityAvailable: gt("availableProductQuantity", 0),
+  hasNoProductQuantityAvailable: not("hasProductQuantityAvailable", 0),
+  isNotSubmitting: not("isSubmitting"),
 
   hasMinQuantity: gt('product.minQuantity', 0),
   hasMaxQuantity: gt('productMaxQuantity', 0),
@@ -59,6 +64,13 @@ export default Component.extend({
       return sku;
     } 
   }),
+
+  persistedProductBasketItems: filter(
+    'persistedBasketItems',
+    function(persistedBasketItem) {
+      return get(persistedBasketItem, "sku.product.id") === get(this, "product.id");
+    }
+  ),
 
   visibleBasketItems: filter(
     'basketItems',
@@ -132,19 +144,28 @@ export default Component.extend({
     }
   ),
 
+  availableProductQuantity: computed(
+    "productMaxQuantity",
+    "persistedProductQuantity",
+    function() {
+      return get(this, 'productMaxQuantity') - get(this, "persistedProductQuantity")
+    }
+  ),
+
   canIncrementForProduct: computed(
     'productMaxQuantity',
     'totalPricedQuantity',
+    'availableProductQuantity',
     function() {
+      const availableProductQuantity = get(this, "availableProductQuantity");
       const maxQuantity = get(this, 'productMaxQuantity');
       const totalPricedQuantity = get(this, 'totalPricedQuantity')
       if (isEmpty(maxQuantity) || maxQuantity === 0) {
         return true;
       }
-      return totalPricedQuantity < maxQuantity;
+      return totalPricedQuantity < availableProductQuantity;
     }
   ),
-
 
   totalPrice: computed(
     'basketItems.@each.{price,quantity}',
