@@ -59,6 +59,7 @@ export default Component.extend({
   skuDateFields: filterBy('skuFields', 'slug', 'bookable-date'),
   skuDateValueArrays: mapBy('skuDateFields', 'values'),
   dates: uniq('skuValueDates'),
+  visibleBasketItems: filterBy("basketItems", "isHidden", false),
   skusWithStock: filter('skus', function(sku) {
     if (get(sku, 'stockQuantity') > 0) {
       return sku;
@@ -72,14 +73,6 @@ export default Component.extend({
     }
   ),
 
-  visibleBasketItems: filter(
-    'basketItems',
-    function(basketItem) {
-      const isHidden = get(basketItem, "metadata.isHidden");
-      return isHidden != true;
-    }
-  ),
-  
   productMaxQuantity: computed(
     'productFieldsHash',
     'defaultProductMaxQuantity',

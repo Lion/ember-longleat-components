@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
-const { Component, isPresent, computed, get, isEmpty, set } = Ember;
-const { alias, and, empty, filter, equal, not, notEmpty, or } = computed;
+const { Component, isPresent, computed, get, set } = Ember;
+const { alias, and, empty, filterBy, equal, not, notEmpty, or, sort } = computed;
 
 export default Component.extend({
   layout,
@@ -14,14 +14,7 @@ export default Component.extend({
   hasVouchercode: notEmpty('vouchercode.content'),
   hasNoVouchercode: not('hasVouchercode'),
   hasAPVoucherCode: equal('vouchercode.content.code', 'ANNUALPASSHOLDER'),
-
-  visibleBasketItems: filter(
-    "basketItems",
-    function(basketItem) {
-      const isHidden = get(basketItem, "metadata.isHidden");
-      return (isHidden === false || isEmpty(isHidden));
-    }
-  ),
+  visibleBasketItems: filterBy("basketItems", "isHidden", false),
 
   isShowingApplyVouchercode: and(
     'isVouchercodeFieldShowable',
