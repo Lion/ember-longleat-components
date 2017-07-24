@@ -1,4 +1,4 @@
-$bg-colour: $colour-quartz;
+$bg-colour: $colour-quartz-light;
 $height: 43px;
 
 & {
@@ -72,6 +72,11 @@ $height: 43px;
       margin-bottom: 15px;
       padding: 15px;
       text-align: left;
+
+      a {
+        color: $colour-cinnabar;
+        border-bottom: 1px solid $colour-cinnabar;
+      }
     }
 
     .title {

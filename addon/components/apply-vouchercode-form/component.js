@@ -18,7 +18,7 @@ export default Component.extend({
         return;
       }
 
-      if (code.substring(0,2) == 'CG') {
+      if (code.substring(0,2).toLowerCase() == 'cg') {
         set(this, 'errorCode', 'IS_TESCO');
         return;
       }
