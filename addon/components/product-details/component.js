@@ -98,9 +98,9 @@ export default Component.extend({
         
           return {
             title: title,
-            price: '£' + sku.get('price')/100,
+            price: '£' + (sku.get('price')/100).toFixed(2),
           };
-        };
+        }
       });
     }
   )
