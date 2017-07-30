@@ -5,5 +5,6 @@ const { Component } = Ember;
 
 export default Component.extend({
   layout,
-  classNames: ['product-card']
+  classNames: ['product-card'],
+  
 });

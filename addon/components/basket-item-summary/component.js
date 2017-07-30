@@ -2,7 +2,7 @@ import Ember from 'ember';
 import layout from './template';
 const { Component, computed, get, inject, set } = Ember;
 const { service } = inject;
-const { alias, equal, filterBy, gt, notEmpty } = computed;
+const { alias, equal, filter, filterBy, gt, mapBy, notEmpty, sum } = computed;
 
 export default Component.extend({
 
@@ -30,6 +30,15 @@ export default Component.extend({
   hasDate: notEmpty('date'),
   bundleUUID: alias("basketItem.metadata.bundleUUID"),
   hasBundleUUID: notEmpty("bundleUUID"),
+  productQuantities: mapBy("productBasketItems", "quantity"),
+  productQuantity: sum("productQuantities"),
+
+  productBasketItems: filter(
+    'basketItems',
+    function(basketItem) {
+      return get(basketItem, "sku.product.id") === get(this, "basketItem.sku.product.id");
+    }
+  ),
 
   bundledBasketItems: computed(
     "basketItems.@each.metadata",
@@ -97,22 +106,41 @@ export default Component.extend({
     }
   ),
 
+  productMaxQuantity: computed(
+    'productFieldsHash',
+    'defaultMaxQuantity',
+    function() {
+      let productFields = get(this, 'productFieldsHash');
+
+      if (productFields['max-quantity']) {
+        return productFields['max-quantity']
+      } else {
+        return get(this, 'defaultMaxQuantity');
+      }
+    }
+  ),
+
   maxQuantity: computed(
     'hasSkuMaxQuantity',
     'skuMaxQuantity',
     'defaultMaxQuantity',
+    "productQuantity",
+    "productMaxQuantity",
+    "basketItem.quantity",
     function() {
       if (get(this, 'hasSkuMaxQuantity')) {
         return get(this, 'skuMaxQuantity');
       }
-      return get(this, 'defaultMaxQuantity')
+      return (get(this, 'productMaxQuantity') - get(this, "productQuantity")) + get(this, "basketItem.quantity");
     }
   ),
 
   linePrice: computed(
-    'basketItem.{price,quantity}',
+    'basketItem.{quantity,sku.price}',
+    "bundledBasketItems.@each.price",
     function() {
-      return get(this, 'basketItem.price') * get(this, 'basketItem.quantity');
+      let totalPrice = get(this, "bundledBasketItems").reduce((totalPrice, basketItem) => totalPrice + get(basketItem, "sku.price"), 0) + get(this, "basketItem.sku.price");
+      return (get(this, 'basketItem.quantity') * totalPrice);
     }
   ),
 
