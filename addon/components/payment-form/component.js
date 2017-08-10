@@ -34,15 +34,9 @@ export default Component.extend({
     "expiryMonth",
     "expiryYear",
     function() {
-      set(this, "payment.expiryDate", get(this, "expiryMonth") + get(this, "expiryYear"));
+      const expiryYear = get(this, "expiryYear").slice(-2);
+      set(this, "payment.expiryDate", get(this, "expiryMonth") + expiryYear);
     }
   ),
 
-  validFromChanged: observer(
-    "validFromMonth",
-    "validFromYear",
-    function() {
-      set(this, "payment.validFrom", get(this, "validFromMonth") + get(this, "validFromYear"));
-    }
-  ),
 });
