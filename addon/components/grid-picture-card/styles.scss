@@ -1,14 +1,12 @@
 &{
   position: relative;
   text-align: center;
-  background: $colour-slate;
 
   .card-inner {
     height: 100%;
   }
   
-  .ui-button,
-  .ui-button-jade {
+  a {
     position: absolute;
     bottom: 40px;
     left: 50%;
