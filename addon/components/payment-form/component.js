@@ -3,7 +3,7 @@ import Ember from 'ember';
 import layout from './template';
 import creditCardType from '../../utils/credit-card-type';
 
-const { Component, computed, get, observer, set } = Ember;
+const { Component, computed, get, isPresent, observer, set } = Ember;
 const { and, not, notEmpty } = computed;
 
 export default Component.extend({
@@ -34,7 +34,10 @@ export default Component.extend({
     "expiryMonth",
     "expiryYear",
     function() {
-      const expiryYear = get(this, "expiryYear").slice(-2);
+      let expiryYear = get(this, "expiryYear");
+      if (isPresent(expiryYear)) {
+        expiryYear = expiryYear.slice(-2);
+      }
       set(this, "payment.expiryDate", get(this, "expiryMonth") + expiryYear);
     }
   ),
