@@ -26,8 +26,6 @@
 
       <form>
         {{#each skus as |sku|}}
-        {{log "basketItems in sku-minus-plus"}}
-        {{log basketItems}}
           {{sku-quantity-minus-plus
             sku=sku
             skuTitleTemplate=productFieldsHash.skuTitleTemplate
