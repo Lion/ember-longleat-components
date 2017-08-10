@@ -48,26 +48,6 @@
 
     {{#form.fieldset}}
       {{#form.inset-textfield
-        label="Valid from"
-        inputId="valid-from-field"
-        value=(mut payment.validFrom)
-      }}
-        {{input-credit-card-expiration
-          class="textfield-input"
-          month=(mut validFromMonth)
-          year=(mut validFromYear)
-        }}
-      {{/form.inset-textfield}}
-
-      {{form.inset-textfield
-        label="Issue number"
-        inputId="issue-number-field"
-        value=(mut payment.issueNumber)
-      }}
-    {{/form.fieldset}}
-
-    {{#form.fieldset}}
-      {{#form.inset-textfield
         label="Expiry date*"
         inputId="expiry-date-field"
       }}
@@ -79,7 +59,7 @@
       {{/form.inset-textfield}}
 
       {{#form.inset-textfield
-        label="CVV (Last 3 digits)"
+        label="CVV (Last 3 digits)*"
         inputId="cvv-field"
       }}
         {{input-credit-card-cvc
