@@ -1,0 +1,21 @@
+<div class="title">
+  <h3>{{title}}</h3>
+</div>
+
+<div class="product-columns">
+  <div class="product-prices">
+    {{yield pricing}}
+    
+    {{price-table
+      fields=priceTableFields
+      data=priceTableData
+    }}
+
+    {{yield shipping}}
+
+  </div>
+
+  <div class="product-description">
+    {{yield description}}
+  </div>
+</div>
