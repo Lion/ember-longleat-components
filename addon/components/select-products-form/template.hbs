@@ -1,0 +1,90 @@
+  <div class="select-tickets-form-inner">
+    <div class="ticket-title">
+      <span class="top">{{title}}</span>
+    </div>
+
+    {{#if isShowingForm}}
+
+      <div class="instructions">
+        Select quantity
+      </div>
+
+      {{#if errors}}
+        <div class="error-message">
+          {{#each errors as |error|}}
+            <div class="error">
+              {{#if (eq error.detail 'BELOW_MINIMUM_REQUIRED')}}
+                You must purchase at least {{product.minQuantity}}.
+              {{/if}}
+              {{#if (eq error.detail 'ABOVE_MAXIMUM_REQUIRED')}}
+                You can only purchase a maximum of {{product.maxQuantity}} (you may already have some in your basket).
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      <form>
+        {{#each skus as |sku|}}
+        {{log "basketItems in sku-minus-plus"}}
+        {{log basketItems}}
+          {{sku-quantity-minus-plus
+            sku=sku
+            skuTitleTemplate=productFieldsHash.skuTitleTemplate
+            basketItems=basketItems
+            createBasketItem=createBasketItem
+          }}
+        {{/each}}
+
+        {{#ui-button
+          class="add-to-basket-btn"
+          size="large"
+          isDisabled=cannotSubmit
+          onclick=(action addToBasket basketItems)
+          isLoading=isSubmitting
+        }}
+          <span class="label">
+            Add to basket
+            {{#if canSubmit}}
+              <span class="summary">
+                {{totalVisitors}} Items - £{{totalPrice}}
+              </span>
+            {{/if}}
+          </span>
+        {{/ui-button}}
+
+        {{#if hasSmallPrint}}
+          <div class="small-print">
+            {{#if hasMinQuantity}}
+              <div class="min-quantity">
+                You must choose a minimum number of {{productMinQuantity}} items.
+              </div>
+            {{/if}}
+            {{#if hasMaxQuantity}}
+              <div class="max-quantity">
+                You can choose a maximum number of {{productMaxQuantity}} items.
+                {{#unless (eq productMaxQuantity availableProductQuantity)}}
+                  <br>You have {{persistedProductQuantity}} in your basket and can add {{availableProductQuantity}} more.
+                {{/unless}}
+              </div>
+            {{/if}}
+
+          </div>
+        {{/if}}
+
+      </form>
+    {{/if}}
+
+    {{#if (and hasNoProductQuantityAvailable isNotSubmitting)}}
+      <div class="error-message replaces-form">
+        <div class="error">
+          Sorry, you already have the maximum allowed number of these tickets in your basket. 
+          Please {{#link-to "checkout"}}continue to the checkout{{/link-to}} or {{#link-to "basket"}}edit your basket{{/link-to}}.
+        </div>
+      </div>
+    {{/if}}
+
+    {{yield}}
+
+  </div>
+

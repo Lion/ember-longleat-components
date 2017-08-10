@@ -1,0 +1,251 @@
+$box-bg-colour: $colour-flat-white;
+$box-bottom-colour: $colour-quartz;
+
+& {
+  background: $box-bg-colour;
+  border-bottom: 3px solid $box-bottom-colour;
+  padding: 25px 15px;
+
+  @include grid-media($grid-md) {
+    padding: 40px;
+  }
+}
+
+.ticket-title {
+  text-align: center;
+  display: block;
+  font-size: 40px;
+  color: $colour-amber;
+  text-transform: uppercase;
+  font-family: $font-family-heading;
+  line-height: 1em;
+  margin: 0;
+
+}
+
+.instructions {
+  font-size: 24px;
+  padding: 10px 0 20px;
+  text-align: center;
+}
+
+.calendar-controls {
+  border-top: 0;
+  margin-top: 0;
+  position: relative;
+
+
+  .btn-next,
+  .btn-previous {
+    position: absolute;
+    min-height: 16px;
+    top: 5px;
+    width: 30px;
+
+    &:active {
+      top: 6px;
+    }
+  }
+
+  .btn-next {
+    right: 0;
+  }
+
+  .btn-previous {
+    left: 0;
+  }
+
+}
+
+.calendar-month-day {
+
+  &:not(.is-previous-month):not(.is-next-month):not(.is-disabled) {
+    &.is-selectable {
+      .day {
+        background-color: $colour-sulphur-dark;
+        border-color: $colour-sulphur-dark;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.full-price,
+    &.concession-full-price {
+      .day {
+        background-color: $colour-cinnabar;
+        border-color: $colour-cinnabar;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.save-10,
+    &.save-15,
+    &.concession-save-10,
+    &.concession-save-15 {
+      .day {
+        background-color: $colour-sulphur-dark;
+        border-color: $colour-sulphur-dark;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.quiet {
+      .day {
+        background-color: $colour-footfall-quiet;
+        border-color: $colour-footfall-quiet;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.moderate {
+      .day {
+        background-color: $colour-footfall-moderate;
+        border-color: $colour-footfall-moderate;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.busy {
+      .day {
+        background-color: $colour-footfall-busy;
+        border-color: $colour-footfall-busy;
+        color: $colour-flat-white;
+      }
+    }
+
+    &.sold-out {
+      .day {
+        background-color: $colour-footfall-sold-out;
+        border-color: $colour-footfall-sold-out;
+        color: $colour-flat-white;
+      }
+    }
+  }
+
+  &:not(.is-previous-month):not(.is-next-month) {
+    &.sold-out {
+      .day {
+        background-color: $colour-footfall-sold-out;
+        border-color: $colour-footfall-sold-out;
+        color: $colour-flat-white;
+      }
+    }
+  }
+
+  &.is-disabled, 
+  &.is-next-month, 
+  &.is-previous-month {
+    .day {
+      border-color: $colour-porcelain;
+      color: $colour-porcelain;
+    }
+  }
+}
+
+.skus-wrapper {
+  margin: -15px;
+  max-height: 400px;
+  overflow: scroll;
+  padding: 15px;
+}
+
+.select-visitors {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-to-basket-btn,
+.continue-btn {
+
+  &.ui-button {
+    width: 100%;
+  }
+
+}
+
+.add-to-basket-btn {
+  padding-top: 20px;
+
+  &.ui-button button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .summary {
+    border-left: 1px solid $colour-sulphur-dark;
+    display: none;
+    padding-left: 10px;
+    margin-left: 5px;
+  }
+}
+
+.small-print {
+  margin-top: 12px;
+  line-height: 1.2em;
+  color: $colour-quartz-dark;
+  text-align: center;
+}
+
+.error-message {
+  border: 1px solid $colour-amber;
+  color: $colour-amber;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  &.replaces-form {
+    margin-top: 30px;
+  }
+
+  a {
+    border-bottom: 1px solid $colour-amber;
+    color: $colour-amber;
+  }
+}
+
+.ui-form-checkbox {
+  margin-top: 20px;
+
+  .checkbox-label {
+    font-size: 16px;
+  }
+}
+
+
+.ui-spinner {
+  display: block;
+}
+
+.has-loading-error {
+  margin: 100px auto;
+  
+  .ui-message {
+    text-align: center;
+  }
+}
+
+.ui-form-checkbox {
+  padding-left: 15px;
+  padding-bottom: 20px;
+}
+
+.select-date {
+  position: relative;
+}
+
+.is-loading-skus {
+  background: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .ui-spinner {
+    border: solid $colour-amber-light !important;
+    border-width: 3px 0 0 0 !important;
+    left: calc(50% - 32px);
+    position: absolute;
+    top: calc(50% - 32px);
+    transform: translate(-50%, -50%);
+  }
+}
+
