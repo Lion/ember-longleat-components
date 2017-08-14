@@ -1,31 +1,70 @@
 <div class="steps">
   <div class="steps-inner">
+    {{#if isDelivery}}
+      <div class="delivery step is-delivery
+        {{if isDeliveryDone 'is-done'}}
+        {{if isDeliveryActive 'is-active'}}
+      ">
+        <span class="count">1</span>
+        <span class="label">Delivery</span>
+      </div>
+    {{/if}}
+
     <div class="extras step 
       {{if isExtrasDone 'is-done'}}
       {{if isExtrasActive 'is-active'}}
+      {{if isDelivery 'is-delivery'}}
     ">
-      <span class="count">1</span>
+      <span class="count">
+        {{#if isDelivery}}
+          2
+        {{else}}
+          1
+        {{/if}}
+      </span>
       <span class="label">Extras</span>
     </div>
+
     <div class="details step
       {{if isDetailsDone 'is-done'}}
       {{if isDetailsActive 'is-active'}}
+      {{if isDelivery 'is-delivery'}}
     ">
-      <span class="count">2</span>
+      <span class="count">
+        {{#if isDelivery}}
+          3
+        {{else}}
+          2
+        {{/if}}
+      </span>
       <span class="label">Details</span>
     </div>
     <div class="payment step
       {{if isPaymentDone 'is-done'}}
       {{if isPaymentActive 'is-active'}}
+      {{if isDelivery 'is-delivery'}}
     ">
-      <span class="count">3</span>
+      <span class="count">
+        {{#if isDelivery}}
+          4
+        {{else}}
+          3
+        {{/if}}
+      </span>
       <span class="label">Payment</span>
     </div>
     <div class="finish step
       {{if isFinishDone 'is-done'}}
       {{if isFinishActive 'is-active'}}
+      {{if isDelivery 'is-delivery'}}
     ">
-      <span class="count">4</span>
+      <span class="count">
+        {{#if isDelivery}}
+          5
+        {{else}}
+          4
+        {{/if}}
+      </span>
       <span class="label">Finish</span>
     </div>
   </div>

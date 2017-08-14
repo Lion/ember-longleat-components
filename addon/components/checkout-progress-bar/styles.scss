@@ -50,6 +50,10 @@ $colour-active: $colour-amber;
   position: relative;
   text-align: center;
 
+  &.is-delivery {
+    width: 20%;
+  }
+
   &.is-active,
   &.is-done {
 
