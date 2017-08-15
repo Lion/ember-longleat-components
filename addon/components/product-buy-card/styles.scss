@@ -4,6 +4,9 @@
 
   text-align: center;
 
+  img {
+    width: 100%;
+  }
   &.is-featured {
     border: $colour-sulphur-light 4px solid;
     margin-top: -4px;
