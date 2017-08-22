@@ -13,9 +13,7 @@
 
 {{#each product.skus as |sku|}}
   <div class="price">
-    {{#if sku.fullPrice}}
-      <span class="full-price">£{{sku.fullPrice}}</span>
-    {{/if}}
+      {{sku-title sku (product-field-value product "skuTitleTemplate")}}
     <span class="online-price">{{format-money (pence-to-pounds sku.price) symbol="£"}}</span>
   </div>
   <div class="sku-quantity">

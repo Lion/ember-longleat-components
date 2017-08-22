@@ -1,14 +1,15 @@
 import Ember from 'ember';
 import layout from './template';
-
-const { Component, get, inject: { service } } = Ember;
+const { Component, computed, get, inject: { service } } = Ember;
+const { filter } = computed;
 
 export default Component.extend({
+  productService: service("product"),
+  basketService: service('basket'),
+  basketItems: null,
   layout,
   classNames: ['product-buy-card'],
 
-  basketService: service('basket'),
-  basketItems: [],
   isLoading: false,
   isAddingToBasket: true, 
 
