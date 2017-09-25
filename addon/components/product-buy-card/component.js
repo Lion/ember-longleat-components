@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import layout from './template';
-const { Component, computed, get, inject: { service } } = Ember;
-const { filter } = computed;
+const { Component, get, inject: { service } } = Ember;
 
 export default Component.extend({
   productService: service("product"),

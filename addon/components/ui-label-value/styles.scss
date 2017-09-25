@@ -1,0 +1,16 @@
+& {
+
+  $label-width: 70px;
+  margin-bottom: 5px;
+
+  > .label {
+    color: $colour-slate;
+    float: left;
+    font-weight: 500;
+    width: $label-width;
+  }
+
+  > .value {
+    margin-left: $label-width + 20px;
+  }
+}
