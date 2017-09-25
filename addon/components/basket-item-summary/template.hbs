@@ -8,7 +8,7 @@
 
   <div class="basket-item-properties">
     {{#ui-label-value "Type" labelWidth="110px"}}
-      {{sku-title basketItem.sku skuTitleTemplate}}
+      {{sku-title basketItem.sku productFieldsHash.skuTitleTemplate}}
     {{/ui-label-value}}
 
     {{#if hasDate}}
