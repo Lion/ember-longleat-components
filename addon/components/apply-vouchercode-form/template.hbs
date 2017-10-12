@@ -26,7 +26,11 @@
             That looks like a Tesco Clubcard voucher
           </div>
           <div class="suggestion">
-            Please continue to the checkout and you will be able use your Clubcard voucher at payment. To see further details have a look at our <a href="tickets/tesco">Tesco Clubcard page</a>
+            {{#if hasTescoTickets}}
+              Please continue to the checkout and you will be able to use your Clubcard voucher at payment.
+            {{else}}
+              The tickets are in your basket are not valid against Tesco Clubcard Vouchers. If you wish to purchase a Tesco Cheddar Explorer Ticket please head to our dedicated <a href="tickets/tesco">Tesco Clubcard page</a>.
+            {{/if}}
           </div>
         {{/if}}
 
