@@ -21,7 +21,7 @@
       {{#if isEditing}}
         {{ui-form-minus-plus-field
           quantity=basketItem.quantity
-          minQuantity=productMinQuantity
+          minQuantity=minQuantity
           maxQuantity=maxQuantity
           isDirectlyEditable=true
           setQuantity=(action "setQuantity")

@@ -135,6 +135,19 @@ export default Component.extend({
     }
   ),
 
+  minQuantity: computed(
+    "productQuantity",
+    "productMinQuantity",
+    "basketItem.quantity",
+    function() {
+      const productMinQuantity = get(this, "productMinQuantity");
+      if (productMinQuantity === 0) {
+        return 0;
+      }
+      return (get(this, 'productMinQuantity') - get(this, "productQuantity") + get(this, "basketItem.quantity"));
+    }
+  ),
+
   maxQuantity: computed(
     'hasSkuMaxQuantity',
     'skuMaxQuantity',
