@@ -144,7 +144,7 @@ export default Component.extend({
       if (productMinQuantity === 0) {
         return 0;
       }
-      return (get(this, 'productMinQuantity') - get(this, "productQuantity") + get(this, "basketItem.quantity"));
+      return Math.max(0, (get(this, 'productMinQuantity') - get(this, "productQuantity") + get(this, "basketItem.quantity")));
     }
   ),
 
@@ -201,6 +201,7 @@ export default Component.extend({
     },
 
     setQuantity(quantity) {
+      quantity = Math.max(0, parseInt(quantity, 10));
       set(this, 'basketItem.quantity', quantity);
       get(this, "bundledBasketItems").invoke("set", "quantity", quantity);
     }
