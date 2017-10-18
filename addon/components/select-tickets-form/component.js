@@ -23,6 +23,7 @@ export default Component.extend({
   whosVisitingLabel: 'Who\'s visiting...',
   
   defaultProductMaxQuantity: 32,
+  defaultProductMinQuantity: 0,
   isSubmitting: false,
 
   date: moment.utc().startOf('day').add(1, 'day'),
@@ -52,7 +53,7 @@ export default Component.extend({
   hasNoProductQuantityAvailable: not("hasProductQuantityAvailable", 0),
   isNotSubmitting: not("isSubmitting"),
 
-  hasMinQuantity: gt('product.minQuantity', 0),
+  hasMinQuantity: gt('productMinQuantity', 0),
   hasMaxQuantity: gt('productMaxQuantity', 0),
   hasSmallPrint: or('hasMinQuantity', 'hasMaxQuantity'),
   skuFieldArrays: mapBy('skusWithStock', 'skuFields'),
@@ -83,6 +84,20 @@ export default Component.extend({
         return productFields['max-quantity']
       } else {
         return get(this, 'defaultProductMaxQuantity');
+      }
+    }
+  ),
+
+  productMinQuantity: computed(
+    'productFieldsHash',
+    'defaultProductMinQuantity',
+    function() {
+      let productFields = get(this, 'productFieldsHash');
+
+      if (productFields['min-quantity']) {
+        return productFields['min-quantity']
+      } else {
+        return get(this, 'defaultProductMinQuantity');
       }
     }
   ),
@@ -120,7 +135,7 @@ export default Component.extend({
     'totalPricedQuantity',
     'product.minQuantity',
     function() {
-      return get(this, 'totalPricedQuantity') >= getWithDefault(this, 'product.minQuantity', 0);
+      return get(this, 'totalPricedQuantity') >= getWithDefault(this, 'productMinQuantity', 0);
     }
   ),
 
