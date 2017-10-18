@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from './template';
-const { Component, computed, get, inject, set } = Ember;
+const { Component, computed, get, getWithDefault, inject, set } = Ember;
 const { service } = inject;
 const { alias, equal, filter, filterBy, gt, mapBy, notEmpty, sum } = computed;
 
@@ -16,7 +16,8 @@ export default Component.extend({
     'hasZeroQuantity'
   ],
 
-  defaultMaxQuantity: 100,
+  defaultMaxQuantity: 32,
+  defaultMinQuantity: 0,
 
   isEditing: false,
 
@@ -116,6 +117,20 @@ export default Component.extend({
         return productFields['max-quantity']
       } else {
         return get(this, 'defaultMaxQuantity');
+      }
+    }
+  ),
+
+  productMinQuantity: computed(
+    'productFieldsHash',
+    'defaultMinQuantity',
+    function() {
+      let productFields = get(this, 'productFieldsHash');
+
+      if (productFields['min-quantity']) {
+        return productFields['min-quantity']
+      } else {
+        return get(this, 'defaultMinQuantity');
       }
     }
   ),

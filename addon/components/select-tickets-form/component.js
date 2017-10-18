@@ -133,7 +133,7 @@ export default Component.extend({
 
   minQuantityIsValid: computed(
     'totalPricedQuantity',
-    'product.minQuantity',
+    'productMinQuantity',
     function() {
       return get(this, 'totalPricedQuantity') >= getWithDefault(this, 'productMinQuantity', 0);
     }
