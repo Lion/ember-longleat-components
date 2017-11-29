@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from './template';
-const { Component, get, inject: { service } } = Ember;
+const { Component, get, inject: { service }, set } = Ember;
 
 export default Component.extend({
   productService: service("product"),
@@ -14,7 +14,7 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('basketItems', []);
+    set(this, 'basketItems', []);
   },
 
   didReceiveAttrs() {
