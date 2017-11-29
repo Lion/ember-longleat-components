@@ -71,6 +71,7 @@ export default Component.extend({
     'isFree',
     function() {
       let {isNotFree, canIncrementForProduct, available, incrementAmount} = getProperties(this, 'isNotFree', 'canIncrementForProduct', 'available', 'incrementAmount');
+
       if (isNotFree) {
         return (canIncrementForProduct && (incrementAmount <= available));
       }
@@ -92,7 +93,14 @@ export default Component.extend({
     'productMaxQuantity',
     'sku.stockQuantity',
     function() {
-      return Math.min(get(this, 'productMaxQuantity'), get(this, 'sku.stockQuantity'));
+      let fieldsHash = get(this, 'fieldsHash');
+      let skuMaxQuantity = get(fieldsHash, 'max-quantity');
+
+      if (skuMaxQuantity > 0) {
+        return Math.min(get(this, 'productMaxQuantity'), get(this, 'sku.stockQuantity'), skuMaxQuantity);
+      } else {
+        return Math.min(get(this, 'productMaxQuantity'), get(this, 'sku.stockQuantity'));
+      }
     }
   ),
 
