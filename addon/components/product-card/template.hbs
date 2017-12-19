@@ -5,10 +5,12 @@
 
   {{yield}}
 
-  <div class="cta">
-    {{ui-button
-      label=ctaLinkLabel
-      onclick=(action displayProduct)
-    }}
-  </div>
+  {{#if ctaLinkLabel}}
+    <div class="cta">
+      {{ui-button
+        label=ctaLinkLabel
+        onclick=(action displayProduct)
+      }}
+    </div>
+  {{/if}}
 {{/picture-card}}
