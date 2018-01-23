@@ -5,22 +5,22 @@
       {{#each errors as |error|}}
         {{#if (eq error.title "not_authed")}}
           Sorry, your card was not authorised. Please try again or use another card.
-        {{/if}}
-        {{#if (eq error.title "rejected")}}
+        {{else if (eq error.title "rejected")}}
           Sorry, your card was not rejected. Please try again or use another card.
-        {{/if}}
-        {{#if (eq error.title "unsupported")}}
+        {{else if (eq error.title "unsupported")}}
           Sorry, there appears to have been an error with your payment. Please try again or use another card.
-        {{/if}}
-        {{#if (eq error.title "malformed")}}
+        {{else if (eq error.title "malformed")}}
           Sorry, there appears to have been an error with your payment. Please try again or use another card.
-        {{/if}}
-        {{#if (eq error.title "invalid")}}
+        {{else if (eq error.title "invalid")}}
           Sorry, that card information does not appear to be valid. Please try again or use another card.
-        {{/if}}
-        {{#if (eq error.title "error")}}
+        {{else if (eq error.title "error")}}
           Sorry, there appears to have been an error with your payment. Please try again or use another card.
+        {{else if (eq error.title "overpayment_not_allowed")}}
+          This order appears to have already been paid. Please check your email for confirmation or if it has been more than a few hours please contact customer services.
+        {{else}}
+          Sorry, there appears to have been an error with your payment. Please try again, use another card or contact customer services.
         {{/if}}
+        
       {{/each}}
     {{/ui-message}}
   {{/if}}
