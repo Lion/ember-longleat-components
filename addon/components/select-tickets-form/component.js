@@ -28,7 +28,7 @@ export default Component.extend({
 
   date: moment.utc().startOf('day').add(1, 'day'),
   minDate: moment.utc().startOf('month'),
-  maxDate: moment.utc("2018-01-07"),
+  maxDate: moment.utc("2019-01-10"),
   displayDate: moment.utc().startOf('month'),
 
   productFields: alias('product.productFields'),
