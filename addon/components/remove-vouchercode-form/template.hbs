@@ -1,6 +1,6 @@
 <form class="remove-vouchercode-form">
   <div class="title">
-    <span class="code">{{code}}</span>
+    <span class="code">{{promotionLine.promotion.code}}</span>
     {{button-text
       label="Remove"
       theme="subtle"
@@ -8,5 +8,5 @@
       onclick=(action "submit")
     }}
   </div>
-  <div class="description">{{{description}}}</div>
+  <div class="description">{{{promotionLine.promotion.description}}}</div>
 </form>

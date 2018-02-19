@@ -1,8 +1,7 @@
-$bg-colour: $colour-quartz;
+$bg-colour: $colour-quartz-light;
 $code-bg-colour: rgba(130, 185, 68, 0.37);
 
 & {
-
   @include grid-container();
   background: $bg-colour;
   padding-top: 15px;
