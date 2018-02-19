@@ -1,27 +1,37 @@
 <form class="apply-vouchercode-form">
 
-  {{#if hasError}}
+  {{#each errors as |error|}}
     <div class="error">
       <div class="message">
-        {{#if (eq errorCode 'NOT_FOUND')}}
-          <div class="title">
-            That doesn't appear to be a valid voucher code
-          </div>
-          <div class="suggestion">
-            Please check that you entered it in correctly.
-          </div>
-        {{/if}}
-
-        {{#if (eq errorCode 'IS_EMPTY')}}
+        {{#if (eq error.title "IS_EMPTY")}}
           <div class="title">
             Voucher code is required
           </div>
           <div class="suggestion">
             Please enter the voucher code you would like to apply
           </div>
-        {{/if}}
-
-        {{#if (eq errorCode 'IS_TESCO')}}
+        {{else if (eq error.detail "Shop promotion can't be blank")}}
+          <div class="title">
+            That doesn't appear to be a valid voucher code
+          </div>
+          <div class="suggestion">
+            Please check that you entered it in correctly.
+          </div>
+        {{else if (eq error.title "NOT_STARTED")}}
+          <div class="title">
+            This promotion has not yet begun.
+          </div>
+          <div class="suggestion">
+            You may have to wait a bit longer before you can use this voucher code. Please check the terms and conditions to find out more.
+          </div>
+        {{else if (eq error.title 'HAS_FINISHED')}}
+          <div class="title">
+            Sorry, this promotion has now ended.
+          </div>
+          <div class="suggestion">
+            Please check the terms and conditions to find out more.
+          </div>
+        {{else if (eq error.title 'IS_TESCO')}}
           <div class="title">
             That looks like a Tesco Clubcard voucher
           </div>
@@ -32,28 +42,17 @@
               The tickets are in your basket are not valid against Tesco Clubcard Vouchers. If you wish to purchase a Tesco Cheddar Explorer Ticket please head to our dedicated <a href="tickets/tesco">Tesco Clubcard page</a>.
             {{/if}}
           </div>
-        {{/if}}
-
-        {{#if (eq errorCode 'HAS_NOT_STARTED')}}
+        {{else}}
           <div class="title">
-            This promotion has not yet begun.
+            That appears to be an error with that voucher code.
           </div>
           <div class="suggestion">
-            You may have to wait a bit longer before you can use this voucher code. Please check the terms and conditions to find out more.
-          </div>
-        {{/if}}
-
-        {{#if (eq errorCode 'HAS_ENDED')}}
-          <div class="title">
-            Sorry, this promotion has now ended.
-          </div>
-          <div class="suggestion">
-            Please check the terms and conditions to find out more.
+            It may have expired or have a problem. Please contact customer services.
           </div>
         {{/if}}
       </div>
     </div>
-  {{/if}}
+  {{/each}}
 
   <label>Enter voucher code:</label>
   <div class="input">
