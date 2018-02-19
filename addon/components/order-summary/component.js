@@ -1,21 +1,15 @@
-import Ember from 'ember';
-import layout from './template';
-const { Component, computed } = Ember;
-const { alias, and, empty, filterBy, gt, not, notEmpty } = computed;
+import Ember from "ember";
+import layout from "./template";
+const { Component, computed, get } = Ember;
+const { filterBy, notEmpty } = computed;
 
 export default Component.extend({
   layout,
 
-  showPromotionalSaving: alias('hasPromotionalSaving'),
-  hasPromotionalSaving: not('hasNoPromotionalSaving'),
-  hasNoPromotionalSaving: empty('totalDiscount'),
-
-  showAdvanceSaving: and('hasAdvanceSavingAmount', 'hasNoPromotionalSaving'),
-
-  hasAdvanceSavingAmount: gt('advanceSavingAmount', 0),
-
-  payments: filterBy('order.payments', 'isNew', false),
-
-  hasPayments: notEmpty('payments'),
-  hasOrder: notEmpty('order')
+  payments: filterBy("source.payments", "isNew", false),
+  hasPayments: notEmpty("payments"),
+  hasPromotionLines: notEmpty("promotionLines"),
+  totalBeforeDiscount: computed("source.{total,discount}", function() {
+    return get(this, "source.total") - get(this, "source.discount");
+  })
 });

@@ -3,30 +3,12 @@
     Order summary
   </div>
 
-  {{#if showPromotionalSaving}}
-    <div class="saving">
-      <h4>You've saved!</h4>
-      <div class="amount">
-        The promotion <strong>{{vouchercode.code}}</strong> has saved you <strong>£{{totalDiscount}}</strong>.
-      </div>
-    </div>
-  {{/if}}
-
-  {{#if showAdvanceSaving}}
-    <div class="saving">
-      <h4>You've saved!</h4>
-      <div class="amount">
-        You've saved £{{advanceSavingAmount}} compared to buying on the day.
-      </div>
-    </div>
-  {{/if}}
-
   <div class="total-item-count">
     <div class="label">
       Items in Basket:
     </div>
     <div class="value">
-      {{totalQuantity}}
+      {{source.quantity}}
     </div>
   </div>
 
@@ -35,10 +17,26 @@
       Total:
     </div>
     <div class="value">
-      {{format-money (pence-to-pounds totalPrice) symbol="£"}}
+      {{format-money (pence-to-pounds totalBeforeDiscount) symbol="£"}}
     </div>
   </div>
-  
+
+  {{#if hasPromotionLines}}
+    <div class="promotions">
+      {{#each promotionLines as |promotionLine|}}
+        <div class="payment">
+          <div class="label">
+            Promotion - 
+            {{promotionLine.promotion.code}}:
+          </div>
+          <div class="value">
+            {{format-money (pence-to-pounds promotionLine.price) symbol="£"}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}  
+
   {{#if hasPayments}}
     <div class="payments">
       {{#each payments as |payment|}}
@@ -65,11 +63,7 @@
       To pay:
     </div>
     <div class="value">
-      {{#if hasOrder}}
-        {{format-money (pence-to-pounds order.balance) symbol="£"}}
-      {{else}}
-        {{format-money (pence-to-pounds totalPrice) symbol="£"}}
-      {{/if}}
+      {{format-money (pence-to-pounds source.balance) symbol="£"}}
     </div>
   </div>
 
