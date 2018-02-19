@@ -12,12 +12,10 @@
   {{#if hasBasketItems}}
     <div class="footer-actions">
       <div class="footer-actions-inner">
-
         {{#if isShowingRemoveVouchercode}}
           {{remove-vouchercode-form
-            code=vouchercode.code
-            description=vouchercode.description
-            removeVouchercode=removeVouchercode
+            promotionLine=promotionLines.firstObject
+            removePromotion=removePromotion
           }}
         {{/if}}
 
@@ -25,8 +23,8 @@
           {{apply-vouchercode-form
             hasTescoTickets=hasTescoTickets
             code=code
-            applyVouchercode=applyVouchercode
-            errorCode=vouchercodeErrorCode
+            applyPromotion=applyPromotion
+            errors=promotionErrors
           }}
         {{/if}}
 
