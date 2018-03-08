@@ -15,7 +15,7 @@ export default Component.extend({
   ],
 
   notValidating: not("validations.isValidating"),
-  didValidate: oneWay("targetObject.didValidate"),
+  didValidate: oneWay("target.didValidate"),
   hasContent: notEmpty("value"),
   isValid: and("hasContent", "validations.isValid", "notValidating"),
   isInvalid: oneWay("validations.isInvalid"),
