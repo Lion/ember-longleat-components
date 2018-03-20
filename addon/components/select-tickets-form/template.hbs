@@ -71,35 +71,19 @@
           isShowingPopup=isShowingVisitors
         }}
           <div class="skus-wrapper">
-            {{#if chooseSessions}}
-              {{!--sessions-quantity-select
-                product=product
+            {{#each filteredSkus as |sku|}}
+              {{sku-quantity-minus-plus
+                sku=sku
                 date=date
-                skus=skus
-                sessions=sessions
-                hasSessionLoadingError=hasSessionLoadingError
-                sessionLabel=product.sessionLabel
-                titleTemplate=product.titleTemplate
-                isLoading=isLoadingSessions
-                soldOutDates=soldOutDates
                 basketItems=basketItems
-                canIncrement=canIncrementForProduct
+                skuTitleTemplate=productFieldsHash.sku-title-template
+                skuMinQuantity.productFieldHash.sku-min-quantity
+                canIncrementForProduct=canIncrementForProduct
+                minQuantity=
                 createBasketItem=createBasketItem
                 deleteBasketItem=deleteBasketItem
-              --}}
-            {{else}}
-              {{#each filteredSkus as |sku|}}
-                {{sku-quantity-minus-plus
-                  sku=sku
-                  date=date
-                  basketItems=basketItems
-                  skuTitleTemplate=productFieldsHash.sku-title-template
-                  canIncrementForProduct=canIncrementForProduct
-                  createBasketItem=createBasketItem
-                  deleteBasketItem=deleteBasketItem
-                }}
-              {{/each}}
-            {{/if}}
+              }}
+            {{/each}}
           </div>
 
           {{ui-button
